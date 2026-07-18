@@ -2774,10 +2774,10 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
   function save(){ try { localStorage.setItem(KEY, JSON.stringify(ST)); } catch(e){} }
   var ST = load();
   ST.done = ST.done || {}; ST.weak = ST.weak || {}; ST.quiz = ST.quiz || {};
-  ST.owned = ST.owned || {}; ST.hoOwned = ST.hoOwned || {};
-  if(ST.pkg===undefined) ST.pkg = null;      /* null | "komplett" (alle 10 Lektionen) */
-  if(ST.hoAll===undefined) ST.hoAll = false; /* true = alle Handouts (Paket) */
-  if(ST.qa===undefined) ST.qa = null;        /* gebuchter Live-Q&A-Termin */
+  /* Demo-Kaeufe werden nicht mehr im Geraet gespeichert: bei jedem Start zuruecksetzen.
+     Echte Freischaltung kommt spaeter uebers Backend (Zahlung -> Zugangsdaten). */
+  ST.owned = {}; ST.hoOwned = {}; ST.pkg = null; ST.hoAll = false; ST.qa = null;
+  save();
 
   /* ================= THEME (Hell = Standard) ================= */
   function setTheme(t){
