@@ -301,6 +301,24 @@ input[type=range].sl::-moz-range-thumb{width:26px;height:26px;border-radius:50%;
 [data-theme="dark"] .switch i{left:24px;background:#fff}
 .linklist a{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:var(--surface);border:1px solid var(--line-2);border-radius:14px;margin-bottom:9px;font-size:14.5px;color:var(--text);box-shadow:var(--sh-1),var(--edge)}
 .linklist a .i{color:var(--text-3)}
+/* Zugang-Statuskarte (hell) */
+.zcard{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--line-2);border-radius:14px;padding:14px 16px;box-shadow:var(--sh-1),var(--edge)}
+.zcard .rw{position:relative;width:46px;height:46px;flex:none}
+.zcard .rw b{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:700;color:var(--text)}
+.zcard .zi{flex:1;min-width:0}
+.zcard .zi b{display:block;font-size:14.5px;color:var(--text)}
+.zcard .zi span{font-size:12px;color:var(--text-2)}
+.zpill{background:var(--done-bg);color:var(--done);font-size:11px;font-weight:700;padding:5px 11px;border-radius:999px;display:inline-flex;align-items:center;gap:6px;flex:none}
+.zpill::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--done)}
+/* Freischalten-Zeile mit Orange-Akzent */
+.frow{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:var(--surface);border:1px solid var(--line-2);border-radius:14px;padding:14px 16px;margin-top:10px;position:relative;overflow:hidden;cursor:pointer;font-family:inherit;box-shadow:var(--sh-1),var(--edge)}
+.frow::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--accent-2),var(--accent))}
+.frow .fico{width:40px;height:40px;border-radius:11px;flex:none;display:flex;align-items:center;justify-content:center;background:var(--glow);color:var(--accent-deep)}
+.frow .fico .i{width:20px;height:20px}
+.frow .ft{flex:1;min-width:0}
+.frow .ft b{display:block;font-size:14.5px;color:var(--text)}
+.frow .ft span{font-size:12px;color:var(--text-2)}
+.frow .farr{width:22px;height:22px;color:var(--accent);flex:none}
 
 .placeholder-note{font-size:12px;color:var(--text-3);background:var(--surface-2);border:1px dashed var(--silver);border-radius:11px;padding:11px 13px;margin-top:14px;line-height:1.5}
 
@@ -745,19 +763,22 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
     <h1>Deine App</h1>
   </div>
 
+  <div class="sec-lbl" style="margin-top:8px">Dein Zugang</div>
+  <div class="zcard">
+    <div class="rw" id="accRing"></div>
+    <div class="zi"><b id="accTitle">Probe-Zugang</b><span id="accSub">Kapitel 3 frei · restliche Kapitel gesperrt</span></div>
+    <span class="zpill">aktiv</span>
+  </div>
+  <button class="frow" id="accBuy">
+    <span class="fico"><svg class="i"><use href="#i-lock"/></svg></span>
+    <span class="ft"><b id="accBuyT">Alle Kapitel freischalten</b><span id="accBuyS">schon ab 39,90&nbsp;€</span></span>
+    <svg class="i farr"><use href="#i-arrow"/></svg>
+  </button>
+
+  <div class="sec-lbl">Darstellung</div>
   <div class="setrow">
     <div class="l"><b>Dunkler Modus</b><small>Schwarz und Orange statt Silber</small></div>
     <button class="switch" id="setSwitch" role="switch" aria-checked="false" aria-label="Dunklen Modus umschalten"><i></i></button>
-  </div>
-
-  <div class="sec-lbl">Dein Zugang</div>
-  <div class="setrow">
-    <div class="l"><b id="accTitle">Probe-Zugang</b><small id="accSub">Kapitel 3 frei · restliche Kapitel gesperrt</small></div>
-    <span class="pill gratis"><span class="dot"></span> aktiv</span>
-  </div>
-  <div id="accBuyWrap">
-    <button class="btn btn-primary btn-block" style="margin:4px 0 6px" id="accBuy">OSTA Klausur-App freischalten · 39,90&nbsp;€</button>
-    <p style="font-size:12px;color:var(--text-3);text-align:center;margin-bottom:8px" class="num">Frühbucher noch <b id="cd4" style="color:var(--text-2)">&hellip;</b>, statt 69,00&nbsp;€ im Einzelkauf (10&nbsp;&times;&nbsp;6,90&nbsp;€).</p>
   </div>
 
   <div class="sec-lbl">Rechtliches</div>
@@ -2898,11 +2919,12 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
   }
 
   /* ================= LERNPFAD ================= */
-  var pathWob=[30, 54, 68, 52, 32, 46, 66, 50, 30, 46]; /* organische Serpentine wie Firestarter */
+  var pathWob=[34, 42, 46, 44, 37, 29, 23, 23, 28, 36]; /* sanfte Serpentine, Karten in einer Spalte */
+  var CARDL=92; /* konstanter Karten-Einzug, damit die Karten fluchten */
   function orbInner(st,n){
     if(st==="done") return "<svg class='i' style='width:22px'><use href='#i-check'/></svg>";
     if(st==="locked") return "<svg class='i' style='width:19px'><use href='#i-lock'/></svg>";
-    return n;
+    return "<svg class='i'><use href='#k-"+n+"'/></svg>";
   }
   function ctaFor(st,n){
     if(st==="done") return "erledigt";
@@ -2931,8 +2953,8 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
     LESSONS.forEach(function(c, m){
       var st = stateFor(c.n);
       html += "<button class='station "+st+"' data-ch='"+c.n+"' aria-label='Kapitel "+c.n+": "+plainT(c.n).replace(/'/g,"&#39;")+", Status "+st+"'>"+
-        "<span class='ball' style='left:"+pathWob[m].toFixed(1)+"px'><svg class='i'><use href='#k-"+c.n+"'/></svg></span>"+
-        "<span class='stcard' style='margin-left:"+(pathWob[m]+38).toFixed(0)+"px'><span class='stt'><b>"+c.t+"</b><small>"+subFor(st,c.n)+"</small></span>"+endFor(st)+"</span>"+
+        "<span class='ball' style='left:"+pathWob[m].toFixed(1)+"px'>"+orbInner(st,c.n)+"</span>"+
+        "<span class='stcard' style='margin-left:"+CARDL+"px'><span class='stt'><b>"+c.t+"</b><small>"+subFor(st,c.n)+"</small></span>"+endFor(st)+"</span>"+
         "</button>";
     });
     wrap.innerHTML = html;
@@ -3379,20 +3401,26 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
   }
 
   /* ---- Zugangs-Karte in den Einstellungen ---- */
+  function accRingSvg(n){
+    var pct=n/10, c=2*Math.PI*20, off=c*(1-pct);
+    return "<svg width='46' height='46' viewBox='0 0 46 46'><circle cx='23' cy='23' r='20' fill='none' stroke='var(--hair)' stroke-width='4.5'/><circle cx='23' cy='23' r='20' fill='none' stroke='url(#accg)' stroke-width='4.5' stroke-linecap='round' stroke-dasharray='"+c.toFixed(1)+"' stroke-dashoffset='"+off.toFixed(1)+"' transform='rotate(-90 23 23)'/><defs><linearGradient id='accg' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='var(--accent-2)'/><stop offset='1' stop-color='var(--accent)'/></linearGradient></defs></svg><b>"+n+"/10</b>";
+  }
   function updateAccessCard(){
-    var at=$("accTitle"), as=$("accSub"), bw=$("accBuyWrap"), ln=$("licNote"), ab=$("accBuy");
+    var at=$("accTitle"), as=$("accSub"), ab=$("accBuy"), ln=$("licNote"), rw=$("accRing"), bs=$("accBuyS");
+    function setRing(n){ if(rw) rw.innerHTML=accRingSvg(n); }
     if(ZUGANG==="komplett"){
       at.textContent="Komplett-Zugang"; as.textContent="Alle 10 Kapitel frei · Fortschritt auf diesem Gerät";
-      bw.hidden=true; if(ln) ln.hidden=false; return;
+      setRing(10); if(ab) ab.hidden=true; if(ln) ln.hidden=false; return;
     }
-    if(ST.pkg==="komplett" && ST.hoAll){ at.textContent="Gesamtpaket"; as.textContent="Alle 10 Kapitel und alle Handouts frei"; bw.hidden=true; }
-    else if(ST.pkg==="komplett"){ at.textContent="OSTA Klausur-App"; as.textContent="Alle 10 Kapitel frei"+(ST.hoAll?" · Handouts inklusive":""); bw.hidden=true; }
+    if(ST.pkg==="komplett" && ST.hoAll){ at.textContent="Gesamtpaket"; as.textContent="Alle 10 Kapitel und alle Handouts frei"; setRing(10); if(ab) ab.hidden=true; }
+    else if(ST.pkg==="komplett"){ at.textContent="OSTA Klausur-App"; as.textContent="Alle 10 Kapitel frei"+(ST.hoAll?" · Handouts inklusive":""); setRing(10); if(ab) ab.hidden=true; }
     else {
       var oc=ownedChapters();
       at.textContent="Probe-Zugang";
       as.textContent=oc>0 ? (oc+" Kapitel einzeln frei · Kapitel 3 gratis") : "Kapitel 3 frei · restliche Kapitel gesperrt";
-      bw.hidden=false;
-      if(ab) ab.innerHTML="OSTA Klausur-App freischalten · "+euro(komplettRest())+(spentEuro()>0?" <small style='font-weight:600'>(angerechnet)</small>":"");
+      setRing(oc+1);
+      if(ab) ab.hidden=false;
+      if(bs) bs.innerHTML="schon ab "+euro(komplettRest())+(spentEuro()>0?" · bereits angerechnet":"");
     }
   }
 
