@@ -3419,7 +3419,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
     if(!komplett){
       var st;
       if(oc>0) st="Du hast <b>"+oc+" Kapitel</b> einzeln ("+euro(spent)+"). Voll auf OSTA komplett angerechnet, es fehlen nur noch <b>"+euro(rest)+"</b>.";
-      else st="Wir wollen nicht daran verdienen, dass du unentschlossen warst. Deswegen zahlst du am Ende nur den <b>rabattierten Gesamtpreis von "+euro(PRICE.komplett)+"</b>.";
+      else st="Wir wollen nicht daran verdienen, dass du zuerst einzelne Inhalte testen willst! Solltest du am Anfang die höheren Einzelpreise wählen und dich später für das Gesamtpaket entscheiden, bleibt der <b>rabattierte Gesamtpreis</b> für dich reserviert.";
       if(kontext) st="<b>"+kontext+"</b> ist noch gesperrt. "+st;
       H.push('<div class="store-status">'+st+'</div>');
     }
