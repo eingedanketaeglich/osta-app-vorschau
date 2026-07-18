@@ -493,12 +493,13 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 .sheet-store{max-height:92vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
 #storeBody .sec-lbl{margin:18px 0 8px}
 #storeBody .sec-lbl:first-child{margin-top:6px}
-.store-status{background:var(--surface-2);border:1px solid var(--line-2);border-radius:var(--r-md);padding:12px 14px;font-size:14px;color:var(--text-2);line-height:1.5}
-.store-status b{color:var(--text)}
-.store-anrech{background:var(--surface-2);border-radius:var(--r-md);padding:11px 13px;font-size:13.5px;color:var(--text-2);line-height:1.5;margin-bottom:8px}
+.store-status{background:var(--surface-2);border:1px solid var(--line-2);border-radius:13px;padding:12px 14px;font-size:14px;color:var(--text-2);line-height:1.5}
+.store-status b{color:var(--accent-deep)}
+[data-theme="dark"] .store-status b{color:var(--accent-2)}
+.store-anrech{background:var(--surface-2);border-radius:13px;padding:11px 13px;font-size:13.5px;color:var(--text-2);line-height:1.5;margin-bottom:8px}
 .store-anrech b{color:var(--accent-deep)}
 [data-theme="dark"] .store-anrech b{color:var(--accent-2)}
-.store-pkg{background:var(--surface);border:1px solid var(--line-2);border-radius:var(--r-md);box-shadow:var(--sh-1);padding:14px 15px;margin-bottom:10px}
+.store-pkg{background:var(--surface);border:1px solid var(--line-2);border-radius:13px;box-shadow:var(--sh-1);padding:14px 15px;margin-bottom:10px}
 .store-pkg.feat{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),var(--sh-1)}
 .store-pkg-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
 .store-pkg-h b{font-size:16px}
@@ -514,7 +515,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 .store-row-t{flex:1;min-width:0;font-size:14px;color:var(--text);line-height:1.35}
 .store-row-t b{color:var(--text)}
 .store-row-r{flex:none;margin-left:auto}
-.store-mini{min-height:38px;padding:7px 14px;font-size:14px;border-radius:var(--r-sm);min-width:78px}
+.store-mini{min-height:38px;padding:7px 14px;font-size:14px;border-radius:11px;min-width:78px}
 .store-badge{display:inline-flex;align-items:center;font-size:12px;font-weight:700;padding:5px 11px;border-radius:999px;white-space:nowrap}
 .store-badge.free{background:var(--done-bg);color:var(--done)}
 .store-badge.owned{background:var(--done-bg);color:var(--done)}
@@ -533,10 +534,10 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
   box-shadow:var(--sh-3);padding:13px 16px;font-size:13.5px;line-height:1.5;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s}
 .app-toast.on{opacity:1;transform:translate(-50%,0)}
 .app-toast.big{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),var(--sh-3)}
-.store-rabatt{background:linear-gradient(180deg,var(--accent-2),var(--accent));color:#2A1500;border-radius:var(--r-md);padding:14px 16px;font-size:14px;line-height:1.55;font-weight:600;box-shadow:var(--sh-2);margin-bottom:10px}
+.store-rabatt{background:linear-gradient(180deg,var(--accent-2),var(--accent));color:#2A1500;border-radius:13px;padding:14px 16px;font-size:14px;line-height:1.55;font-weight:600;box-shadow:var(--sh-2);margin-bottom:10px}
 .store-rabatt b{display:block;font-family:var(--serif);font-size:15px;margin-bottom:5px;color:#2A1500}
 /* Kompakte Pakete */
-.store-pkgrow{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line-2);border-radius:var(--r-md);box-shadow:var(--sh-1);padding:11px 13px;margin-bottom:8px}
+.store-pkgrow{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line-2);border-radius:13px;box-shadow:var(--sh-1);padding:11px 13px;margin-bottom:8px}
 [data-theme="dark"] .store-pkgrow{border-color:var(--line)}
 .store-pkgrow.feat{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),var(--sh-1)}
 .pkgr-t{flex:1;min-width:0}
@@ -544,7 +545,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 .pkgr-t small{display:block;color:var(--text-2);font-size:12px;line-height:1.35}
 .pkgr-p{flex:none;font-weight:800;font-size:16px;white-space:nowrap;text-align:right}
 .pkgr-p s{display:block;font-weight:500;font-size:11px;color:var(--text-3)}
-.pkgr-go{flex:none;background:linear-gradient(180deg,var(--accent-2),var(--accent));color:#2A1500;border:0;border-radius:var(--r-sm);font-weight:700;font-size:13px;padding:9px 12px;cursor:pointer;box-shadow:var(--sh-1);min-height:44px}
+.pkgr-go{flex:none;background:linear-gradient(180deg,var(--accent-2),var(--accent));color:#2A1500;border:0;border-radius:11px;font-weight:700;font-size:13px;padding:9px 12px;cursor:pointer;box-shadow:var(--sh-1);min-height:44px}
 /* Legende */
 .store-legend{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin:0 0 10px;font-size:12.5px;color:var(--text-2)}
 .store-legend span{display:inline-flex;align-items:center;gap:7px}
@@ -569,7 +570,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 .store-cdet .store-topics ul{margin:5px 0 0 16px;padding:0}
 .store-cdet .store-topics li{margin:2px 0;list-style:disc}
 .store-chips{flex:none;display:flex;gap:7px}
-.store-chip{border:0;border-radius:var(--r-sm);cursor:pointer;font-family:inherit;font-weight:700;font-size:12px;padding:6px 9px;min-width:72px;min-height:44px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.15;box-shadow:var(--sh-1)}
+.store-chip{border:0;border-radius:11px;cursor:pointer;font-family:inherit;font-weight:700;font-size:12px;padding:6px 9px;min-width:72px;min-height:44px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.15;box-shadow:var(--sh-1)}
 .store-chip small{font-weight:600;font-size:9px;letter-spacing:.04em;opacity:.85;text-transform:uppercase;margin-bottom:1px}
 .store-chip.lchip{background:linear-gradient(180deg,var(--accent-2),var(--accent));color:#2A1500}
 .store-chip.hchip{background:linear-gradient(180deg,var(--premium-2),var(--premium));color:var(--premium-ink);box-shadow:inset 0 0 0 1px var(--premium-line),var(--sh-1)}
@@ -2813,7 +2814,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
   var PRICE = {
     kapitel:6.90, komplett:39.90, komplettAlt:69.00,
     handout:8.90, handoutPaket:49.90, handoutPaketAlt:89.00,
-    gesamt:89.80, qa:9.00
+    gesamt:89.80, gesamtAlt:185.00, qa:9.00
   };
   function euro(v){ return v.toFixed(2).replace(".",",")+" €"; }
   function ownedChapters(){ var c=0; for(var i=1;i<=10;i++){ if(i!==3 && ST.owned[i]) c++; } return c; }
@@ -3417,7 +3418,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
     if(!komplett){
       var st;
       if(oc>0) st="Du hast <b>"+oc+" Kapitel</b> einzeln ("+euro(spent)+"). Voll auf OSTA komplett angerechnet, es fehlen nur noch <b>"+euro(rest)+"</b>.";
-      else st="Kapitel 3 ist gratis. Kauf einzeln oder komplett, du zahlst für den ganzen Kurs <b>nie mehr als "+euro(PRICE.komplett)+"</b>: jeder einzeln gekaufte Euro wird angerechnet.";
+      else st="Wir wollen nicht daran verdienen, dass du unentschlossen warst. Deswegen zahlst du am Ende nur den <b>rabattierten Gesamtpreis von "+euro(PRICE.komplett)+"</b>.";
       if(kontext) st="<b>"+kontext+"</b> ist noch gesperrt. "+st;
       H.push('<div class="store-status">'+st+'</div>');
     }
@@ -3427,7 +3428,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
       H.push('<div class="sec-lbl">Pakete</div>');
       if(!komplett){
         H.push(pkgRow("OSTA komplett","alle 10 Lektionen · inkl. 1 Live-Q&amp;A gratis"+(spent>0?" · "+euro(spent)+" angerechnet":""), rest, PRICE.komplettAlt, "komplett", true));
-        H.push(pkgRow("OSTA komplett + alle Handouts","Kurs + alle Handout-PDFs · 1 Q&amp;A gratis", Math.max(0,PRICE.gesamt-spent), (spent>0?PRICE.gesamt:null), "gesamt", false));
+        H.push(pkgRow("OSTA komplett + alle Handouts","Kurs + alle Handout-PDFs · 1 Q&amp;A gratis", Math.max(0,PRICE.gesamt-spent), PRICE.gesamtAlt, "gesamt", false));
       }
       if(!allHo){
         H.push(pkgRow("Alle 10 Handouts als Paket","Aufgaben + Lösungen zu jedem Kapitel", PRICE.handoutPaket, PRICE.handoutPaketAlt, "handoutpaket", false));
@@ -3438,10 +3439,9 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
     if(!gesamt){
       H.push('<div class="sec-lbl">Einzeln freischalten</div>');
       H.push('<div class="store-legend"><span><i class="store-dot l"></i> Lektion (in der App)</span><span><i class="store-dot h"></i> Handout (PDF mit Lösungen)</span></div>');
-      if(!komplett){
+      if(!komplett && oc>0){
         var msg;
-        if(oc===0) msg="Jede Lektion "+euro(PRICE.kapitel)+", jeder Euro wird voll auf OSTA komplett angerechnet.";
-        else if(rest<=PRICE.kapitel) msg="Deine nächste Lektion kostet nur noch <b>"+euro(rest)+"</b> und schaltet damit <b>alle 10 Kapitel</b> frei.";
+        if(rest<=PRICE.kapitel) msg="Deine nächste Lektion kostet nur noch <b>"+euro(rest)+"</b> und schaltet damit <b>alle 10 Kapitel</b> frei.";
         else msg="Bereits "+euro(spent)+" angerechnet, die nächste Lektion kostet "+euro(PRICE.kapitel)+".";
         H.push('<div class="store-anrech">'+msg+'</div>');
       }
