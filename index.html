@@ -533,6 +533,48 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
   box-shadow:var(--sh-3);padding:13px 16px;font-size:13.5px;line-height:1.5;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s}
 .app-toast.on{opacity:1;transform:translate(-50%,0)}
 .app-toast.big{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),var(--sh-3)}
+.store-rabatt{background:linear-gradient(180deg,var(--accent-2),var(--accent));color:#2A1500;border-radius:var(--r-md);padding:14px 16px;font-size:14px;line-height:1.55;font-weight:600;box-shadow:var(--sh-2);margin-bottom:10px}
+.store-rabatt b{display:block;font-family:var(--serif);font-size:15px;margin-bottom:5px;color:#2A1500}
+/* Kompakte Pakete */
+.store-pkgrow{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line-2);border-radius:var(--r-md);box-shadow:var(--sh-1);padding:11px 13px;margin-bottom:8px}
+[data-theme="dark"] .store-pkgrow{border-color:var(--line)}
+.store-pkgrow.feat{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),var(--sh-1)}
+.pkgr-t{flex:1;min-width:0}
+.pkgr-t b{font-size:14.5px}
+.pkgr-t small{display:block;color:var(--text-2);font-size:12px;line-height:1.35}
+.pkgr-p{flex:none;font-weight:800;font-size:16px;white-space:nowrap;text-align:right}
+.pkgr-p s{display:block;font-weight:500;font-size:11px;color:var(--text-3)}
+.pkgr-go{flex:none;background:linear-gradient(180deg,var(--accent-2),var(--accent));color:#2A1500;border:0;border-radius:var(--r-sm);font-weight:700;font-size:13px;padding:9px 12px;cursor:pointer;box-shadow:var(--sh-1);min-height:44px}
+/* Legende */
+.store-legend{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin:0 0 10px;font-size:12.5px;color:var(--text-2)}
+.store-legend span{display:inline-flex;align-items:center;gap:7px}
+.store-dot{width:12px;height:12px;border-radius:4px;flex:none}
+.store-dot.l{background:var(--accent)}
+.store-dot.h{background:linear-gradient(180deg,var(--premium-2),var(--premium));box-shadow:inset 0 0 0 1px var(--premium-line)}
+/* Eine Kapitelliste mit zwei Preisen */
+.store-clist{display:flex;flex-direction:column}
+.store-crow{border-bottom:1px solid var(--line-2);padding:11px 0}
+[data-theme="dark"] .store-crow{border-color:var(--line)}
+.store-crow:last-child{border-bottom:0}
+.store-crow-top{display:flex;align-items:center;gap:10px}
+.store-cdet{flex:1;min-width:0}
+.store-cdet>summary{list-style:none;cursor:pointer;font-size:14px;color:var(--text);display:flex;align-items:center;gap:7px;line-height:1.3;min-height:36px}
+.store-cdet>summary::-webkit-details-marker{display:none}
+.store-cdet>summary .kap{font-weight:700;flex:none}
+.store-cdet>summary::after{content:"+";margin-left:4px;color:var(--accent-deep);font-weight:800;flex:none}
+[data-theme="dark"] .store-cdet>summary::after{color:var(--accent-2)}
+.store-cdet[open]>summary::after{content:"\2013"}
+.store-cdet .store-topics{margin:8px 0 2px 2px;font-size:12.5px;color:var(--text-2)}
+.store-cdet .store-topics b{color:var(--text);font-weight:600}
+.store-cdet .store-topics ul{margin:5px 0 0 16px;padding:0}
+.store-cdet .store-topics li{margin:2px 0;list-style:disc}
+.store-chips{flex:none;display:flex;gap:7px}
+.store-chip{border:0;border-radius:var(--r-sm);cursor:pointer;font-family:inherit;font-weight:700;font-size:12px;padding:6px 9px;min-width:72px;min-height:44px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.15;box-shadow:var(--sh-1)}
+.store-chip small{font-weight:600;font-size:9px;letter-spacing:.04em;opacity:.85;text-transform:uppercase;margin-bottom:1px}
+.store-chip.lchip{background:linear-gradient(180deg,var(--accent-2),var(--accent));color:#2A1500}
+.store-chip.hchip{background:linear-gradient(180deg,var(--premium-2),var(--premium));color:var(--premium-ink);box-shadow:inset 0 0 0 1px var(--premium-line),var(--sh-1)}
+.store-chip.free{background:var(--done-bg);color:var(--done);box-shadow:inset 0 0 0 1px var(--done)}
+.store-chip.owned{background:var(--surface-2);color:var(--text-3);box-shadow:inset 0 0 0 1px var(--hair);cursor:default}
 </style>
 </head>
 <body data-screen="hub">
@@ -3353,12 +3395,11 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
   function bookQA(slot){ var free=hasKomplett(); ST.qa=slot; save(); refreshAll(); toast(free?("Live-Q&A am "+slot+" Uhr gebucht, im Paket gratis."):("Live-Q&A am "+slot+" Uhr gebucht ("+euro(PRICE.qa)+").")); }
 
   /* ---- Store-Rendering ---- */
-  function pkgCard(title, desc, price, altPrice, buy, note, feat){
-    return '<div class="store-pkg'+(feat?' feat':'')+'">'+
-      '<div class="store-pkg-h"><b>'+title+'</b><span class="store-pkg-p num">'+euro(price)+(altPrice?'<small>statt '+euro(altPrice)+'</small>':'')+'</span></div>'+
-      '<p class="store-pkg-d">'+desc+'</p>'+
-      (note?'<p class="store-pkg-n">'+note+'</p>':'')+
-      '<button class="btn btn-primary btn-block store-pkg-btn" data-buy="'+buy+'">Freischalten für '+euro(price)+'</button>'+
+  function pkgRow(title, sub, price, altPrice, buy, feat){
+    return '<div class="store-pkgrow'+(feat?' feat':'')+'">'+
+      '<div class="pkgr-t"><b>'+title+'</b><small>'+sub+'</small></div>'+
+      '<div class="pkgr-p">'+euro(price)+(altPrice?'<s>'+euro(altPrice)+'</s>':'')+'</div>'+
+      '<button class="pkgr-go" data-buy="'+buy+'">Freischalten</button>'+
     '</div>';
   }
   function renderStore(kontext){
@@ -3366,57 +3407,66 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
     var oc=ownedChapters(), spent=spentEuro(), rest=komplettRest(), nextP=Math.min(PRICE.kapitel, rest);
     var H=[];
 
-    var status;
-    if(gesamt) status="Du hast das <b>Gesamtpaket</b>: alle 10 Kapitel und alle Handouts sind frei.";
-    else if(komplett) status="Du hast <b>OSTA komplett</b>: alle 10 Kapitel sind offen."+(allHo?" Handouts inklusive.":"");
-    else if(oc>0) status="Du hast <b>"+oc+" Kapitel</b> einzeln ("+euro(spent)+"). Voll auf OSTA komplett angerechnet, es fehlen nur noch <b>"+euro(rest)+"</b>.";
-    else status="Kapitel 3 ist gratis. Schalte einzelne Kapitel frei oder hol dir gleich den ganzen Kurs, du zahlst nie mehr als "+euro(PRICE.komplett)+".";
-    if(kontext) status="<b>"+kontext+"</b> ist noch gesperrt. "+status;
-    H.push('<div class="store-status">'+status+'</div>');
+    /* Rabatt-Satz dauerhaft, sobald freigeschaltet (nicht im echten Komplett-Build) */
+    if(ZUGANG!=="komplett"){
+      if(gesamt) H.push('<div class="store-rabatt"><b>Alles freigeschaltet.</b>Du hast das Gesamtpaket, alle 10 Kapitel und alle Handouts sind frei, dazu eine Live-Q&amp;A gratis. Danke für dein Vertrauen, wir freuen uns auf dein Feedback.</div>');
+      else if(komplett) H.push('<div class="store-rabatt"><b>Alles freigeschaltet.</b>'+RABATT_MSG+'</div>');
+    }
 
+    /* Fair-Hinweis / Status (nur solange nicht komplett) */
+    if(!komplett){
+      var st;
+      if(oc>0) st="Du hast <b>"+oc+" Kapitel</b> einzeln ("+euro(spent)+"). Voll auf OSTA komplett angerechnet, es fehlen nur noch <b>"+euro(rest)+"</b>.";
+      else st="Kapitel 3 ist gratis. Kauf einzeln oder komplett, du zahlst für den ganzen Kurs <b>nie mehr als "+euro(PRICE.komplett)+"</b>: jeder einzeln gekaufte Euro wird angerechnet.";
+      if(kontext) st="<b>"+kontext+"</b> ist noch gesperrt. "+st;
+      H.push('<div class="store-status">'+st+'</div>');
+    }
+
+    /* Pakete (kompakt) */
     if(!gesamt){
       H.push('<div class="sec-lbl">Pakete</div>');
       if(!komplett){
-        H.push(pkgCard("OSTA komplett","Alle 10 Kapitel als Lektionen mit Selbsttests, inkl. 1 Live-Q&A gratis.", rest, PRICE.komplettAlt, "komplett", spent>0?("Bereits "+euro(spent)+" angerechnet · Frühbucher bis 27.07."):"Frühbucher bis 27.07.", true));
-        H.push(pkgCard("OSTA komplett + alle Handouts","Der ganze Kurs plus alle Handout-PDFs (Aufgaben und ausführliche Lösungen), inkl. 1 Live-Q&A gratis.", Math.max(0,PRICE.gesamt-spent), (spent>0?PRICE.gesamt:null), "gesamt", "= Kurs "+euro(PRICE.komplett)+" und Handouts "+euro(PRICE.handoutPaket), false));
+        H.push(pkgRow("OSTA komplett","alle 10 Lektionen · inkl. 1 Live-Q&amp;A gratis"+(spent>0?" · "+euro(spent)+" angerechnet":""), rest, PRICE.komplettAlt, "komplett", true));
+        H.push(pkgRow("OSTA komplett + alle Handouts","Kurs + alle Handout-PDFs · 1 Q&amp;A gratis", Math.max(0,PRICE.gesamt-spent), (spent>0?PRICE.gesamt:null), "gesamt", false));
       }
       if(!allHo){
-        H.push(pkgCard("Alle 10 Handouts als Paket","Aufgaben und ausführliche Lösungen zu jedem Kapitel als PDF.", PRICE.handoutPaket, PRICE.handoutPaketAlt, "handoutpaket", "einzeln wären es 10 &times; "+euro(PRICE.handout), false));
+        H.push(pkgRow("Alle 10 Handouts als Paket","Aufgaben + Lösungen zu jedem Kapitel", PRICE.handoutPaket, PRICE.handoutPaketAlt, "handoutpaket", false));
       }
     }
 
-    if(!komplett){
-      H.push('<div class="sec-lbl">Einzelne Kapitel · '+euro(PRICE.kapitel)+'</div>');
-      var msg;
-      if(oc===0) msg="Jedes Kapitel kostet "+euro(PRICE.kapitel)+". Jeder Euro wird voll auf OSTA komplett ("+euro(PRICE.komplett)+") angerechnet, mehr zahlst du nie.";
-      else if(rest<=PRICE.kapitel) msg="Dein nächstes Kapitel kostet nur noch <b>"+euro(rest)+"</b> und schaltet damit <b>automatisch alle 10 Kapitel</b> frei. Insgesamt zahlst du nur "+euro(PRICE.komplett)+".";
-      else msg="Bereits "+euro(spent)+" angerechnet. Das nächste Kapitel kostet "+euro(PRICE.kapitel)+", bei "+euro(PRICE.komplett)+" ist automatisch alles frei.";
-      H.push('<div class="store-anrech">'+msg+'</div>');
-      H.push('<div class="store-list">');
+    /* Eine Kapitelliste mit zwei Preisen */
+    if(!gesamt){
+      H.push('<div class="sec-lbl">Einzeln freischalten</div>');
+      H.push('<div class="store-legend"><span><i class="store-dot l"></i> Lektion (in der App)</span><span><i class="store-dot h"></i> Handout (PDF mit Lösungen)</span></div>');
+      if(!komplett){
+        var msg;
+        if(oc===0) msg="Jede Lektion "+euro(PRICE.kapitel)+", jeder Euro wird voll auf OSTA komplett angerechnet.";
+        else if(rest<=PRICE.kapitel) msg="Deine nächste Lektion kostet nur noch <b>"+euro(rest)+"</b> und schaltet damit <b>alle 10 Kapitel</b> frei.";
+        else msg="Bereits "+euro(spent)+" angerechnet, die nächste Lektion kostet "+euro(PRICE.kapitel)+".";
+        H.push('<div class="store-anrech">'+msg+'</div>');
+      }
+      H.push('<div class="store-clist">');
       LESSONS.forEach(function(c){
-        var n=c.n, right;
-        if(n===3) right='<span class="store-badge free">gratis</span>';
-        else if(unlocked(n)) right='<span class="store-badge owned">freigeschaltet</span>';
-        else right='<button class="btn btn-primary store-mini num" data-buy="kapitel" data-n="'+n+'">'+euro(nextP)+'</button>';
-        H.push('<div class="store-row"><span class="store-row-t"><b>Kap '+n+'</b> '+c.t+'</span><span class="store-row-r">'+right+'</span></div>');
+        var n=c.n, lchip, hchip;
+        if(n===3) lchip='<span class="store-chip lchip free"><small>Lektion</small>gratis</span>';
+        else if(unlocked(n)) lchip='<span class="store-chip lchip owned"><small>Lektion</small>&#10003; frei</span>';
+        else lchip='<button class="store-chip lchip" data-buy="kapitel" data-n="'+n+'"><small>Lektion</small>'+euro(nextP)+'</button>';
+        if(handoutUnlocked(n)) hchip='<span class="store-chip hchip owned"><small>Handout</small>&#10003; frei</span>';
+        else hchip='<button class="store-chip hchip" data-buy="handout" data-n="'+n+'"><small>Handout</small>'+euro(PRICE.handout)+'</button>';
+        var topics=(TOPICS[n]||[]).map(function(k){ return '<li>'+k+'</li>'; }).join("");
+        H.push('<div class="store-crow"><div class="store-crow-top">'+
+          '<details class="store-cdet"><summary><span class="kap">Kap '+n+'</span> '+c.t+'</summary>'+
+            '<div class="store-topics"><b>Handout Kap '+n+' enthält:</b><ul>'+topics+'</ul></div></details>'+
+          '<div class="store-chips">'+lchip+hchip+'</div>'+
+        '</div></div>');
       });
       H.push('</div>');
     }
 
-    H.push('<div class="sec-lbl">Handouts &amp; Lösungen · '+euro(PRICE.handout)+' je Kapitel</div>');
-    H.push('<div class="store-anrech">Ein Handout ist ein PDF je Kapitel: ein kurzer Erklärteil, der den Stoff auf den Punkt bringt, und ein Aufgabenteil mit ausführlichen Musterlösungen. Auf einen Titel tippen zeigt die Themen.</div>');
-    H.push('<div class="store-list">');
-    LESSONS.forEach(function(c){
-      var n=c.n, topics=(TOPICS[n]||[]).map(function(k){ return '<li>'+k+'</li>'; }).join("");
-      var right=handoutUnlocked(n) ? '<span class="store-badge owned">freigeschaltet</span>'
-        : '<button class="btn btn-silver store-mini num" data-buy="handout" data-n="'+n+'">'+euro(PRICE.handout)+'</button>';
-      H.push('<div class="store-row ho"><span class="store-row-t"><details class="store-det"><summary><b>Kap '+n+'</b> '+c.t+'</summary><ul class="store-topics">'+topics+'</ul></details></span><span class="store-row-r">'+right+'</span></div>');
-    });
-    H.push('</div>');
-
+    /* Live-Q&A kompakt */
     var qaFree=komplett;
     H.push('<div class="sec-lbl">Live-Q&amp;A</div>');
-    H.push('<div class="store-anrech">Deine Fragen live in kleiner Gruppe vor der Klausur. '+(qaFree?'In deinem Paket ist <b>eine Q&amp;A gratis</b>.':'Einzeln '+euro(PRICE.qa)+' pro Termin, im Kurspaket (OSTA komplett oder Gesamtpaket) gratis.')+'</div>');
+    H.push('<div class="store-anrech">Deine Fragen live in kleiner Gruppe vor der Klausur. '+(qaFree?'In deinem Paket ist <b>eine Q&amp;A gratis</b>.':'Einzeln '+euro(PRICE.qa)+' pro Termin, im Kurspaket gratis.')+'</div>');
     if(ST.qa){
       H.push('<div class="store-status">Gebucht: <b>'+ST.qa+' Uhr</b>. <button class="store-link" data-buy="qa" data-slot="'+ST.qa+'">Termin behalten</button></div>');
     } else {
