@@ -866,7 +866,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
     <h3 id="sheetTitle">Freischalten</h3>
     <div id="storeBody"></div>
     <button type="button" class="btn btn-ghost btn-block" style="margin-top:10px" id="sheetClose">Schließen</button>
-    <p class="placeholder-note" style="margin-top:10px">Klickbare Vorschau: Käufe schalten hier sofort frei, damit ihr den Ablauf seht. Der echte Checkout läuft später über euer Backend ({{CHECKOUT_URL}}). Preise inkl. USt.</p>
+    <p class="placeholder-note" style="margin-top:10px">Vormerkungen sind kostenlos und unverbindlich. Bestätigungs-Mail und Checkout laufen über euer Backend ({{VORMERK_ENDPOINT}}, {{CHECKOUT_URL}}). Preise inkl. USt.</p>
   </div>
 </div>
 
@@ -3352,25 +3352,28 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
       '<button type="button" class="store-link" data-back>&#8249; Zurück zur Auswahl</button>'+
       '<div class="store-status" style="margin-top:8px">Deine Auswahl: <b>'+label+'</b></div>'+
       '<form id="vmForm" novalidate style="margin-top:12px">'+
+        '<div class="field"><label for="vmName">Dein Name *</label><input type="text" id="vmName" autocomplete="given-name" placeholder="z. B. Lena" required>'+
+        '<p style="font-size:12px;color:var(--text-3);line-height:1.45;margin:5px 0 0">Mit diesem Namen sprechen wir dich in E-Mails an. Und so heißt du im Gruppenchat, wenn du etwas schreibst.</p></div>'+
         '<div class="field"><label for="vmMail">E-Mail-Adresse *</label><input type="email" id="vmMail" autocomplete="email" placeholder="name@beispiel.de" required></div>'+
         '<div class="field"><label for="vmTel">Handynummer <span style="font-weight:400;color:var(--text-3)">(optional)</span></label><input type="tel" id="vmTel" autocomplete="tel" inputmode="tel" placeholder="z. B. 0151 23456789"></div>'+
         '<label class="chk"><input type="checkbox" id="vmDs"><span>Ich bin einverstanden, dass meine Angaben zur Vormerkung verarbeitet werden. Details in der Datenschutzerklärung (in den Einstellungen).</span></label>'+
-        '<div class="err" id="vmErr">Bitte E-Mail-Adresse und Einverständnis ausfüllen.</div>'+
+        '<div class="err" id="vmErr">Bitte Name, E-Mail-Adresse und Einverständnis ausfüllen.</div>'+
         '<button type="submit" class="btn btn-primary btn-block">Vormerkung absenden</button>'+
       '</form>'+
       '<div class="ok" id="vmOk">Danke! Deine Vormerkung ist notiert. Wir melden uns per E-Mail, sobald dein Zugang bereitsteht.</div>'+
       '<p class="placeholder-note" style="margin-top:12px">Kostenlos und unverbindlich, es entsteht keine Zahlungspflicht. Bezahlung und Zugangsdaten folgen später im separaten Checkout.</p>';
     $("vmForm").addEventListener("submit", function(e){
       e.preventDefault();
-      var ml=$("vmMail").value.trim(), tel=$("vmTel").value.trim(), ds=$("vmDs").checked;
-      if(!ml || ml.indexOf("@")<1 || !ds){ $("vmErr").style.display="block"; return; }
+      var nm=$("vmName").value.trim().replace(/[<>]/g,""), ml=$("vmMail").value.trim(), tel=$("vmTel").value.trim(), ds=$("vmDs").checked;
+      if(!nm || !ml || ml.indexOf("@")<1 || !ds){ $("vmErr").style.display="block"; return; }
       $("vmErr").style.display="none";
-      var data={produkt:label, email:ml, handynummer:tel, zeit:new Date().toISOString()};
+      var data={name:nm, produkt:label, email:ml, handynummer:tel, zeit:new Date().toISOString()};
       ST.vm = ST.vm || []; ST.vm.push(data); save();
       if(/^https?:/.test(VORMERK_URL)){
         try { fetch(VORMERK_URL, {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(data)}).catch(function(){}); } catch(e2){}
       }
       $("vmForm").style.display="none";
+      $("vmOk").innerHTML="<b>Danke, "+nm+"!</b> Deine Vormerkung ist notiert. Wir melden uns per E-Mail, sobald dein Zugang bereitsteht.";
       $("vmOk").style.display="block";
     });
   }
