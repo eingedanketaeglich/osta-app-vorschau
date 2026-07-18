@@ -489,6 +489,50 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 .lsegs button.cur{background:rgba(232,118,10,.16);border:1.5px solid var(--accent)}
 .lsegs button:disabled{cursor:default;opacity:.6}
 .lcount{font-size:12px;font-weight:600;color:var(--text-3);white-space:nowrap;flex:none}
+/* ===== Freischalt-Store ===== */
+.sheet-store{max-height:92vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
+#storeBody .sec-lbl{margin:18px 0 8px}
+#storeBody .sec-lbl:first-child{margin-top:6px}
+.store-status{background:var(--surface-2);border:1px solid var(--line-2);border-radius:var(--r-md);padding:12px 14px;font-size:14px;color:var(--text-2);line-height:1.5}
+.store-status b{color:var(--text)}
+.store-anrech{background:var(--surface-2);border-radius:var(--r-md);padding:11px 13px;font-size:13.5px;color:var(--text-2);line-height:1.5;margin-bottom:8px}
+.store-anrech b{color:var(--accent-deep)}
+[data-theme="dark"] .store-anrech b{color:var(--accent-2)}
+.store-pkg{background:var(--surface);border:1px solid var(--line-2);border-radius:var(--r-md);box-shadow:var(--sh-1);padding:14px 15px;margin-bottom:10px}
+.store-pkg.feat{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),var(--sh-1)}
+.store-pkg-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.store-pkg-h b{font-size:16px}
+.store-pkg-p{font-size:20px;font-weight:700;white-space:nowrap;display:flex;flex-direction:column;align-items:flex-end;line-height:1.1}
+.store-pkg-p small{font-size:11px;font-weight:500;color:var(--text-3);text-decoration:line-through}
+.store-pkg-d{font-size:13.5px;color:var(--text-2);margin:6px 0 2px;line-height:1.45}
+.store-pkg-n{font-size:12px;color:var(--accent-deep);font-weight:600;margin:2px 0 0}
+[data-theme="dark"] .store-pkg-n{color:var(--accent-2)}
+.store-pkg-btn{margin-top:12px}
+.store-list{display:flex;flex-direction:column}
+.store-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line-2)}
+.store-row:last-child{border-bottom:0}
+.store-row-t{flex:1;min-width:0;font-size:14px;color:var(--text);line-height:1.35}
+.store-row-t b{color:var(--text)}
+.store-row-r{flex:none;margin-left:auto}
+.store-mini{min-height:38px;padding:7px 14px;font-size:14px;border-radius:var(--r-sm);min-width:78px}
+.store-badge{display:inline-flex;align-items:center;font-size:12px;font-weight:700;padding:5px 11px;border-radius:999px;white-space:nowrap}
+.store-badge.free{background:var(--done-bg);color:var(--done)}
+.store-badge.owned{background:var(--done-bg);color:var(--done)}
+.store-det{width:100%}
+.store-det>summary{cursor:pointer;list-style:none;font-size:14px;color:var(--text);display:block}
+.store-det>summary::-webkit-details-marker{display:none}
+.store-det>summary::before{content:"+";display:inline-block;width:16px;color:var(--accent-deep);font-weight:800}
+[data-theme="dark"] .store-det>summary::before{color:var(--accent-2)}
+.store-det[open]>summary::before{content:"\2013"}
+.store-topics{margin:6px 0 2px 20px;padding:0}
+.store-topics li{font-size:12.5px;color:var(--text-3);margin:2px 0;list-style:disc}
+.store-link{background:none;border:0;color:var(--accent-deep);font-weight:600;font-size:13px;cursor:pointer;padding:2px 0;text-decoration:underline}
+[data-theme="dark"] .store-link{color:var(--accent-2)}
+.app-toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);z-index:120;max-width:min(440px,92vw);
+  background:var(--premium);color:var(--premium-ink);border:1px solid var(--premium-line);border-radius:14px;
+  box-shadow:var(--sh-3);padding:13px 16px;font-size:13.5px;line-height:1.5;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s}
+.app-toast.on{opacity:1;transform:translate(-50%,0)}
+.app-toast.big{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),var(--sh-3)}
 </style>
 </head>
 <body data-screen="hub">
@@ -581,7 +625,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
   </div>
 
   <div class="sec-lbl">Leitsatz zum Tag</div>
-  <div class="leitkarte"><div class="q" id="hubQuote">Standardisieren macht aus unendlich vielen Glocken eine einzige.</div><div class="ln"></div></div>
+  <div class="leitkarte"><div class="q" id="hubQuote">Standardisieren macht aus unendlich vielen Glockenkurven eine einzige.</div><div class="ln"></div></div>
 
   <div id="hubNextWrap">
     <div class="sec-lbl">Dein nächster Schritt</div>
@@ -772,24 +816,14 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
   <button class="tab" data-tab="mehr"><svg class="i"><use href="#i-gear"/></svg><span>Einstellungen</span></button>
 </nav>
 
-<!-- Vormerk-/Freischalt-Sheet (Probe-Zugang) -->
+<!-- Freischalt-Store (Kapitel, Pakete, Handouts, Q&A) -->
 <div class="sheet-ov" id="sheetOv" role="presentation">
-  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+  <div class="sheet sheet-store" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
     <div class="grab" aria-hidden="true"></div>
-    <h3 id="sheetTitle">OSTA komplett freischalten</h3>
-    <p class="sub" id="sheetSub">Alle 10 Kapitel als interaktive Lektionen mit Selbsttests, dazu Live&#8209;Q&amp;A in kleiner Gruppe.</p>
-    <div class="price-line num"><span class="now">39,90&nbsp;€</span><span class="old">69,00&nbsp;€ im Einzelkauf (10&nbsp;&times;&nbsp;6,90&nbsp;€)</span></div>
-    <p class="sub num" style="margin-top:-6px">Frühbucherpreis bis 27.07.2026. Preis inkl. USt.</p>
-    <form id="sheetForm">
-      <div class="field"><label for="vmName">Vorname</label><input type="text" id="vmName" autocomplete="given-name" placeholder="Dein Vorname" required></div>
-      <div class="field"><label for="vmMail">E&#8209;Mail&#8209;Adresse</label><input type="email" id="vmMail" autocomplete="email" placeholder="name@beispiel.de" required></div>
-      <label class="chk"><input type="checkbox" id="vmDs" required><span>Ich bin einverstanden, dass meine Angaben zur Vormerkung verarbeitet werden. Details in der <a href="#" data-tab="datenschutz" onclick="return false" style="color:var(--accent-deep)">Datenschutzerklärung</a>.</span></label>
-      <div class="err" id="sheetErr">Bitte Vorname, E&#8209;Mail und Einverständnis ausfüllen.</div>
-      <button type="submit" class="btn btn-primary btn-block">Unverbindlich vormerken</button>
-      <button type="button" class="btn btn-ghost btn-block" style="margin-top:8px" id="sheetClose">Später</button>
-    </form>
-    <div class="ok" id="sheetOk"></div>
-    <p class="placeholder-note" style="margin-top:12px">Kostenlos und unverbindlich, es entsteht keine Zahlungspflicht. Die Übermittlung und der Checkout laufen über euer Backend ({{VORMERK_URL}}, {{CHECKOUT_URL}}), hier wird nur lokal bestätigt.</p>
+    <h3 id="sheetTitle">Freischalten</h3>
+    <div id="storeBody"></div>
+    <button type="button" class="btn btn-ghost btn-block" style="margin-top:10px" id="sheetClose">Schließen</button>
+    <p class="placeholder-note" style="margin-top:10px">Klickbare Vorschau: Käufe schalten hier sofort frei, damit ihr den Ablauf seht. Der echte Checkout läuft später über euer Backend ({{CHECKOUT_URL}}). Preise inkl. USt.</p>
   </div>
 </div>
 
@@ -1872,7 +1906,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
     <div class="ah-note" id="azNote"></div>
   </div>
   <div class="leitsatz">
-    <div class="q">&bdquo;Standardisieren macht aus unendlich vielen Glocken eine einzige.&ldquo;</div>
+    <div class="q">&bdquo;Standardisieren macht aus unendlich vielen Glockenkurven eine einzige.&ldquo;</div>
     <div class="ln"></div>
   </div>
 </div>
@@ -2697,6 +2731,10 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
   function save(){ try { localStorage.setItem(KEY, JSON.stringify(ST)); } catch(e){} }
   var ST = load();
   ST.done = ST.done || {}; ST.weak = ST.weak || {}; ST.quiz = ST.quiz || {};
+  ST.owned = ST.owned || {}; ST.hoOwned = ST.hoOwned || {};
+  if(ST.pkg===undefined) ST.pkg = null;      /* null | "komplett" (alle 10 Lektionen) */
+  if(ST.hoAll===undefined) ST.hoAll = false; /* true = alle Handouts (Paket) */
+  if(ST.qa===undefined) ST.qa = null;        /* gebuchter Live-Q&A-Termin */
 
   /* ================= THEME (Hell = Standard) ================= */
   function setTheme(t){
@@ -2729,8 +2767,22 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
     var c4 = $("cd4");  if(c4)   c4.textContent   = df + (df===1?" Tag":" Tage");
   })();
 
+  /* ================= PREISE (Fakten-Kanon / Simons Vorgaben) ================= */
+  var PRICE = {
+    kapitel:6.90, komplett:39.90, komplettAlt:69.00,
+    handout:8.90, handoutPaket:49.90, handoutPaketAlt:89.00,
+    gesamt:89.80, qa:9.00
+  };
+  function euro(v){ return v.toFixed(2).replace(".",",")+" €"; }
+  function ownedChapters(){ var c=0; for(var i=1;i<=10;i++){ if(i!==3 && ST.owned[i]) c++; } return c; }
+  function spentEuro(){ return ownedChapters()*PRICE.kapitel; }              /* auf komplett angerechnet */
+  function komplettRest(){ return Math.max(0, PRICE.komplett - spentEuro()); } /* Restpreis fuer OSTA komplett */
+  function hasKomplett(){ return ZUGANG==="komplett" || ST.pkg==="komplett"; }
+  function hasAllHandouts(){ return !!ST.hoAll; }
+  function handoutUnlocked(n){ return hasAllHandouts() || !!ST.hoOwned[n]; }
+
   /* ================= ZUSTAND JE KAPITEL ================= */
-  function unlocked(n){ return ZUGANG==="komplett" || n===3; }
+  function unlocked(n){ return hasKomplett() || n===3 || !!ST.owned[n]; }
   function activeN(){
     for(var i=0;i<LESSONS.length;i++){ var n=LESSONS[i].n; if(unlocked(n) && !ST.done[n]) return n; }
     return null;
@@ -2751,16 +2803,16 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
     $("hubProgTitle").textContent = dc+" von 10 Kapiteln";
     $("hubHi").textContent = dc===0 ? "Willkommen" : "Willkommen zurück";
     var LEITSAETZE=[
-      "Wer Lage und Streuung lesen kann, sieht mehr als den Durchschnitt.",
-      "Korrelation zeigt die Richtung, Kausalität musst du begründen.",
+      "Wer Lage und Streuung lesen kann, sieht mehr als nur den Durchschnitt.",
+      "Korrelation zeigt die Richtung und Stärke, Kausalität musst du begründen.",
       "Rechne nicht mit dem Bauch, rechne mit Bayes.",
       "Der Erwartungswert ist das Mittel aller Möglichkeiten, gewichtet mit ihrer Chance.",
-      "Ob Binomial oder Poisson entscheidet die Frage: feste Versuche oder offene Zeit?",
-      "Standardisieren macht aus unendlich vielen Glocken eine einzige.",
-      "Ein guter Schätzer trifft im Mittel und wird mit jeder Beobachtung sicherer.",
-      "Ein Konfidenzintervall sagt ehrlich, wie genau du wirklich weißt.",
+      "Ob Binomial oder Poisson entscheidet die Frage: wie selten ist ein bestimmtes Ergebnis über die Zeit?",
+      "Standardisieren macht aus unendlich vielen Glockenkurven eine einzige.",
+      "Ein guter Schätzer trifft im Mittel ein Intervall und wird mit jeder Beobachtung sicherer.",
+      "Ein Konfidenzintervall sagt ehrlich, wie genau du etwas wirklich zu wissen glaubst.",
       "Ein Test kann eine Hypothese verwerfen, beweisen kann er sie nie.",
-      "Signifikant heißt: der Zufall allein erklärt das Ergebnis kaum noch."
+      "„Signifikant“ heißt: mit hoher Wahrscheinlichkeit. Zufall allein erklärt das Ergebnis kaum noch."
     ];
     var day=Math.floor((new Date()-new Date(new Date().getFullYear(),0,0))/86400000);
     $("hubQuote").textContent = LEITSAETZE[day % LEITSAETZE.length];
@@ -2842,9 +2894,10 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
     wrap.innerHTML = html;
     drawRail(wrap);
     var dc = doneCount();
+    var full = hasKomplett();
     $("pathSum").innerHTML = "<b>10 Kapitel</b> · 160 Selbsttest-Fragen. " +
-      (ZUGANG==="probe" ? "Kapitel 3 schon gratis spielbar, der Rest als Vorschau." : (dc===0 ? "Alle Kapitel freigeschaltet." : dc+" von 10 erledigt, weiter geht&rsquo;s."));
-    $("pfadCtaWrap").hidden = (ZUGANG!=="probe");
+      (!full ? "Kapitel 3 gratis, weitere schaltest du einzeln oder komplett frei." : (dc===0 ? "Alle Kapitel freigeschaltet." : dc+" von 10 erledigt, weiter geht&rsquo;s."));
+    $("pfadCtaWrap").hidden = full;
   }
   function drawRail(wrap){
     var svg = wrap.querySelector(".railsvg"); if(!svg) return;
@@ -3223,42 +3276,182 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
   }
   if(chatSend){ chatSend.addEventListener("click", sendChat); chatInput.addEventListener("keydown", function(e){ if(e.key==="Enter"){ e.preventDefault(); sendChat(); } }); }
 
-  /* ================= MEHR / ZUGANG ================= */
-  (function(){
-    if(ZUGANG==="komplett"){
-      $("accTitle").textContent="Komplett-Zugang";
-      $("accSub").textContent="Alle 10 Kapitel frei · Fortschritt auf diesem Gerät";
-      $("accBuyWrap").hidden=true;
-      $("licNote").hidden=false;
-    } else {
-      $("accBuy").addEventListener("click", function(){ openSheet(null); });
-    }
-    $("pfadCta").addEventListener("click", function(){ openSheet(null); });
-  })();
+  /* ================= FREISCHALT-STORE (klickbare Kauf-Demo) ================= */
+  var sheetOv=$("sheetOv"), STORE_CTX=null;
+  var RABATT_MSG="Wir wollen nicht daran verdienen, dass du unentschlossen warst. Deswegen zahlst du am Ende nur den stark rabattierten Gesamtpreis von "+euro(PRICE.komplett)+". Danke für dein Vertrauen, wir freuen uns auf dein Feedback.";
+  var TOPICS={
+    1:["Mittelwert & Median","Modus","Quantile","Varianz & Standardabweichung","Häufigkeitsverteilungen"],
+    2:["Kovarianz","Korrelationskoeffizient","KQ-Regressionsgerade","Bestimmtheitsmaß"],
+    3:["Laplace","Bedingte Wahrscheinlichkeit","Unabhängigkeit","Satz von Bayes","Vierfeldertafel"],
+    4:["Erwartungswert","Varianz","Dichte","Verteilungsfunktion","Exponentialverteilung"],
+    5:["Bernoulli-Experiment","Binomialverteilung","Poisson-Verteilung","Approximation"],
+    6:["Standardisieren","z-Wert","Quantile ablesen","Stichprobenmittel","Zentraler Grenzwertsatz"],
+    7:["Erwartungstreue","Momentenmethode","Maximum Likelihood","Effizienz"],
+    8:["Konfidenzniveau","Intervall fürs Mittel","t-Verteilung","Stichprobenumfang"],
+    9:["Hypothesenpaar","Fehler 1. & 2. Art","Gauß-Test","p-Wert","Signifikanzniveau"],
+    10:["t-Test","Chi-Quadrat-Anpassungstest","Unabhängigkeitstest","Testauswahl"]
+  };
+  var QASLOTS=["Fr 24.07., 19:00","Sa 25.07., 10:00","So 26.07., 10:00"];
 
-  /* ================= VORMERK-SHEET ================= */
-  var sheetOv=$("sheetOv");
-  function openSheet(kontext){
-    $("sheetSub").innerHTML = (kontext ? "<b>"+kontext+"</b> ist Teil von &bdquo;OSTA komplett&ldquo;. " : "")+
-      "Alle 10 Kapitel als interaktive Lektionen mit Selbsttests, dazu Live&#8209;Q&amp;A in kleiner Gruppe.";
-    $("sheetForm").style.display=""; $("sheetOk").style.display="none"; $("sheetErr").style.display="none";
-    sheetOv.classList.add("on");
-    document.body.style.overflow="hidden";
+  /* ---- Toast ---- */
+  var toastEl=null, toastT=null;
+  function toast(msg, big){
+    if(!toastEl){ toastEl=document.createElement("div"); toastEl.className="app-toast"; document.body.appendChild(toastEl); }
+    toastEl.innerHTML=msg; toastEl.classList.toggle("big", !!big); toastEl.classList.add("on");
+    if(toastT) clearTimeout(toastT);
+    toastT=setTimeout(function(){ toastEl.classList.remove("on"); }, big?8000:3600);
   }
+
+  /* ---- Zugangs-Karte in den Einstellungen ---- */
+  function updateAccessCard(){
+    var at=$("accTitle"), as=$("accSub"), bw=$("accBuyWrap"), ln=$("licNote"), ab=$("accBuy");
+    if(ZUGANG==="komplett"){
+      at.textContent="Komplett-Zugang"; as.textContent="Alle 10 Kapitel frei · Fortschritt auf diesem Gerät";
+      bw.hidden=true; if(ln) ln.hidden=false; return;
+    }
+    if(ST.pkg==="komplett" && ST.hoAll){ at.textContent="Gesamtpaket"; as.textContent="Alle 10 Kapitel und alle Handouts frei"; bw.hidden=true; }
+    else if(ST.pkg==="komplett"){ at.textContent="OSTA komplett"; as.textContent="Alle 10 Kapitel frei"+(ST.hoAll?" · Handouts inklusive":""); bw.hidden=true; }
+    else {
+      var oc=ownedChapters();
+      at.textContent="Probe-Zugang";
+      as.textContent=oc>0 ? (oc+" Kapitel einzeln frei · Kapitel 3 gratis") : "Kapitel 3 frei · restliche Kapitel gesperrt";
+      bw.hidden=false;
+      if(ab) ab.innerHTML="OSTA komplett freischalten · "+euro(komplettRest())+(spentEuro()>0?" <small style='font-weight:600'>(angerechnet)</small>":"");
+    }
+  }
+
+  function refreshAll(){
+    renderHub();
+    if(document.body.getAttribute("data-screen")==="pfad") buildPath();
+    updateAccessCard();
+    if(sheetOv.classList.contains("on")) renderStore(STORE_CTX);
+  }
+
+  /* ---- Kauf-Aktionen (Demo: schalten sofort frei) ---- */
+  function buyKapitel(n){
+    if(unlocked(n)) return;
+    var before=spentEuro(), price=Math.min(PRICE.kapitel, PRICE.komplett-before);
+    ST.owned[n]=true;
+    var reached=(before+price)>=PRICE.komplett-0.001;
+    if(reached) ST.pkg="komplett";
+    save(); refreshAll();
+    if(reached) toast(RABATT_MSG, true);
+    else toast("Kapitel "+n+" freigeschaltet ("+euro(price)+"). Bereits "+euro(spentEuro())+" auf OSTA komplett angerechnet.");
+  }
+  function buyKomplett(){
+    if(hasKomplett()) return;
+    var credited=spentEuro()>0;
+    ST.pkg="komplett"; save(); refreshAll();
+    toast(credited?RABATT_MSG:"OSTA komplett freigeschaltet. Alle 10 Kapitel sind jetzt offen, und eine Live-Q&A ist gratis.", credited);
+  }
+  function buyGesamt(){
+    ST.pkg="komplett"; ST.hoAll=true; save(); refreshAll();
+    toast("Gesamtpaket freigeschaltet: alle 10 Kapitel plus alle Handouts, dazu 1 Live-Q&A gratis.");
+  }
+  function buyHandoutPaket(){ if(hasAllHandouts()) return; ST.hoAll=true; save(); refreshAll(); toast("Handout-Paket freigeschaltet: alle 10 Handout-PDFs mit Aufgaben und Lösungen."); }
+  function buyHandout(n){ if(handoutUnlocked(n)) return; ST.hoOwned[n]=true; save(); refreshAll(); toast("Handout Kap "+n+" freigeschaltet ("+euro(PRICE.handout)+")."); }
+  function bookQA(slot){ var free=hasKomplett(); ST.qa=slot; save(); refreshAll(); toast(free?("Live-Q&A am "+slot+" Uhr gebucht, im Paket gratis."):("Live-Q&A am "+slot+" Uhr gebucht ("+euro(PRICE.qa)+").")); }
+
+  /* ---- Store-Rendering ---- */
+  function pkgCard(title, desc, price, altPrice, buy, note, feat){
+    return '<div class="store-pkg'+(feat?' feat':'')+'">'+
+      '<div class="store-pkg-h"><b>'+title+'</b><span class="store-pkg-p num">'+euro(price)+(altPrice?'<small>statt '+euro(altPrice)+'</small>':'')+'</span></div>'+
+      '<p class="store-pkg-d">'+desc+'</p>'+
+      (note?'<p class="store-pkg-n">'+note+'</p>':'')+
+      '<button class="btn btn-primary btn-block store-pkg-btn" data-buy="'+buy+'">Freischalten für '+euro(price)+'</button>'+
+    '</div>';
+  }
+  function renderStore(kontext){
+    var komplett=hasKomplett(), allHo=hasAllHandouts(), gesamt=komplett&&allHo;
+    var oc=ownedChapters(), spent=spentEuro(), rest=komplettRest(), nextP=Math.min(PRICE.kapitel, rest);
+    var H=[];
+
+    var status;
+    if(gesamt) status="Du hast das <b>Gesamtpaket</b>: alle 10 Kapitel und alle Handouts sind frei.";
+    else if(komplett) status="Du hast <b>OSTA komplett</b>: alle 10 Kapitel sind offen."+(allHo?" Handouts inklusive.":"");
+    else if(oc>0) status="Du hast <b>"+oc+" Kapitel</b> einzeln ("+euro(spent)+"). Voll auf OSTA komplett angerechnet, es fehlen nur noch <b>"+euro(rest)+"</b>.";
+    else status="Kapitel 3 ist gratis. Schalte einzelne Kapitel frei oder hol dir gleich den ganzen Kurs, du zahlst nie mehr als "+euro(PRICE.komplett)+".";
+    if(kontext) status="<b>"+kontext+"</b> ist noch gesperrt. "+status;
+    H.push('<div class="store-status">'+status+'</div>');
+
+    if(!gesamt){
+      H.push('<div class="sec-lbl">Pakete</div>');
+      if(!komplett){
+        H.push(pkgCard("OSTA komplett","Alle 10 Kapitel als Lektionen mit Selbsttests, inkl. 1 Live-Q&A gratis.", rest, PRICE.komplettAlt, "komplett", spent>0?("Bereits "+euro(spent)+" angerechnet · Frühbucher bis 27.07."):"Frühbucher bis 27.07.", true));
+        H.push(pkgCard("OSTA komplett + alle Handouts","Der ganze Kurs plus alle Handout-PDFs (Aufgaben und ausführliche Lösungen), inkl. 1 Live-Q&A gratis.", Math.max(0,PRICE.gesamt-spent), (spent>0?PRICE.gesamt:null), "gesamt", "= Kurs "+euro(PRICE.komplett)+" und Handouts "+euro(PRICE.handoutPaket), false));
+      }
+      if(!allHo){
+        H.push(pkgCard("Alle 10 Handouts als Paket","Aufgaben und ausführliche Lösungen zu jedem Kapitel als PDF.", PRICE.handoutPaket, PRICE.handoutPaketAlt, "handoutpaket", "einzeln wären es 10 &times; "+euro(PRICE.handout), false));
+      }
+    }
+
+    if(!komplett){
+      H.push('<div class="sec-lbl">Einzelne Kapitel · '+euro(PRICE.kapitel)+'</div>');
+      var msg;
+      if(oc===0) msg="Jedes Kapitel kostet "+euro(PRICE.kapitel)+". Jeder Euro wird voll auf OSTA komplett ("+euro(PRICE.komplett)+") angerechnet, mehr zahlst du nie.";
+      else if(rest<=PRICE.kapitel) msg="Dein nächstes Kapitel kostet nur noch <b>"+euro(rest)+"</b> und schaltet damit <b>automatisch alle 10 Kapitel</b> frei. Insgesamt zahlst du nur "+euro(PRICE.komplett)+".";
+      else msg="Bereits "+euro(spent)+" angerechnet. Das nächste Kapitel kostet "+euro(PRICE.kapitel)+", bei "+euro(PRICE.komplett)+" ist automatisch alles frei.";
+      H.push('<div class="store-anrech">'+msg+'</div>');
+      H.push('<div class="store-list">');
+      LESSONS.forEach(function(c){
+        var n=c.n, right;
+        if(n===3) right='<span class="store-badge free">gratis</span>';
+        else if(unlocked(n)) right='<span class="store-badge owned">freigeschaltet</span>';
+        else right='<button class="btn btn-primary store-mini num" data-buy="kapitel" data-n="'+n+'">'+euro(nextP)+'</button>';
+        H.push('<div class="store-row"><span class="store-row-t"><b>Kap '+n+'</b> '+c.t+'</span><span class="store-row-r">'+right+'</span></div>');
+      });
+      H.push('</div>');
+    }
+
+    H.push('<div class="sec-lbl">Handouts &amp; Lösungen · '+euro(PRICE.handout)+' je Kapitel</div>');
+    H.push('<div class="store-anrech">Ein Handout ist ein PDF je Kapitel: ein kurzer Erklärteil, der den Stoff auf den Punkt bringt, und ein Aufgabenteil mit ausführlichen Musterlösungen. Auf einen Titel tippen zeigt die Themen.</div>');
+    H.push('<div class="store-list">');
+    LESSONS.forEach(function(c){
+      var n=c.n, topics=(TOPICS[n]||[]).map(function(k){ return '<li>'+k+'</li>'; }).join("");
+      var right=handoutUnlocked(n) ? '<span class="store-badge owned">freigeschaltet</span>'
+        : '<button class="btn btn-silver store-mini num" data-buy="handout" data-n="'+n+'">'+euro(PRICE.handout)+'</button>';
+      H.push('<div class="store-row ho"><span class="store-row-t"><details class="store-det"><summary><b>Kap '+n+'</b> '+c.t+'</summary><ul class="store-topics">'+topics+'</ul></details></span><span class="store-row-r">'+right+'</span></div>');
+    });
+    H.push('</div>');
+
+    var qaFree=komplett;
+    H.push('<div class="sec-lbl">Live-Q&amp;A</div>');
+    H.push('<div class="store-anrech">Deine Fragen live in kleiner Gruppe vor der Klausur. '+(qaFree?'In deinem Paket ist <b>eine Q&amp;A gratis</b>.':'Einzeln '+euro(PRICE.qa)+' pro Termin, im Kurspaket (OSTA komplett oder Gesamtpaket) gratis.')+'</div>');
+    if(ST.qa){
+      H.push('<div class="store-status">Gebucht: <b>'+ST.qa+' Uhr</b>. <button class="store-link" data-buy="qa" data-slot="'+ST.qa+'">Termin behalten</button></div>');
+    } else {
+      H.push('<div class="store-list">');
+      QASLOTS.forEach(function(s){
+        H.push('<div class="store-row"><span class="store-row-t">'+s+' Uhr</span><span class="store-row-r"><button class="btn btn-silver store-mini" data-buy="qa" data-slot="'+s+'">'+(qaFree?'gratis buchen':euro(PRICE.qa))+'</button></span></div>');
+      });
+      H.push('</div>');
+    }
+
+    $("storeBody").innerHTML=H.join("");
+  }
+
+  function openSheet(kontext){ STORE_CTX=kontext||null; renderStore(STORE_CTX); sheetOv.classList.add("on"); document.body.style.overflow="hidden"; }
   function closeSheet(){ sheetOv.classList.remove("on"); document.body.style.overflow=""; }
   $("sheetClose").addEventListener("click", closeSheet);
   sheetOv.addEventListener("click", function(e){ if(e.target===sheetOv) closeSheet(); });
   document.addEventListener("keydown", function(e){ if(e.key==="Escape" && sheetOv.classList.contains("on")) closeSheet(); });
-  $("sheetForm").addEventListener("submit", function(e){
-    e.preventDefault();
-    var nm=$("vmName").value.trim(), ml=$("vmMail").value.trim(), ds=$("vmDs").checked;
-    if(!nm || !ml || ml.indexOf("@")<1 || !ds){ $("sheetErr").style.display="block"; return; }
-    $("sheetErr").style.display="none";
-    $("sheetForm").style.display="none";
-    var ok=$("sheetOk");
-    ok.innerHTML="<b>Danke!</b> Deine Vormerkung ist notiert. Wir melden uns per E-Mail, sobald dein Zugang bereitsteht.";
-    ok.style.display="block";
+  $("storeBody").addEventListener("click", function(e){
+    var b=e.target.closest("[data-buy]"); if(!b) return;
+    var typ=b.getAttribute("data-buy"), n=parseInt(b.getAttribute("data-n"),10), slot=b.getAttribute("data-slot");
+    if(typ==="kapitel") buyKapitel(n);
+    else if(typ==="komplett") buyKomplett();
+    else if(typ==="gesamt") buyGesamt();
+    else if(typ==="handoutpaket") buyHandoutPaket();
+    else if(typ==="handout") buyHandout(n);
+    else if(typ==="qa") bookQA(slot);
   });
+
+  /* ================= MEHR / ZUGANG ================= */
+  (function(){
+    updateAccessCard();
+    var ab=$("accBuy"); if(ab) ab.addEventListener("click", function(){ openSheet(null); });
+    $("pfadCta").addEventListener("click", function(){ openSheet(null); });
+  })();
 
   /* ================= ONBOARDING (3 Schritte) ================= */
   (function(){
