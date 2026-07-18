@@ -756,7 +756,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
     <span class="pill gratis"><span class="dot"></span> aktiv</span>
   </div>
   <div id="accBuyWrap">
-    <button class="btn btn-primary btn-block" style="margin:4px 0 6px" id="accBuy">OSTA komplett freischalten · 39,90&nbsp;€</button>
+    <button class="btn btn-primary btn-block" style="margin:4px 0 6px" id="accBuy">OSTA Klausur-App freischalten · 39,90&nbsp;€</button>
     <p style="font-size:12px;color:var(--text-3);text-align:center;margin-bottom:8px" class="num">Frühbucher noch <b id="cd4" style="color:var(--text-2)">&hellip;</b>, statt 69,00&nbsp;€ im Einzelkauf (10&nbsp;&times;&nbsp;6,90&nbsp;€).</p>
   </div>
 
@@ -2820,7 +2820,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
   function euro(v){ return v.toFixed(2).replace(".",",")+" €"; }
   function ownedChapters(){ var c=0; for(var i=1;i<=10;i++){ if(i!==3 && ST.owned[i]) c++; } return c; }
   function spentEuro(){ return ownedChapters()*PRICE.kapitel; }              /* auf komplett angerechnet */
-  function komplettRest(){ return Math.max(0, PRICE.komplett - spentEuro()); } /* Restpreis fuer OSTA komplett */
+  function komplettRest(){ return Math.max(0, PRICE.komplett - spentEuro()); } /* Restpreis fuer OSTA Klausur-App */
   function hasKomplett(){ return ZUGANG==="komplett" || ST.pkg==="komplett"; }
   function hasAllHandouts(){ return !!ST.hoAll; }
   function handoutUnlocked(n){ return hasAllHandouts() || !!ST.hoOwned[n]; }
@@ -2869,9 +2869,9 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
       $("hubNextWrap").hidden = true;
     } else if(an===null){
       $("hubTitle").innerHTML = "Kapitel 3 geschafft.";
-      $("hubSub").textContent = "Stark. Die übrigen 9 Kapitel schaltest du mit OSTA komplett frei.";
+      $("hubSub").textContent = "Stark. Die übrigen 9 Kapitel schaltest du mit OSTA Klausur-App frei.";
       $("hubProgSub").textContent = "Dein Gratis-Kapitel ist erledigt. Wiederholen geht jederzeit.";
-      $("hubCta").innerHTML = "OSTA komplett freischalten <svg class='i arrow'><use href='#i-arrow'/></svg>";
+      $("hubCta").innerHTML = "OSTA Klausur-App freischalten <svg class='i arrow'><use href='#i-arrow'/></svg>";
       $("hubCta").onclick = function(){ show("mehr"); };
       $("hubNextWrap").hidden = true;
     } else {
@@ -3340,8 +3340,8 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
   /* ---- Vormerkung statt Sofort-Kauf ---- */
   function productLabel(typ,n,slot){
     if(typ==="kapitel") return "Lektion Kap "+n+" · "+plainT(n)+" · "+euro(PRICE.kapitel);
-    if(typ==="komplett") return "OSTA komplett · "+euro(PRICE.komplett);
-    if(typ==="gesamt") return "OSTA komplett + alle Handouts · "+euro(PRICE.gesamt);
+    if(typ==="komplett") return "OSTA Klausur-App · "+euro(PRICE.komplett);
+    if(typ==="gesamt") return "OSTA Klausur-App + alle Handouts · "+euro(PRICE.gesamt);
     if(typ==="handoutpaket") return "Alle 10 Handouts als Paket · "+euro(PRICE.handoutPaket);
     if(typ==="handout") return "Handout Kap "+n+" · "+plainT(n)+" · "+euro(PRICE.handout);
     if(typ==="qa") return "Live-Q&A · "+slot+" Uhr · "+euro(PRICE.qa);
@@ -3386,13 +3386,13 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
       bw.hidden=true; if(ln) ln.hidden=false; return;
     }
     if(ST.pkg==="komplett" && ST.hoAll){ at.textContent="Gesamtpaket"; as.textContent="Alle 10 Kapitel und alle Handouts frei"; bw.hidden=true; }
-    else if(ST.pkg==="komplett"){ at.textContent="OSTA komplett"; as.textContent="Alle 10 Kapitel frei"+(ST.hoAll?" · Handouts inklusive":""); bw.hidden=true; }
+    else if(ST.pkg==="komplett"){ at.textContent="OSTA Klausur-App"; as.textContent="Alle 10 Kapitel frei"+(ST.hoAll?" · Handouts inklusive":""); bw.hidden=true; }
     else {
       var oc=ownedChapters();
       at.textContent="Probe-Zugang";
       as.textContent=oc>0 ? (oc+" Kapitel einzeln frei · Kapitel 3 gratis") : "Kapitel 3 frei · restliche Kapitel gesperrt";
       bw.hidden=false;
-      if(ab) ab.innerHTML="OSTA komplett freischalten · "+euro(komplettRest())+(spentEuro()>0?" <small style='font-weight:600'>(angerechnet)</small>":"");
+      if(ab) ab.innerHTML="OSTA Klausur-App freischalten · "+euro(komplettRest())+(spentEuro()>0?" <small style='font-weight:600'>(angerechnet)</small>":"");
     }
   }
 
@@ -3418,7 +3418,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
     /* Fair-Hinweis / Status (nur solange nicht komplett) */
     if(!komplett){
       var st;
-      if(oc>0) st="Du hast <b>"+oc+" Kapitel</b> einzeln ("+euro(spent)+"). Voll auf OSTA komplett angerechnet, es fehlen nur noch <b>"+euro(rest)+"</b>.";
+      if(oc>0) st="Du hast <b>"+oc+" Kapitel</b> einzeln ("+euro(spent)+"). Voll auf OSTA Klausur-App angerechnet, es fehlen nur noch <b>"+euro(rest)+"</b>.";
       else st="Wir wollen nicht daran verdienen, dass du zuerst einzelne Inhalte testen willst! Solltest du am Anfang die höheren Einzelpreise wählen und dich später für das Gesamtpaket entscheiden, bleibt der <b>rabattierte Gesamtpreis</b> für dich reserviert.";
       if(kontext) st="<b>"+kontext+"</b> ist noch gesperrt. "+st;
       H.push('<div class="store-status">'+st+'</div>');
@@ -3429,13 +3429,13 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
       H.push('<div class="sec-lbl">Pakete</div>');
       /* Reihenfolge: guenstig -> teuer (39,90 / 49,90 / 89,80) */
       if(!komplett){
-        H.push(pkgRow("OSTA komplett","alle 10 Lektionen · inkl. 1 Live-Q&amp;A gratis"+(spent>0?" · "+euro(spent)+" angerechnet":""), rest, PRICE.komplettAlt, "komplett", true));
+        H.push(pkgRow("OSTA Klausur-App","alle 10 Lektionen · inkl. 1 Live-Q&amp;A gratis"+(spent>0?" · "+euro(spent)+" angerechnet":""), rest, PRICE.komplettAlt, "komplett", true));
       }
       if(!allHo){
         H.push(pkgRow("Alle 10 Handouts als Paket","Aufgaben + Lösungen zu jedem Kapitel", PRICE.handoutPaket, PRICE.handoutPaketAlt, "handoutpaket", false));
       }
       if(!komplett){
-        H.push(pkgRow("OSTA komplett + alle Handouts","Kurs + alle Handout-PDFs · 1 Q&amp;A gratis", Math.max(0,PRICE.gesamt-spent), PRICE.gesamtAlt, "gesamt", false));
+        H.push(pkgRow("OSTA Klausur-App + alle Handouts","Kurs + alle Handout-PDFs · 1 Q&amp;A gratis", Math.max(0,PRICE.gesamt-spent), PRICE.gesamtAlt, "gesamt", false));
       }
     }
 
