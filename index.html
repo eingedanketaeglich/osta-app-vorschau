@@ -2744,7 +2744,8 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 "use strict";
 (function(){
   /* ================= KONFIG ================= */
-  var ZUGANG = "probe";                    /* "probe" | "komplett" · Komplett-Build: auf "komplett" setzen ({{LIZENZ_TOKEN}}) */
+  var ZUGANG = "probe";
+  var VORMERK_URL = "{{VORMERK_ENDPOINT}}"; /* VPS-Endpoint: nimmt Vormerkung an, verschickt Mail via Brevo */                    /* "probe" | "komplett" · Komplett-Build: auf "komplett" setzen ({{LIZENZ_TOKEN}}) */
   var KLAUSUR = "2026-07-28", FRIST = "2026-07-27";
   var QP = {};
   try { QP = Object.fromEntries(new URLSearchParams(location.search)); } catch(e){}
@@ -3336,13 +3337,42 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
   };
   var QASLOTS=["Fr 24.07., 19:00","Sa 25.07., 10:00","So 26.07., 10:00"];
 
-  /* ---- Toast ---- */
-  var toastEl=null, toastT=null;
-  function toast(msg, big){
-    if(!toastEl){ toastEl=document.createElement("div"); toastEl.className="app-toast"; document.body.appendChild(toastEl); }
-    toastEl.innerHTML=msg; toastEl.classList.toggle("big", !!big); toastEl.classList.add("on");
-    if(toastT) clearTimeout(toastT);
-    toastT=setTimeout(function(){ toastEl.classList.remove("on"); }, big?8000:3600);
+  /* ---- Vormerkung statt Sofort-Kauf ---- */
+  function productLabel(typ,n,slot){
+    if(typ==="kapitel") return "Lektion Kap "+n+" · "+plainT(n)+" · "+euro(PRICE.kapitel);
+    if(typ==="komplett") return "OSTA komplett · "+euro(PRICE.komplett);
+    if(typ==="gesamt") return "OSTA komplett + alle Handouts · "+euro(PRICE.gesamt);
+    if(typ==="handoutpaket") return "Alle 10 Handouts als Paket · "+euro(PRICE.handoutPaket);
+    if(typ==="handout") return "Handout Kap "+n+" · "+plainT(n)+" · "+euro(PRICE.handout);
+    if(typ==="qa") return "Live-Q&A · "+slot+" Uhr · "+euro(PRICE.qa);
+    return "";
+  }
+  function renderOrderForm(label){
+    $("storeBody").innerHTML =
+      '<button type="button" class="store-link" data-back>&#8249; Zurück zur Auswahl</button>'+
+      '<div class="store-status" style="margin-top:8px">Deine Auswahl: <b>'+label+'</b></div>'+
+      '<form id="vmForm" novalidate style="margin-top:12px">'+
+        '<div class="field"><label for="vmMail">E-Mail-Adresse *</label><input type="email" id="vmMail" autocomplete="email" placeholder="name@beispiel.de" required></div>'+
+        '<div class="field"><label for="vmTel">Handynummer <span style="font-weight:400;color:var(--text-3)">(optional)</span></label><input type="tel" id="vmTel" autocomplete="tel" inputmode="tel" placeholder="z. B. 0151 23456789"></div>'+
+        '<label class="chk"><input type="checkbox" id="vmDs"><span>Ich bin einverstanden, dass meine Angaben zur Vormerkung verarbeitet werden. Details in der Datenschutzerklärung (in den Einstellungen).</span></label>'+
+        '<div class="err" id="vmErr">Bitte E-Mail-Adresse und Einverständnis ausfüllen.</div>'+
+        '<button type="submit" class="btn btn-primary btn-block">Vormerkung absenden</button>'+
+      '</form>'+
+      '<div class="ok" id="vmOk">Danke! Deine Vormerkung ist notiert. Wir melden uns per E-Mail, sobald dein Zugang bereitsteht.</div>'+
+      '<p class="placeholder-note" style="margin-top:12px">Kostenlos und unverbindlich, es entsteht keine Zahlungspflicht. Bezahlung und Zugangsdaten folgen später im separaten Checkout.</p>';
+    $("vmForm").addEventListener("submit", function(e){
+      e.preventDefault();
+      var ml=$("vmMail").value.trim(), tel=$("vmTel").value.trim(), ds=$("vmDs").checked;
+      if(!ml || ml.indexOf("@")<1 || !ds){ $("vmErr").style.display="block"; return; }
+      $("vmErr").style.display="none";
+      var data={produkt:label, email:ml, handynummer:tel, zeit:new Date().toISOString()};
+      ST.vm = ST.vm || []; ST.vm.push(data); save();
+      if(/^https?:/.test(VORMERK_URL)){
+        try { fetch(VORMERK_URL, {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(data)}).catch(function(){}); } catch(e2){}
+      }
+      $("vmForm").style.display="none";
+      $("vmOk").style.display="block";
+    });
   }
 
   /* ---- Zugangs-Karte in den Einstellungen ---- */
@@ -3362,38 +3392,6 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
       if(ab) ab.innerHTML="OSTA komplett freischalten · "+euro(komplettRest())+(spentEuro()>0?" <small style='font-weight:600'>(angerechnet)</small>":"");
     }
   }
-
-  function refreshAll(){
-    renderHub();
-    if(document.body.getAttribute("data-screen")==="pfad") buildPath();
-    updateAccessCard();
-    if(sheetOv.classList.contains("on")) renderStore(STORE_CTX);
-  }
-
-  /* ---- Kauf-Aktionen (Demo: schalten sofort frei) ---- */
-  function buyKapitel(n){
-    if(unlocked(n)) return;
-    var before=spentEuro(), price=Math.min(PRICE.kapitel, PRICE.komplett-before);
-    ST.owned[n]=true;
-    var reached=(before+price)>=PRICE.komplett-0.001;
-    if(reached) ST.pkg="komplett";
-    save(); refreshAll();
-    if(reached) toast(RABATT_MSG, true);
-    else toast("Kapitel "+n+" freigeschaltet ("+euro(price)+"). Bereits "+euro(spentEuro())+" auf OSTA komplett angerechnet.");
-  }
-  function buyKomplett(){
-    if(hasKomplett()) return;
-    var credited=spentEuro()>0;
-    ST.pkg="komplett"; save(); refreshAll();
-    toast(credited?RABATT_MSG:"OSTA komplett freigeschaltet. Alle 10 Kapitel sind jetzt offen, und eine Live-Q&A ist gratis.", credited);
-  }
-  function buyGesamt(){
-    ST.pkg="komplett"; ST.hoAll=true; save(); refreshAll();
-    toast("Gesamtpaket freigeschaltet: alle 10 Kapitel plus alle Handouts, dazu 1 Live-Q&A gratis.");
-  }
-  function buyHandoutPaket(){ if(hasAllHandouts()) return; ST.hoAll=true; save(); refreshAll(); toast("Handout-Paket freigeschaltet: alle 10 Handout-PDFs mit Aufgaben und Lösungen."); }
-  function buyHandout(n){ if(handoutUnlocked(n)) return; ST.hoOwned[n]=true; save(); refreshAll(); toast("Handout Kap "+n+" freigeschaltet ("+euro(PRICE.handout)+")."); }
-  function bookQA(slot){ var free=hasKomplett(); ST.qa=slot; save(); refreshAll(); toast(free?("Live-Q&A am "+slot+" Uhr gebucht, im Paket gratis."):("Live-Q&A am "+slot+" Uhr gebucht ("+euro(PRICE.qa)+").")); }
 
   /* ---- Store-Rendering ---- */
   function pkgRow(title, sub, price, altPrice, buy, feat){
@@ -3426,12 +3424,15 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
     /* Pakete (kompakt) */
     if(!gesamt){
       H.push('<div class="sec-lbl">Pakete</div>');
+      /* Reihenfolge: guenstig -> teuer (39,90 / 49,90 / 89,80) */
       if(!komplett){
         H.push(pkgRow("OSTA komplett","alle 10 Lektionen · inkl. 1 Live-Q&amp;A gratis"+(spent>0?" · "+euro(spent)+" angerechnet":""), rest, PRICE.komplettAlt, "komplett", true));
-        H.push(pkgRow("OSTA komplett + alle Handouts","Kurs + alle Handout-PDFs · 1 Q&amp;A gratis", Math.max(0,PRICE.gesamt-spent), PRICE.gesamtAlt, "gesamt", false));
       }
       if(!allHo){
         H.push(pkgRow("Alle 10 Handouts als Paket","Aufgaben + Lösungen zu jedem Kapitel", PRICE.handoutPaket, PRICE.handoutPaketAlt, "handoutpaket", false));
+      }
+      if(!komplett){
+        H.push(pkgRow("OSTA komplett + alle Handouts","Kurs + alle Handout-PDFs · 1 Q&amp;A gratis", Math.max(0,PRICE.gesamt-spent), PRICE.gesamtAlt, "gesamt", false));
       }
     }
 
@@ -3486,14 +3487,9 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
   sheetOv.addEventListener("click", function(e){ if(e.target===sheetOv) closeSheet(); });
   document.addEventListener("keydown", function(e){ if(e.key==="Escape" && sheetOv.classList.contains("on")) closeSheet(); });
   $("storeBody").addEventListener("click", function(e){
+    if(e.target.closest("[data-back]")){ renderStore(STORE_CTX); return; }
     var b=e.target.closest("[data-buy]"); if(!b) return;
-    var typ=b.getAttribute("data-buy"), n=parseInt(b.getAttribute("data-n"),10), slot=b.getAttribute("data-slot");
-    if(typ==="kapitel") buyKapitel(n);
-    else if(typ==="komplett") buyKomplett();
-    else if(typ==="gesamt") buyGesamt();
-    else if(typ==="handoutpaket") buyHandoutPaket();
-    else if(typ==="handout") buyHandout(n);
-    else if(typ==="qa") bookQA(slot);
+    renderOrderForm(productLabel(b.getAttribute("data-buy"), parseInt(b.getAttribute("data-n"),10), b.getAttribute("data-slot")));
   });
 
   /* ================= MEHR / ZUGANG ================= */
