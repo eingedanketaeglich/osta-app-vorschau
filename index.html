@@ -75,14 +75,14 @@ h1,h2,h3,.serif{font-family:var(--serif);font-weight:600;letter-spacing:-.01em;l
 /* topbar */
 .topbar{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--hair);padding-top:env(safe-area-inset-top)}
 .tb-in{display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 18px}
-.brand{display:flex;align-items:center;gap:9px;min-width:0}
-.mark{width:30px;height:30px;flex:none;display:grid;place-items:center}
-.mark img{width:30px;height:30px;object-fit:contain;display:block;grid-area:1/1}
+.brand{display:flex;align-items:center;gap:10px}
+.mark{width:38px;height:38px;flex:none;display:grid;place-items:center}
+.mark img{width:34px;height:34px;object-fit:contain;display:block;grid-area:1/1}
 .mark .lg-d{display:none}
 [data-theme="dark"] .mark .lg-l{display:none}
 [data-theme="dark"] .mark .lg-d{display:block}
-.wm{font-family:var(--sans);font-weight:600;font-size:18px;letter-spacing:-.02em;color:var(--text-2)}
-.course{font-size:12.5px;font-weight:600;color:var(--text-3);padding-left:9px;margin-left:1px;border-left:1px solid var(--line-2);white-space:nowrap}
+.brand-txt b{font-family:var(--serif);font-weight:600;font-size:16px;color:var(--text);display:block;line-height:1.02}
+.brand-txt span{font-size:10.5px;color:var(--text-3);letter-spacing:.02em}
 .tb-right{display:flex;align-items:center;gap:9px}
 .chip{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;color:var(--accent-deep);font-weight:600;background:rgba(232,118,10,.1);padding:5px 10px;border-radius:999px}
 .themetoggle{width:38px;height:38px;border-radius:11px;border:1px solid var(--line-2);background:var(--silver-btn);color:var(--text-2);display:grid;place-items:center;cursor:pointer;box-shadow:var(--sh-1),var(--edge)}
@@ -131,11 +131,6 @@ main{flex:1;padding-bottom:78px}
 .nextcard .n{width:42px;height:42px;flex:none;border-radius:12px;background:var(--accent);color:#fff;display:grid;place-items:center;font-family:var(--serif);font-weight:600;font-size:18px;box-shadow:var(--glow) 0 0 0 4px}
 .nextcard b{font-size:15px;color:var(--text);display:block}
 .nextcard span{font-size:12.5px;color:var(--text-3)}
-.nextcard .ntext{flex:1;min-width:0}
-.nextcard .nrow{display:flex;align-items:flex-start;gap:8px}
-.nextcard .nrow b{flex:1;min-width:0;line-height:1.2;-webkit-hyphens:auto;hyphens:auto;overflow-wrap:anywhere}
-.nextcard .nrow .pill{flex:none;margin-top:1px}
-.nextcard .nsub{display:block;margin-top:3px;line-height:1.35}
 
 /* path / lernpfad */
 /* geschwungener Lernpfad (Firestarter-Stil) */
@@ -306,24 +301,6 @@ input[type=range].sl::-moz-range-thumb{width:26px;height:26px;border-radius:50%;
 [data-theme="dark"] .switch i{left:24px;background:#fff}
 .linklist a{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:var(--surface);border:1px solid var(--line-2);border-radius:14px;margin-bottom:9px;font-size:14.5px;color:var(--text);box-shadow:var(--sh-1),var(--edge)}
 .linklist a .i{color:var(--text-3)}
-/* Zugang-Statuskarte (hell) */
-.zcard{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--line-2);border-radius:14px;padding:14px 16px;box-shadow:var(--sh-1),var(--edge)}
-.zcard .rw{position:relative;width:46px;height:46px;flex:none}
-.zcard .rw b{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:700;color:var(--text)}
-.zcard .zi{flex:1;min-width:0}
-.zcard .zi b{display:block;font-size:14.5px;color:var(--text)}
-.zcard .zi span{font-size:12px;color:var(--text-2)}
-.zpill{background:var(--done-bg);color:var(--done);font-size:11px;font-weight:700;padding:5px 11px;border-radius:999px;display:inline-flex;align-items:center;gap:6px;flex:none}
-.zpill::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--done)}
-/* Freischalten-Zeile mit Orange-Akzent */
-.frow{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:var(--surface);border:1px solid var(--line-2);border-radius:14px;padding:14px 16px;margin-top:10px;position:relative;overflow:hidden;cursor:pointer;font-family:inherit;box-shadow:var(--sh-1),var(--edge)}
-.frow::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--accent-2),var(--accent))}
-.frow .fico{width:40px;height:40px;border-radius:11px;flex:none;display:flex;align-items:center;justify-content:center;background:var(--glow);color:var(--accent-deep)}
-.frow .fico .i{width:20px;height:20px}
-.frow .ft{flex:1;min-width:0}
-.frow .ft b{display:block;font-size:14.5px;color:var(--text)}
-.frow .ft span{font-size:12px;color:var(--text-2)}
-.frow .farr{width:22px;height:22px;color:var(--accent);flex:none}
 
 .placeholder-note{font-size:12px;color:var(--text-3);background:var(--surface-2);border:1px dashed var(--silver);border-radius:11px;padding:11px 13px;margin-top:14px;line-height:1.5}
 
@@ -407,13 +384,6 @@ input[type=range].sl::-moz-range-thumb{width:26px;height:26px;border-radius:50%;
 .sheet .chk input{width:17px;height:17px;margin-top:1px;accent-color:var(--accent);flex:none}
 .sheet .ok{display:none;background:var(--done-bg);border:1px solid var(--done);border-radius:13px;padding:14px;font-size:14px;color:var(--text);line-height:1.55}
 .sheet .err{display:none;color:var(--wrong);font-size:12.5px;margin:-6px 0 10px}
-.sheet .vm-card{background:var(--surface);border:1px solid var(--line-2);border-left:3px solid var(--accent);border-radius:14px;padding:16px 16px;box-shadow:var(--sh-1),var(--edge)}
-.sheet .vm-h{font-family:var(--serif);font-weight:600;font-size:20px;margin:0 0 8px;color:var(--text)}
-.sheet .vm-card p{font-size:13.5px;line-height:1.6;color:var(--text-2);margin:0 0 10px}
-.sheet .vm-card p:last-child{margin:0}
-.sheet .vm-card p b{color:var(--text)}
-.sheet .ok-mini{display:none;align-items:center;gap:6px;margin-top:10px;font-size:13px;font-weight:600;color:var(--done)}
-.sheet .ok-mini .i{width:16px;height:16px}
 
 /* Wiederholen */
 .repcard{background:var(--surface);border:1px solid var(--line-2);border-radius:15px;padding:16px;box-shadow:var(--sh-1),var(--edge);margin-bottom:12px}
@@ -606,6 +576,13 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 .store-chip.hchip{background:linear-gradient(180deg,var(--premium-2),var(--premium));color:var(--premium-ink);box-shadow:inset 0 0 0 1px var(--premium-line),var(--sh-1)}
 .store-chip.free{background:var(--done-bg);color:var(--done);box-shadow:inset 0 0 0 1px var(--done)}
 .store-chip.owned{background:var(--surface-2);color:var(--text-3);box-shadow:inset 0 0 0 1px var(--hair);cursor:default}
+
+/* --- Feinschliff v2 (2026-07-19): weniger KI-Look, editorialere Marker --- */
+.fahrplan .num{width:auto;min-width:24px;margin:0;padding:0 2px 0 0;background:none;border:none;border-radius:0;font-family:var(--serif);font-weight:600;font-size:19px;line-height:1.35;color:var(--accent);text-align:left}
+.rep-last{display:inline-block;margin-top:3px;font-size:12.5px;color:var(--text-3);font-family:var(--sans)}
+
+/* Simon 19.07.: dekorative Symbol-Icons in Lektionen komplett raus (Eyebrows, Kern, Aha, Neugier, Merke) */
+.lstep .eyebrow svg.i,.kern .ic,.aha .ah-lbl svg.i,.curio svg.i,.qq svg.i{display:none!important}
 </style>
 </head>
 <body data-screen="hub">
@@ -652,10 +629,11 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
     <div class="tb-in">
       <div class="brand">
         <span class="mark"><img class="lg-l" src="data:image/png;base64,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" alt="bwlkurse" /><img class="lg-d" src="data:image/png;base64,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" alt="" /></span>
-        <span class="wm">bwlkurse</span><span class="course">Statistik&nbsp;1</span>
+        <div class="brand-txt"><b>BWL Kurse</b><span>OSTA · Statistik 1 · Prof. Hassler</span></div>
       </div>
       <div class="tb-title" id="tbTitle"></div>
       <div class="tb-right">
+        <span class="chip"><svg class="i"><use href="#i-clock"/></svg> <span id="cd">10 Tage</span></span>
         <button class="themetoggle" id="tt" aria-label="Hell oder Dunkel umschalten"><svg class="i sun"><use href="#i-moon"/></svg><svg class="i moon"><use href="#i-sun"/></svg></button>
       </div>
     </div>
@@ -666,7 +644,8 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 <section id="screen-hub" class="screen active">
   <div class="scr-h">
     <span class="eyebrow"><svg class="i"><use href="#i-play"/></svg> <span id="hubHi">Willkommen</span></span>
-    <h1 id="hubTitle">Dein Weg zur OSTA&#8209;Klausur</h1>
+    <h1 id="hubTitle">Dein Weg zur OSTA&#8209;Klausur.</h1>
+    <p id="hubSub">Klausur bei Prof. Hassler am 28.07.2026. Ein Kapitel nach dem anderen.</p>
   </div>
 
   <div class="gcard">
@@ -702,10 +681,11 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
     <div class="sec-lbl">Dein nächster Schritt</div>
     <button class="nextcard" id="hubNext">
       <span class="n" id="hubNextN"><svg class="i" style="width:22px"><use href="#k-3"/></svg></span>
-      <span class="ntext">
-        <span class="nrow"><b id="hubNextT">Wahrscheinlichkeitsrechnung</b><span class="pill gratis" id="hubNextPill"><span class="dot"></span> gratis</span></span>
-        <span id="hubNextS" class="nsub">Laplace, bedingte Wahrscheinlichkeit, Satz von Bayes</span>
+      <span style="flex:1">
+        <b id="hubNextT">Wahrscheinlichkeitsrechnung</b>
+        <span id="hubNextS">Laplace, bedingte Wahrscheinlichkeit, Satz von Bayes</span>
       </span>
+      <span class="pill gratis" id="hubNextPill"><span class="dot"></span> gratis</span>
     </button>
   </div>
 
@@ -772,22 +752,19 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
     <h1>Deine App</h1>
   </div>
 
-  <div class="sec-lbl" style="margin-top:8px">Dein Zugang</div>
-  <div class="zcard">
-    <div class="rw" id="accRing"></div>
-    <div class="zi"><b id="accTitle">Probe-Zugang</b><span id="accSub">Kapitel 3 frei · restliche Kapitel gesperrt</span></div>
-    <span class="zpill">aktiv</span>
-  </div>
-  <button class="frow" id="accBuy">
-    <span class="fico"><svg class="i"><use href="#i-lock"/></svg></span>
-    <span class="ft"><b id="accBuyT">Alle Kapitel freischalten</b><span id="accBuyS">schon ab 39,90&nbsp;€</span></span>
-    <svg class="i farr"><use href="#i-arrow"/></svg>
-  </button>
-
-  <div class="sec-lbl">Darstellung</div>
   <div class="setrow">
     <div class="l"><b>Dunkler Modus</b><small>Schwarz und Orange statt Silber</small></div>
     <button class="switch" id="setSwitch" role="switch" aria-checked="false" aria-label="Dunklen Modus umschalten"><i></i></button>
+  </div>
+
+  <div class="sec-lbl">Dein Zugang</div>
+  <div class="setrow">
+    <div class="l"><b id="accTitle">Probe-Zugang</b><small id="accSub">Kapitel 3 frei · restliche Kapitel gesperrt</small></div>
+    <span class="pill gratis"><span class="dot"></span> aktiv</span>
+  </div>
+  <div id="accBuyWrap">
+    <button class="btn btn-primary btn-block" style="margin:4px 0 6px" id="accBuy">OSTA Klausur-App freischalten · 39,90&nbsp;€</button>
+    <p style="font-size:12px;color:var(--text-3);text-align:center;margin-bottom:8px" class="num">Frühbucher noch <b id="cd4" style="color:var(--text-2)">&hellip;</b>, statt 69,00&nbsp;€ im Einzelkauf (10&nbsp;&times;&nbsp;6,90&nbsp;€).</p>
   </div>
 
   <div class="sec-lbl">Rechtliches</div>
@@ -952,7 +929,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
   <h3>Neugier-Fragen</h3>
   <p class="muted" style="margin-top:4px">Kleine Fragen zum inneren Mitdenken, nicht zum Googeln. So läuft eine einmal vorgemacht (Frage, Denk-Schritt, Antwort):</p>
   <div class="curio">
-    <div class="qq"><svg class="i"><use href="#i-diamond"/></svg> Warum kann ein einziger extremer Wert das arithmetische Mittel kräftig verschieben, den Median aber fast unberührt lassen?</div>
+    <div class="qq">Warum kann ein einziger extremer Wert das arithmetische Mittel kräftig verschieben, den Median aber fast unberührt lassen?</div>
     <div class="think"><b>Denk-Schritt:</b> Das Mittel addiert jeden Wert mit seinem vollen Betrag auf, der Median schaut nur auf die Mitte der geordneten Reihe.<br><b>Antwort:</b> Der Ausreißer zieht die Summe, und damit das Mittel, mit. An der Rangmitte ändert er fast nichts. Genau das rechnen wir unten im Ausreißer-Check nach.</div>
   </div>
   <div class="curio mini"><svg class="i"><use href="#i-diamond"/></svg> Warum ergeben alle relativen Häufigkeiten zusammen immer genau 1, und wie nutzt du das in der Klausur als Blitz-Kontrolle?</div>
@@ -974,7 +951,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
 <!-- STEP 3 · Abschnitt 1 -->
 <div class="lstep" data-name="Häufigkeitsverteilungen">
-  <span class="eyebrow">① Abschnitt 1 von 3</span>
+  <span class="eyebrow">Abschnitt 1 von 3</span>
   <h2>Häufigkeitsverteilungen: Daten ordnen</h2>
   <p>Ausgangspunkt ist ein Merkmal X mit n Beobachtungen (Rohdaten). Kommen Werte mehrfach vor, fasst man sie in einer <b>Häufigkeitstabelle</b> zusammen: Die <b>absolute Häufigkeit</b> n&#11388; zählt, wie oft die Ausprägung a&#11388; vorkommt. Die <span class="mark-term" data-tip="h&#11388; = n&#11388;/n: Anteil der Ausprägung a&#11388; an allen n Beobachtungen. Alle h&#11388; zusammen ergeben 1 (100 %), die perfekte Blitz-Kontrolle in der Klausur.">relative Häufigkeit</span> h&#11388; = n&#11388;/n macht daraus einheitenfreie Anteile. Summiert man die Anteile von links nach rechts auf, entsteht die kumulierte Häufigkeit, zusammengefasst in der <span class="mark-term" data-tip="F&#770;(x) = h(X &le; x): kumulierter Anteil aller Beobachtungen bis einschließlich x. Steigt treppenförmig von 0 auf 1; bei diskreten Merkmalen eine Treppenfunktion.">empirischen Verteilungsfunktion</span> F&#770;(x) = h(X &le; x), dem Anteil &bdquo;bis einschließlich x&ldquo;:</p>
   <div class="formelbox"><div class="f">h&#11388; = n&#11388; / n<br>F&#770;(a&#11388;) = h&#8321; + h&#8322; + &hellip; + h&#11388;</div><small>Relative Häufigkeiten sind Anteile; kumuliert steigen sie treppenförmig bis 1.</small></div>
@@ -983,7 +960,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
 <!-- STEP 4 · Abschnitt 2 -->
 <div class="lstep" data-name="Lagemaße">
-  <span class="eyebrow">② Abschnitt 2 von 3</span>
+  <span class="eyebrow">Abschnitt 2 von 3</span>
   <h2>Lagemaße: Mittelwert, Median, Modus und Quantile</h2>
   <p>Ein <b>Lagemaß</b> gibt an, wo das &bdquo;Zentrum&ldquo; der Daten liegt. Das <span class="mark-term" data-tip="x&#772; = (1/n)&middot;&Sigma;x&#7522;: Summe aller Werte geteilt durch ihre Anzahl. Aus der Häufigkeitstabelle: x&#772; = &Sigma; a&#11388;&middot;h&#11388;. Reagiert empfindlich auf Ausreißer.">arithmetische Mittel</span> x&#772; ist der Durchschnitt; aus der Häufigkeitstabelle bekommst du ihn schnell als gewichtete Summe der Ausprägungen. Der <span class="mark-term" data-tip="x&#8320;,&#8325;: mittlerer Wert der geordneten Reihe. Bei ungeradem n der mittlere Wert, bei geradem n das Mittel der beiden mittleren Werte. Robust gegen Ausreißer, mindestens 50 % der Werte liegen bei oder unter ihm.">Median</span> x&#8320;,&#8325; halbiert die <i>geordneten</i> Daten, und der <span class="mark-term" data-tip="Die Ausprägung mit der größten Häufigkeit, der häufigste Wert. Direkt aus der Häufigkeitstabelle ablesbar; bei mehreren gleich häufigen Ausprägungen nicht eindeutig.">Modus</span> ist schlicht der häufigste Wert, direkt aus der n&#11388;-Spalte ablesbar:</p>
   <div class="formelbox"><div class="f">x&#772; = (1/n) &middot; &Sigma; x&#7522; = &Sigma; a&#11388; &middot; h&#11388;<br>x&#8320;,&#8325; = mittlerer Wert der geordneten Daten</div><small>Mittel aus der Tabelle als gewichtete Summe; Median über die Rangmitte.</small></div>
@@ -992,7 +969,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
 <!-- STEP 5 · Abschnitt 3 -->
 <div class="lstep" data-name="Streuung">
-  <span class="eyebrow">③ Abschnitt 3 von 3</span>
+  <span class="eyebrow">Abschnitt 3 von 3</span>
   <h2>Streuung: Spannweite, Varianz und Standardabweichung</h2>
   <p>Die Mitte allein genügt nicht, zwei Datensätze mit gleichem Mittel können völlig unterschiedlich <b>streuen</b>. Das einfachste Maß ist die <b>Spannweite</b> = Maximum &minus; Minimum; sie nutzt nur zwei Werte und ist entsprechend ausreißerempfindlich. Robuster ist der <b>Interquartilsabstand</b> IQA = x&#8320;,&#8327;&#8325; &minus; x&#8320;,&#8322;&#8325;, das zentrale Intervall mit der Hälfte aller Beobachtungen. Das Standard-Werkzeug der Klausur ist aber die (empirische) <b>Varianz</b> d&sup2;: die mittlere quadratische Abweichung vom Mittelwert. In der Praxis rechnest du sie fast immer über den <span class="mark-term" data-tip="d&sup2; = (1/n)&Sigma;x&#7522;&sup2; &minus; x&#772;&sup2;: Mittel der Quadrate minus Quadrat des Mittels. Liefert exakt dasselbe wie die Definitionsformel, ist aber deutlich schneller zu rechnen.">Verschiebungssatz</span>:</p>
   <div class="formelbox"><div class="f">d&sup2; = (1/n) &middot; &Sigma;(x&#7522; &minus; x&#772;)&sup2; = (1/n)&Sigma;x&#7522;&sup2; &minus; x&#772;&sup2;<br>d = &radic;(d&sup2;)</div><small>&bdquo;Mittel der Quadrate minus Quadrat des Mittels&ldquo;, dann die Wurzel ziehen.</small></div>
@@ -1116,7 +1093,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
   <h3>Neugier-Fragen</h3>
   <p class="muted" style="margin-top:4px"><b>Kurz erklärt, &bdquo;Neugier-Fragen&ldquo;:</b> kleine Fragen, die du dir <i>selbst</i> stellst, um aktiv mitzudenken, nicht zum Googeln, sondern zum inneren Beantworten, während die Lektion läuft. <b>So funktioniert's</b>, an einer Frage einmal vorgemacht (Frage, dann Denk-Schritt, dann Antwort, die du gleich prüfst):</p>
   <div class="curio">
-    <div class="qq"><svg class="i"><use href="#i-diamond"/></svg> Die Kovarianz zwischen Temperatur und Eistee-Verkauf beträgt +48: Ist das ein &bdquo;starker&ldquo; Zusammenhang?</div>
+    <div class="qq">Die Kovarianz zwischen Temperatur und Eistee-Verkauf beträgt +48: Ist das ein &bdquo;starker&ldquo; Zusammenhang?</div>
     <div class="think"><b>Denk-Schritt:</b> Miss die Temperatur statt in Grad Celsius in Zehntelgrad, der Zusammenhang bleibt exakt derselbe, aber der Zahlenwert der Kovarianz verzehnfacht sich.<br><b>Antwort:</b> Der Betrag der Kovarianz hängt von den Maßeinheiten ab und taugt nicht als Stärkemaß, dafür normieren wir sie gleich zum Korrelationskoeffizienten.</div>
   </div>
   <div class="curio mini"><svg class="i"><use href="#i-diamond"/></svg> Wenn r&#8339;&#8342; = 0 herauskommt, heißt das wirklich, dass zwischen den beiden Merkmalen <i>gar kein</i> Zusammenhang besteht?</div>
@@ -1138,7 +1115,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
 <!-- STEP 3 · Abschnitt 1 -->
 <div class="lstep" data-name="Kovarianz">
-  <span class="eyebrow">① Abschnitt 1 von 4</span>
+  <span class="eyebrow">Abschnitt 1 von 4</span>
   <h2>Zwei Merkmale im Streudiagramm, und die Kovarianz</h2>
   <p>In Kapitel 1 haben wir <i>ein</i> Merkmal beschrieben (Mittelwert, Varianz). Jetzt beobachten wir an denselben n Objekten <b>zwei Merkmale gleichzeitig</b>, etwa Temperatur x und Eistee-Verkauf y. Jedes Wertepaar (x&#7522;; y&#7522;) wird ein Punkt im <span class="mark-term" data-tip="Punktwolke aller Wertepaare (xᵢ; yᵢ) im Koordinatensystem. Erste Diagnose per Auge: steigend, fallend oder strukturlos? Linear oder gekrümmt?">Streudiagramm</span>: Steigt die Punktwolke, sprechen wir von einem gleichläufigen Zusammenhang; fällt sie, von einem gegenläufigen. Die erste Kennzahl dafür ist die <span class="mark-term" data-tip="dₓᵧ = (1/n)·Σ(xᵢ−x̄)(yᵢ−ȳ) = x̄y̅ − x̄·ȳ. Vorzeichen = Richtung des linearen Zusammenhangs (+ gleichläufig, − gegenläufig). Der Betrag ist einheitenabhängig und daher kein Stärkemaß.">Kovarianz</span> d&#8339;&#8342;:</p>
   <div class="formelbox"><div class="f">d&#8339;&#8342; = (1/n)&middot;&Sigma;(x&#7522; &minus; x&#772;)(y&#7522; &minus; y&#772;) = <span style="text-decoration:overline">xy</span> &minus; x&#772;&middot;y&#772;</div></div>
@@ -1147,7 +1124,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
 <!-- STEP 4 · Abschnitt 2 -->
 <div class="lstep" data-name="Korrelationskoeffizient">
-  <span class="eyebrow">② Abschnitt 2 von 4</span>
+  <span class="eyebrow">Abschnitt 2 von 4</span>
   <h2>Der Korrelationskoeffizient (Bravais-Pearson)</h2>
   <p>Um die <b>Stärke</b> vergleichbar zu machen, normiert man die Kovarianz mit den Standardabweichungen beider Merkmale. Das Ergebnis ist der <span class="mark-term" data-tip="rₓᵧ = dₓᵧ / √(d²ₓ·d²ᵧ) (Bravais-Pearson). Dimensionslos, stets −1 ≤ rₓᵧ ≤ +1. Vorzeichen = Richtung, Betrag = Stärke des LINEAREN Zusammenhangs.">Korrelationskoeffizient</span> nach Bravais-Pearson:</p>
   <div class="formelbox"><div class="f">r&#8339;&#8342; = d&#8339;&#8342; / &radic;(d&#8339;&sup2; &middot; d&#8342;&sup2;)<br>&minus;1 &le; r&#8339;&#8342; &le; +1</div></div>
@@ -1157,7 +1134,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
 <!-- STEP 5 · Abschnitt 3 -->
 <div class="lstep" data-name="Regressionsgerade">
-  <span class="eyebrow">③ Abschnitt 3 von 4</span>
+  <span class="eyebrow">Abschnitt 3 von 4</span>
   <h2>Die KQ-Regressionsgerade: aus Punkten wird eine Prognose</h2>
   <p>Der Korrelationskoeffizient sagt, <i>wie eng</i> die Punkte an einer Geraden liegen, aber noch nicht, <i>welche</i> Gerade das ist. Gesucht ist die <span class="mark-term" data-tip="ŷ = â + b̂·x: die lineare Funktion, die y aus x &bdquo;möglichst gut&ldquo; prognostiziert. ŷ (sprich: y-Dach) ist der Prognosewert, nicht der beobachtete Wert yᵢ.">Regressionsgerade</span> &ycirc; = &acirc; + b&#770;&middot;x, die y aus x <b>möglichst gut prognostiziert</b>. &bdquo;Möglichst gut&ldquo; präzisiert das <span class="mark-term" data-tip="KQ (OLS): Wähle die Gerade so, dass die Summe der quadrierten Residuen Σ(yᵢ−ŷᵢ)² minimal wird. Ergebnis: b̂ = dₓᵧ/d²ₓ und â = ȳ − b̂·x̄.">Kleinst-Quadrate-Prinzip</span> (KQ): Die Gerade wird so gelegt, dass die Summe der quadrierten <span class="mark-term" data-tip="ε̂ᵢ = yᵢ − ŷᵢ: der senkrechte Abstand eines Punktes zur Regressionsgeraden, der Teil von yᵢ, den die Gerade NICHT erklärt.">Residuen</span> &epsilon;&#770;&#7522; = y&#7522; &minus; &ycirc;&#7522; minimal wird. Daraus folgen die beiden Klausur-Formeln:</p>
   <div class="formelbox"><div class="f">b&#770; = d&#8339;&#8342; / d&#8339;&sup2;<br>&acirc; = y&#772; &minus; b&#770;&middot;x&#772;<br>&ycirc; = &acirc; + b&#770;&middot;x</div></div>
@@ -1166,7 +1143,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
 <!-- STEP 6 · Abschnitt 4 -->
 <div class="lstep" data-name="Bestimmtheitsmaß">
-  <span class="eyebrow">④ Abschnitt 4 von 4</span>
+  <span class="eyebrow">Abschnitt 4 von 4</span>
   <h2>Bestimmtheitsmaß R&sup2;: Wie gut ist die Gerade?</h2>
   <p>Wie viel der Streuung von y &bdquo;erklärt&ldquo; die Gerade? Dazu zerlegt man jede Abweichung vom Mittelwert, das ist die <span class="mark-term" data-tip="Gesamtabweichung (yᵢ−ȳ) = erklärte Abweichung (ŷᵢ−ȳ, durch die Gerade) + nicht-erklärte Abweichung (yᵢ−ŷᵢ, Residuum). Quadriert und summiert liefert sie das R².">Abweichungszerlegung</span>: Gesamtabweichung (y&#7522; &minus; y&#772;) = erklärte Abweichung (&ycirc;&#7522; &minus; y&#772;) + Residuum (y&#7522; &minus; &ycirc;&#7522;). Das <span class="mark-term" data-tip="R² = r²ₓᵧ = Σ(ŷᵢ−ȳ)²/Σ(yᵢ−ȳ)² = 1 − Σε̂ᵢ²/(n·d²ᵧ), stets 0 ≤ R² ≤ 1. Anteil der Streuung von y, den die Regression erklärt. R² = 0,9 heißt: 90 % erklärt.">Bestimmtheitsmaß</span> R&sup2; ist dann der <b>Anteil der erklärten Streuung an der Gesamtstreuung</b>:</p>
   <div class="formelbox"><div class="f">R&sup2; = r&#8339;&#8342;&sup2; = &Sigma;(&ycirc;&#7522; &minus; y&#772;)&sup2; / &Sigma;(y&#7522; &minus; y&#772;)&sup2; = 1 &minus; &Sigma;&epsilon;&#770;&#7522;&sup2; / (n&middot;d&#8342;&sup2;)<br>0 &le; R&sup2; &le; 1</div></div>
@@ -1297,7 +1274,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
           <h3>Neugier-Fragen</h3>
           <p class="muted" style="margin-top:4px">Kleine Fragen zum inneren Mitdenken, nicht zum Googeln. So läuft eine einmal vorgemacht (Frage, Denk-Schritt, Antwort):</p>
           <div class="curio">
-            <div class="qq"><svg class="i"><use href="#i-diamond"/></svg> Warum kann ein positiver Test bei einer seltenen Krankheit trotzdem nur mit rund 25&nbsp;% bedeuten, dass man krank ist?</div>
+            <div class="qq">Warum kann ein positiver Test bei einer seltenen Krankheit trotzdem nur mit rund 25&nbsp;% bedeuten, dass man krank ist?</div>
             <div class="think"><b>Denk-Schritt:</b> Rechne nicht mit dem Test allein, sondern denk an 10.000 Menschen: wenige echte Kranke, aber viele Gesunde, von denen ein kleiner Anteil fälschlich positiv testet.<br><b>Antwort:</b> Die vielen falsch-positiven Gesunden überwiegen die wenigen echten Kranken. Das rechnen wir gleich mit Bayes nach.</div>
           </div>
           <div class="curio mini"><svg class="i"><use href="#i-diamond"/></svg> Zwei Ereignisse schließen sich gegenseitig aus. Sind sie deshalb auch stochastisch unabhängig?</div>
@@ -1319,7 +1296,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
         <!-- STEP 3 · Abschnitt 1 -->
         <div class="lstep" data-name="Grundbegriffe & Laplace">
-          <span class="eyebrow">① Abschnitt 1 von 4</span>
+          <span class="eyebrow">Abschnitt 1 von 4</span>
           <h2>Grundbegriffe und Laplace-Wahrscheinlichkeit</h2>
           <p>Ein Zufallsvorgang hat mehrere mögliche Ergebnisse. Die Menge aller Ergebnisse ist der <span class="mark-term" data-tip="Der Ergebnisraum Ω ist die Menge aller möglichen Ergebnisse eines Zufallsvorgangs. Beim Würfel: Ω = {1,2,3,4,5,6}. Es gilt stets P(Ω) = 1.">Ergebnisraum &Omega;</span>. Beim Würfel ist &Omega; = {1, 2, 3, 4, 5, 6}. Ein Ereignis A ist eine Teilmenge davon, etwa A = &bdquo;gerade Augenzahl&ldquo; = {2, 4, 6}.</p>
           <p>Sind alle Ergebnisse gleich wahrscheinlich, greift die Laplace-Wahrscheinlichkeit:</p>
@@ -1329,7 +1306,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
         <!-- STEP 4 · Abschnitt 2 -->
         <div class="lstep" data-name="Ereignisse verknüpfen">
-          <span class="eyebrow">② Abschnitt 2 von 4</span>
+          <span class="eyebrow">Abschnitt 2 von 4</span>
           <h2>Ereignisse verknüpfen</h2>
           <p>Aus zwei Ereignissen A und B bildet man neue. Das Venn-Diagramm macht sie anschaulich: der Schnitt A&cap;B (&bdquo;A und B&ldquo;), die Vereinigung A&cup;B (&bdquo;A oder B oder beides&ldquo;) und das Komplement A&#772; (&bdquo;nicht A&ldquo;), also das Gegenereignis.</p>
           <div class="formelbox"><div class="f">P(A&cup;B) = P(A) + P(B) &minus; P(A&cap;B)<br>P(A&#772;) = 1 &minus; P(A)</div><small>Der Schnitt wird abgezogen, weil er sonst doppelt gezählt würde.</small></div>
@@ -1338,7 +1315,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
         <!-- STEP 5 · Abschnitt 3 -->
         <div class="lstep" data-name="Bedingte Wahrscheinlichkeit">
-          <span class="eyebrow">③ Abschnitt 3 von 4</span>
+          <span class="eyebrow">Abschnitt 3 von 4</span>
           <h2>Bedingte Wahrscheinlichkeit und Unabhängigkeit</h2>
           <p>Oft weiß man schon, dass ein Ereignis B eingetreten ist, und fragt nach A unter dieser Bedingung. Das ist die <span class="mark-term" data-tip="P(A|B): die Wahrscheinlichkeit von A, wenn bekannt ist, dass B eingetreten ist. Der Ergebnisraum schrumpft auf B.">bedingte Wahrscheinlichkeit</span> P(A|B). Stellt man die Formel um, erhält man den Multiplikationssatz.</p>
           <div class="formelbox"><div class="f">P(A|B) = P(A&cap;B) / P(B)<br>P(A&cap;B) = P(A|B)&middot;P(B) = P(B|A)&middot;P(A)</div><small>Der Multiplikationssatz gilt immer, auch bei abhängigen Ereignissen.</small></div>
@@ -1347,7 +1324,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
         <!-- STEP 6 · Abschnitt 4 -->
         <div class="lstep" data-name="Totale W. & Bayes">
-          <span class="eyebrow">④ Abschnitt 4 von 4</span>
+          <span class="eyebrow">Abschnitt 4 von 4</span>
           <h2>Totale Wahrscheinlichkeit und Satz von Bayes</h2>
           <p>Zerlegt man den Ergebnisraum in disjunkte Fälle A&#8321;, A&#8322;, &hellip;, liefert der Satz der totalen Wahrscheinlichkeit die Gesamtwahrscheinlichkeit von B. Dreht man die Bedingung um, von P(B|A) zu P(A|B), hilft der Satz von Bayes.</p>
           <div class="formelbox"><div class="f">P(B) = &sum; P(B|A&#7522;)&middot;P(A&#7522;)<br>P(A|B) = P(B|A)&middot;P(A) / P(B)</div><small>Bayes rechnet von der bekannten Richtung P(B|A) auf die gesuchte P(A|B) zurück.</small></div>
@@ -1461,7 +1438,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
   <h3>Neugier-Fragen</h3>
   <p class="muted" style="margin-top:4px">Kleine Fragen zum inneren Mitdenken, nicht zum Googeln. So läuft eine einmal vorgemacht (Frage, Denk-Schritt, Antwort):</p>
   <div class="curio">
-    <div class="qq"><svg class="i"><use href="#i-diamond"/></svg> Wenn im Schnitt 0,7 Extra-Shots pro Kunde bestellt werden, warum ist der Erwartungswert 0,7, obwohl niemand jemals &bdquo;0,7 Shots&ldquo; bestellen kann?</div>
+    <div class="qq">Wenn im Schnitt 0,7 Extra-Shots pro Kunde bestellt werden, warum ist der Erwartungswert 0,7, obwohl niemand jemals &bdquo;0,7 Shots&ldquo; bestellen kann?</div>
     <div class="think"><b>Denk-Schritt:</b> Denk nicht an eine einzelne Bestellung, sondern an 100 Kunden: 50-mal 0, 30-mal 1, 20-mal 2 Shots.<br><b>Antwort:</b> Das sind zusammen 70 Shots auf 100 Kunden = 0,7 pro Kunde. Der Erwartungswert ist ein <i>gewichteter Mittelwert</i>, kein tatsächlich vorkommender Einzelwert.</div>
   </div>
   <div class="curio mini"><svg class="i"><use href="#i-diamond"/></svg> Warum ist bei einer stetigen Zufallsvariablen die Wahrscheinlichkeit für einen exakten Einzelwert, etwa genau 1,80&nbsp;m Körpergröße, gleich null?</div>
@@ -1483,7 +1460,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
 <!-- STEP 3 · Abschnitt 1 -->
 <div class="lstep" data-name="Diskrete Zufallsvariablen">
-  <span class="eyebrow">① Abschnitt 1 von 4</span>
+  <span class="eyebrow">Abschnitt 1 von 4</span>
   <h2>Diskrete Zufallsvariablen: Erwartungswert und Varianz</h2>
   <p>Eine <span class="mark-term" data-tip="X ordnet jedem Ergebnis eines Zufallsvorgangs eine reelle Zahl zu, z.&nbsp;B. &bdquo;Anzahl bestellter Extra-Shots&ldquo;. Man schreibt sie groß (X), ihre konkreten Werte klein (a&#7522;).">Zufallsvariable</span> X übersetzt ein Zufallsergebnis in eine <b>Zahl</b>. Eine <b>diskrete</b> Zufallsvariable nimmt abzählbar viele Werte a&#7522; an, jeder mit einer Wahrscheinlichkeit p&#7522; = P(X = a&#7522;). Diese Zuordnung ist ihre <span class="mark-term" data-tip="Die Liste aller Werte a&#7522; mit ihren Wahrscheinlichkeiten p&#7522;. Es gilt stets &Sigma; p&#7522; = 1 (alle Wahrscheinlichkeiten zusammen ergeben 100 %).">Wahrscheinlichkeitsverteilung</span>. Der <span class="mark-term" data-tip="E(X) = &mu; = &Sigma; p&#7522;&middot;a&#7522;. Der &bdquo;Schwerpunkt&ldquo; der Verteilung, der Wert, um den X über viele Wiederholungen im Mittel pendelt. Kein zwingend vorkommender Einzelwert.">Erwartungswert</span> ist das mit den p&#7522; gewichtete Mittel. Wie stark X um diesen Mittelwert schwankt, misst die <span class="mark-term" data-tip="Var(X) = &sigma;&sup2; = &Sigma; p&#7522;&middot;(a&#7522; &minus; E(X))&sup2;. Der mit p&#7522; gewichtete Durchschnitt der quadrierten Abweichungen vom Erwartungswert. Große Var(X) = breite Streuung.">Varianz</span>, der gewichtete Durchschnitt der quadrierten Abweichungen vom Erwartungswert:</p>
   <div class="formelbox"><div class="f">E(X) = &mu; = &Sigma; p&#7522; &middot; a&#7522;<br>Var(X) = &sigma;&sup2; = &Sigma; p&#7522; &middot; (a&#7522; &minus; E(X))&sup2;</div><small>Erwartungswert als gewichtetes Mittel, Varianz als gewichtete quadrierte Abweichung davon.</small></div>
@@ -1492,7 +1469,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
 <!-- STEP 4 · Abschnitt 2 -->
 <div class="lstep" data-name="Verschiebungssatz">
-  <span class="eyebrow">② Abschnitt 2 von 4</span>
+  <span class="eyebrow">Abschnitt 2 von 4</span>
   <h2>Der Verschiebungssatz</h2>
   <p>Die Abweichungsquadrate direkt zu summieren, ist mühsam. Der <span class="mark-term" data-tip="Var(X) = E(X&sup2;) &minus; [E(X)]&sup2;. Beweis: Var(X) = E[(X&minus;E(X))&sup2;] = E(X&sup2;) &minus; 2&middot;E(X)&middot;E(X) + [E(X)]&sup2; = E(X&sup2;) &minus; [E(X)]&sup2;.">Verschiebungssatz</span> liefert dieselbe Varianz bequemer, als <b>zweites Moment minus quadrierter Erwartungswert</b>:</p>
   <div class="formelbox"><div class="f">Var(X) = E(X&sup2;) &minus; [E(X)]&sup2;<br>E(X&sup2;) = &Sigma; p&#7522; &middot; (a&#7522;)&sup2;</div><small>Zweites Moment minus quadrierter Erwartungswert, die schnellere Rechenroute zur Varianz.</small></div>
@@ -1501,7 +1478,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
 <!-- STEP 5 · Abschnitt 3 -->
 <div class="lstep" data-name="Stetige Zufallsvariablen">
-  <span class="eyebrow">③ Abschnitt 3 von 4</span>
+  <span class="eyebrow">Abschnitt 3 von 4</span>
   <h2>Stetige Zufallsvariablen: Dichte, Verteilungsfunktion, Integral</h2>
   <p>Misst man Zeit, Länge oder Gewicht, kann X <b>jeden</b> Wert in einem Intervall annehmen, X ist <b>stetig</b>. Statt Einzelwahrscheinlichkeiten gibt es jetzt eine <span class="mark-term" data-tip="f(x) &ge; 0. Die Wahrscheinlichkeit ist die Fläche unter f: P(a &le; X &le; b) = &#8747; f(x) dx von a bis b. Die Gesamtfläche ist 1.">Dichtefunktion</span> f(x): Wahrscheinlichkeit ist jetzt <b>Fläche</b> unter der Kurve. Deshalb gilt für einen einzelnen Punkt P(X = a) = 0, erst ein ganzes Intervall hat eine positive Wahrscheinlichkeit. Erwartungswert und Varianz werden vom Summenzeichen zum <b>Integral</b>:</p>
   <div class="formelbox"><div class="f">E(X) = &#8747; x &middot; f(x) dx<br>Var(X) = &#8747; x&sup2; &middot; f(x) dx &minus; [E(X)]&sup2;</div><small>Aus der Summe wird das Integral, Fläche unter x&middot;f(x) statt gewichteter Summe.</small></div>
@@ -1511,7 +1488,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
 <!-- STEP 6 · Abschnitt 4 -->
 <div class="lstep" data-name="Exponentialverteilung">
-  <span class="eyebrow">④ Abschnitt 4 von 4</span>
+  <span class="eyebrow">Abschnitt 4 von 4</span>
   <h2>Die Exponentialverteilung</h2>
   <p>Ein wichtiges stetiges Modell für <b>Wartezeiten</b> und <b>Lebensdauern</b> ist die <span class="mark-term" data-tip="f(x) = &lambda;&middot;e^(&minus;&lambda;x) für x &ge; 0 (&lambda; &gt; 0 = &bdquo;Rate&ldquo;). F(x) = 1 &minus; e^(&minus;&lambda;x), E(X) = 1/&lambda;, Var(X) = 1/&lambda;&sup2;. Modelliert Zeit bis zum nächsten Ereignis.">Exponentialverteilung</span> mit Rate &lambda; &gt; 0. Ihre Dichte und Verteilungsfunktion, ihre Kennwerte und der <span class="mark-term" data-tip="Der Wert x&#8320;,&#8325; mit F(x&#8320;,&#8325;) = 0,5, teilt die Verteilung in zwei gleich wahrscheinliche Hälften. Bei der Exponentialverteilung: ln(2)/&lambda;, kleiner als E(X) = 1/&lambda;.">Median</span> lauten:</p>
   <div class="formelbox"><div class="f">f(x) = &lambda; &middot; e^(&minus;&lambda;x)<br>F(x) = 1 &minus; e^(&minus;&lambda;x)<br>E(X) = 1/&lambda;<br>Var(X) = 1/&lambda;&sup2;<br>x&#8320;,&#8325; = ln(2)/&lambda;</div><small>Dichte, Verteilungsfunktion, Erwartungswert, Varianz und Median der Exponentialverteilung mit Rate &lambda;.</small></div>
@@ -1633,7 +1610,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
   <h3>Neugier-Fragen</h3>
   <p class="muted" style="margin-top:4px">Kleine Fragen zum inneren Mitdenken, nicht zum Googeln. So läuft eine einmal vorgemacht (Frage, Denk-Schritt, Antwort):</p>
   <div class="curio">
-    <div class="qq"><svg class="i"><use href="#i-diamond"/></svg> Woran erkennst du in einer Klausuraufgabe blitzschnell, ob Binomial oder Poisson gemeint ist?</div>
+    <div class="qq">Woran erkennst du in einer Klausuraufgabe blitzschnell, ob Binomial oder Poisson gemeint ist?</div>
     <div class="think"><b>Denk-Schritt:</b> Suche nach einer festen Versuchszahl: steht dort &bdquo;n = &hellip;&ldquo; mit fester Trefferchance p, oder zählst du seltene Ereignisse in einem Zeitraum ohne Obergrenze?<br><b>Antwort:</b> Festes n mit p, also Binomial (E = n·p); Zeitraum ohne Obergrenze plus &bdquo;selten&ldquo;, also Poisson (E = Var = λ). Genau diese Weiche stellen wir in den Abschnitten ① bis ③.</div>
   </div>
   <div class="curio mini"><svg class="i"><use href="#i-diamond"/></svg> Die Binomialverteilung braucht zwei Parameter (n und p), die Poisson-Verteilung nur einen: warum reicht ihr ein einziges λ für Lage <i>und</i> Streuung?</div>
@@ -1655,7 +1632,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
 <!-- STEP 3 · Abschnitt 1 -->
 <div class="lstep" data-name="Bernoulli-Experiment">
-  <span class="eyebrow">① Abschnitt 1 von 4</span>
+  <span class="eyebrow">Abschnitt 1 von 4</span>
   <h2>Das Bernoulli-Experiment: der kleinste Baustein</h2>
   <p>Viele Zufallsvorgänge haben nur <b>zwei Ausgänge</b>: Treffer oder kein Treffer, defekt oder in Ordnung, Zusage oder Absage. Ein solcher Einzelversuch heißt <span class="mark-term" data-tip="Ein einzelner Versuch mit genau zwei Ausgängen: Xᵢ = 1 (Treffer, Wahrscheinlichkeit p) oder Xᵢ = 0 (kein Treffer, 1 − p). Kennwerte: E(Xᵢ) = p, Var(Xᵢ) = p·(1 − p).">Bernoulli-Experiment</span>: Die Zufallsvariable X&#7522; nimmt den Wert 1 (Treffer) mit Wahrscheinlichkeit p an und den Wert 0 (kein Treffer) mit 1 &minus; p, kurz X&#7522; ~ Be(p). Beim fairen Münzwurf ist p = 0,5; bei &bdquo;Bauteil defekt&ldquo; ist p meist klein.</p>
   <div class="formelbox"><div class="f">P(X&#7522; = 1) = p, &nbsp; P(X&#7522; = 0) = 1 &minus; p<br>E(X&#7522;) = p &nbsp;&nbsp;&middot;&nbsp;&nbsp; Var(X&#7522;) = p &middot; (1 &minus; p)</div><small>Ein Versuch, zwei Ausgänge: Treffer mit p, kein Treffer mit 1 &minus; p.</small></div>
@@ -1664,7 +1641,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
 <!-- STEP 4 · Abschnitt 2 -->
 <div class="lstep" data-name="Binomialverteilung">
-  <span class="eyebrow">② Abschnitt 2 von 4</span>
+  <span class="eyebrow">Abschnitt 2 von 4</span>
   <h2>Die Binomialverteilung: Treffer zählen</h2>
   <p>Führt man n <b>unabhängige</b> Bernoulli-Versuche mit derselben Trefferwahrscheinlichkeit p aus und zählt die Treffer, X = &Sigma;X&#7522;, entsteht die <span class="mark-term" data-tip="Bi(n, p): Anzahl der Treffer in n unabhängigen Bernoulli-Versuchen mit Trefferwahrscheinlichkeit p. E(X) = n·p, Var(X) = n·p·(1 − p).">Binomialverteilung</span> Bi(n, p):</p>
   <div class="formelbox"><div class="f">f(x) = (n über x) &middot; p<sup>x</sup> &middot; (1 &minus; p)<sup>n&minus;x</sup><br>E(X) = n &middot; p &nbsp;&nbsp;&middot;&nbsp;&nbsp; Var(X) = n &middot; p &middot; (1 &minus; p)</div><small>Anzahl der Treffer in n unabhängigen Versuchen mit Trefferwahrscheinlichkeit p.</small></div>
@@ -1675,18 +1652,18 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
 <!-- STEP 5 · Abschnitt 3 -->
 <div class="lstep" data-name="Poisson-Verteilung">
-  <span class="eyebrow">③ Abschnitt 3 von 4</span>
+  <span class="eyebrow">Abschnitt 3 von 4</span>
   <h2>Die Poisson-Verteilung: seltene Ereignisse</h2>
   <p>Zählst du <b>seltene Ereignisse in einem festen Zeitraum</b>: Störfälle pro Tag, Anrufe pro Stunde, Ausfälle pro Woche, ohne feste Obergrenze, passt die <span class="mark-term" data-tip="Po(λ): Anzahl seltener Ereignisse in einem festen Intervall, ohne feste Versuchs-Obergrenze. f(x|λ) = e^(−λ)·λ^x / x!; Markenzeichen: E(X) = Var(X) = λ.">Poisson-Verteilung</span> Po(&lambda;). Ihr Markenzeichen: Erwartungswert und Varianz sind <b>gleich</b>, ein einziger Parameter steuert beides.</p>
   <div class="formelbox"><div class="f">f(x|&lambda;) = e<sup>&minus;&lambda;</sup> &middot; &lambda;<sup>x</sup> / x!<br>E(X) = Var(X) = &lambda;</div><small>Erwartungswert und Varianz sind bei der Poisson-Verteilung gleich, ein einziger Parameter λ steuert beides.</small></div>
   <p class="muted">Der <span class="mark-term" data-tip="Lambda: die mittlere Ereigniszahl im betrachteten Intervall. Skaliert mit der Intervalllänge: Bei λ = 1,2 pro Woche erwartet man in 5 Wochen 5·1,2 = 6 Ereignisse.">Parameter &lambda;</span> (Lambda) ist die mittlere Ereigniszahl im betrachteten Intervall, und er <b>skaliert</b> mit dessen Länge: Erwartet man &lambda; Ereignisse pro Woche, sind es über k Wochen k&middot;&lambda;. Für P(X = 0) bleibt nur e<sup>&minus;&lambda;</sup> übrig (wegen &lambda;<sup>0</sup> = 1 und 0! = 1), der schnellste Einstieg in fast jede Poisson-Aufgabe.</p>
-  <div class="curio"><div class="qq"><svg class="i"><use href="#i-diamond"/></svg> Binomial-Situation</div><div class="think">Feste Anzahl n unabhängiger Versuche, jeder mit derselben Trefferchance p. Frage: &bdquo;Wie viele von n?&ldquo; <b>Also X ~ Bi(n, p), E = n·p</b></div></div>
-  <div class="curio"><div class="qq"><svg class="i"><use href="#i-diamond"/></svg> Poisson-Situation</div><div class="think">Seltene Ereignisse in einem festen Zeitraum, keine feste Obergrenze. Frage: &bdquo;Wie viele pro Intervall?&ldquo; <b>Also X ~ Po(λ), E = Var = λ</b></div></div>
+  <div class="curio"><div class="qq">Binomial-Situation</div><div class="think">Feste Anzahl n unabhängiger Versuche, jeder mit derselben Trefferchance p. Frage: &bdquo;Wie viele von n?&ldquo; <b>Also X ~ Bi(n, p), E = n·p</b></div></div>
+  <div class="curio"><div class="qq">Poisson-Situation</div><div class="think">Seltene Ereignisse in einem festen Zeitraum, keine feste Obergrenze. Frage: &bdquo;Wie viele pro Intervall?&ldquo; <b>Also X ~ Po(λ), E = Var = λ</b></div></div>
 </div>
 
 <!-- STEP 6 · Abschnitt 4 -->
 <div class="lstep" data-name="Poisson-Approximation">
-  <span class="eyebrow">④ Abschnitt 4 von 4</span>
+  <span class="eyebrow">Abschnitt 4 von 4</span>
   <h2>Poisson-Approximation der Binomialverteilung</h2>
   <p>Bei großem n wird die Binomialverteilung unhandlich: Die Binomialkoeffizienten explodieren, und die Tabelle A endet früh. Der Ausweg ist die <span class="mark-term" data-tip="Grenzprozess der Binomialverteilung: n gegen ∞ und p gegen 0, wobei λ = n·p konstant bleibt. Faustregel aus dem Handout: ab n ≥ 100 und p ≤ 0,05 gilt Bi(n, p) ≈ Po(n·p).">Poisson-Approximation</span>: Lässt man n gegen &infin; und p gegen 0 laufen und dabei &lambda; = n&middot;p konstant hält, geht die Binomial- in die Poisson-Verteilung über. Das passt auch zu den Kennwerten: E(X) = n&middot;p = &lambda;, und die Varianz n&middot;p&middot;(1&minus;p) rückt für kleines p immer näher an &lambda; heran, weil (1&minus;p) gegen 1 geht.</p>
   <div class="formelbox"><div class="f">Bi(n, p) &asymp; Po(&lambda; = n &middot; p)<br>Faustregel: n &ge; 100 und p &le; 0,05</div><small>Faustregel: ab n &ge; 100 und p &le; 0,05 ersetzt Po(λ = n&middot;p) die Binomialverteilung.</small></div>
@@ -1867,7 +1844,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
   <h3>Neugier-Fragen</h3>
   <p class="muted" style="margin-top:4px">Kleine Fragen zum inneren Mitdenken, nicht zum Googeln. So läuft eine einmal vorgemacht (Frage, Denk-Schritt, Antwort):</p>
   <div class="curio">
-    <div class="qq"><svg class="i"><use href="#i-diamond"/></svg> Zwei Kaffeeautomaten füllen im Schnitt beide 300&nbsp;ml ab. Warum liegt trotzdem einer viel öfter unter der 290&#8209;ml&#8209;Marke?</div>
+    <div class="qq">Zwei Kaffeeautomaten füllen im Schnitt beide 300&nbsp;ml ab. Warum liegt trotzdem einer viel öfter unter der 290&#8209;ml&#8209;Marke?</div>
     <div class="think"><b>Denk-Schritt:</b> Gleiches &mu;, aber verschiedenes &sigma;: je breiter die Glocke, desto mehr Fläche liegt unterhalb der festen Grenze.<br><b>Antwort:</b> Die Streuung &sigma; entscheidet. Genau diesen Abstand &bdquo;in &sigma; gemessen&ldquo; liefert der z&#8209;Wert, wie du gleich nachrechnest.</div>
   </div>
   <div class="curio mini"><svg class="i"><use href="#i-diamond"/></svg> Es gibt unendlich viele Kombinationen aus &mu; und &sigma;. Wieso kommst du in der Klausur trotzdem mit einer einzigen Tabelle aus?</div>
@@ -1889,7 +1866,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
 <!-- STEP 3 · Abschnitt 1 -->
 <div class="lstep" data-name="Die Glockenkurve">
-  <span class="eyebrow">① Abschnitt 1 von 4</span>
+  <span class="eyebrow">Abschnitt 1 von 4</span>
   <h2>Die Glockenkurve: Dichte und Symmetrie</h2>
   <p>Eine stetige Zufallsvariable X heißt <b>normalverteilt</b>, kurz X ~ N(&mu;; &sigma;&sup2;), wenn ihre <span class="mark-term" data-tip="f(x) beschreibt bei stetigen Zufallsvariablen, wie &bdquo;dicht&ldquo; die Wahrscheinlichkeit liegt. Wahrscheinlichkeiten sind Flächen unter f(x); die Gesamtfläche ist immer 1.">Dichte</span> die Glockenkurve ist:</p>
   <div class="formelbox"><div class="f">f(x) = 1/(&sigma;&middot;&radic;(2&pi;)) &middot; e<sup>&minus;(x&minus;&mu;)&sup2;/(2&sigma;&sup2;)</sup></div><small>Die Formel musst du nie integrieren, entscheidend sind ihre Eigenschaften.</small></div>
@@ -1898,7 +1875,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
 <!-- STEP 4 · Abschnitt 2 -->
 <div class="lstep" data-name="Standardisieren">
-  <span class="eyebrow">② Abschnitt 2 von 4</span>
+  <span class="eyebrow">Abschnitt 2 von 4</span>
   <h2>Standardisieren: der z-Wert</h2>
   <p>In der Vorlesung steht das Problem wörtlich an der Folie: Die Verteilung &bdquo;hängt ab von &mu;, &sigma;, &hellip;&ldquo;, <b>zu viele Variablen für eine Tabelle</b>. Die Lösung heißt <span class="mark-term" data-tip="z = (x &minus; &mu;)/&sigma; überführt jede Normalverteilung N(&mu;; &sigma;&sup2;) in die Standardnormalverteilung N(0; 1). Der z-Wert misst den Abstand von x zu &mu; in Vielfachen von &sigma;.">Standardisieren</span>: Statt x betrachtet man den Abstand zu &mu;, gemessen in Standardabweichungen. Damit landet jede Normalverteilung bei der <span class="mark-term" data-tip="Die Normalverteilung mit &mu; = 0 und &sigma; = 1. Ihre Verteilungsfunktion heißt &Phi;(z) und ist vertafelt, eine einzige Tabelle genügt für alle Normalverteilungen.">Standardnormalverteilung</span> N(0; 1), deren Werte &Phi;(z) in der <span class="mark-term" data-tip="Die vertafelte Verteilungsfunktion &Phi;(z) der Standardnormalverteilung (Klausur-Formelsammlung bei Prof. Hassler). Vertafelt nur für positive z, negative über &Phi;(&minus;z) = 1 &minus; &Phi;(z).">Tabelle C</span> stehen:</p>
   <div class="formelbox"><div class="f">z = (x &minus; &mu;) / &sigma;<br>P(X &le; x) = &Phi;(z) &nbsp;&nbsp;&middot;&nbsp;&nbsp; &Phi;(&minus;z) = 1 &minus; &Phi;(z)</div><small>Standardisieren, dann ablesen; negative z über den Symmetrie-Trick.</small></div>
@@ -1907,12 +1884,12 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
 <!-- STEP 5 · Abschnitt 3 -->
 <div class="lstep" data-name="Regeln &amp; Quantile">
-  <span class="eyebrow">③ Abschnitt 3 von 4</span>
+  <span class="eyebrow">Abschnitt 3 von 4</span>
   <h2>Rechenregeln und Quantile</h2>
   <p>Alle Aufgabentypen laufen über drei Grundregeln, immer erst standardisieren, dann ablesen:</p>
-  <div class="curio"><div class="qq"><svg class="i"><use href="#i-diamond"/></svg> &bdquo;höchstens x&ldquo;</div><div class="think">P(X &le; x): Grenze standardisieren, Tabellenwert ablesen. <b>P(X &le; x) = &Phi;(z)</b></div></div>
-  <div class="curio"><div class="qq"><svg class="i"><use href="#i-diamond"/></svg> &bdquo;mehr als x&ldquo;</div><div class="think">P(X &gt; x): Gegenwahrscheinlichkeit der Fläche links. <b>P(X &gt; x) = 1 &minus; &Phi;(z)</b></div></div>
-  <div class="curio"><div class="qq"><svg class="i"><use href="#i-diamond"/></svg> &bdquo;zwischen a und b&ldquo;</div><div class="think">P(a &le; X &le; b): große Fläche minus kleine Fläche. <b>&Phi;(z<sub>b</sub>) &minus; &Phi;(z<sub>a</sub>)</b></div></div>
+  <div class="curio"><div class="qq">&bdquo;höchstens x&ldquo;</div><div class="think">P(X &le; x): Grenze standardisieren, Tabellenwert ablesen. <b>P(X &le; x) = &Phi;(z)</b></div></div>
+  <div class="curio"><div class="qq">&bdquo;mehr als x&ldquo;</div><div class="think">P(X &gt; x): Gegenwahrscheinlichkeit der Fläche links. <b>P(X &gt; x) = 1 &minus; &Phi;(z)</b></div></div>
+  <div class="curio"><div class="qq">&bdquo;zwischen a und b&ldquo;</div><div class="think">P(a &le; X &le; b): große Fläche minus kleine Fläche. <b>&Phi;(z<sub>b</sub>) &minus; &Phi;(z<sub>a</sub>)</b></div></div>
   <p style="margin-top:16px">Der umgekehrte Weg, vom <b>Anteil zur Grenze</b>, heißt <b>Destandardisieren</b>: Man sucht das <span class="mark-term" data-tip="x_p ist die Grenze, die mit Wahrscheinlichkeit p unterschritten wird: P(X &le; x_p) = p. Berechnung: x_p = &mu; + z_p&middot;&sigma; mit dem z-Quantil aus Tab. D.">Quantil</span> x<sub>p</sub> zum vorgegebenen Anteil p und holt das passende z<sub>p</sub> aus der Tabelle&nbsp;D:</p>
   <div class="formelbox"><div class="f">x<sub>p</sub> = &mu; + z<sub>p</sub> &middot; &sigma;</div><small>Vom Anteil p über das z-Quantil zurück zur echten Grenze.</small></div>
   <div class="curio"><div class="qq"><svg class="i"><use href="#i-shield"/></svg> Merke (typische Klausurfalle)</div><div class="think">x<sub>p</sub> ist die Grenze, die mit Wahrscheinlichkeit p <b>unterschritten</b> wird. Sollen z.&nbsp;B. 80&nbsp;% der Werte <b>über</b> der Grenze liegen, brauchst du x<sub>0,20</sub>, und wegen der Symmetrie gilt z<sub>0,20</sub> = &minus;z<sub>0,80</sub> = &minus;0,8416.</div></div>
@@ -1922,7 +1899,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
 <!-- STEP 6 · Abschnitt 4 -->
 <div class="lstep" data-name="Stichprobenmittel">
-  <span class="eyebrow">④ Abschnitt 4 von 4</span>
+  <span class="eyebrow">Abschnitt 4 von 4</span>
   <h2>Das Stichprobenmittel: die Brücke zur schließenden Statistik</h2>
   <p>Jetzt der Schritt, der dieses Kapitel mit dem Rest des Semesters verbindet. Sind X&#8321;, &hellip;, X&#8345; <b>unabhängig und identisch</b> normalverteilt mit Erwartungswert &mu; und Varianz &sigma;&sup2;, dann sind auch ihre Summe und ihr Mittel, das <span class="mark-term" data-tip="X&#772; = (1/n)&middot;&Sigma;X&#7522;, der Durchschnitt von n Beobachtungen. Bei normalverteilten X&#7522; gilt exakt: X&#772; ~ N(&mu;; &sigma;&sup2;/n).">Stichprobenmittel</span> X&#772;, wieder normalverteilt:</p>
   <div class="formelbox"><div class="f">&Sigma;X&#7522; ~ N(n&middot;&mu;; n&middot;&sigma;&sup2;) &nbsp;&nbsp;&middot;&nbsp;&nbsp; X&#772; ~ N(&mu;; &sigma;&sup2;/n)<br>&sigma;<sub>X&#772;</sub> = &sigma; / &radic;n</div><small>Summe streut breiter, Mittel streut enger.</small></div>
@@ -2042,7 +2019,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
   <h3>Neugier-Fragen</h3>
   <p class="muted" style="margin-top:4px">Kleine Fragen zum inneren Mitdenken, nicht zum Googeln. So läuft eine einmal vorgemacht (Frage, Denk-Schritt, Antwort):</p>
   <div class="curio">
-    <div class="qq"><svg class="i"><use href="#i-diamond"/></svg> Zwei Apps schätzen deine mittlere Schlafdauer, und beide treffen &bdquo;im Mittel&ldquo; den wahren Wert, trotzdem ist eine besser. Wie kann das sein?</div>
+    <div class="qq">Zwei Apps schätzen deine mittlere Schlafdauer, und beide treffen &bdquo;im Mittel&ldquo; den wahren Wert, trotzdem ist eine besser. Wie kann das sein?</div>
     <div class="think"><b>Denk-Schritt:</b> &bdquo;Im Mittel richtig&ldquo; (erwartungstreu) sagt nichts darüber, wie stark die einzelnen Schätzwerte um den wahren Wert streuen.<br><b>Antwort:</b> Die bessere App hat die kleinere Varianz: sie ist <i>effizienter</i>. Genau dieses Gütekriterium rechnen wir in Abschnitt ② nach.</div>
   </div>
   <div class="curio mini"><svg class="i"><use href="#i-diamond"/></svg> Das Stichprobenmittel X&#772; trifft &mu; im Mittel exakt: warum ist 1/(n&minus;1)·&Sigma;X&#7522; dann trotzdem kein erwartungstreuer Schätzer, obwohl er fast genauso aussieht?</div>
@@ -2064,7 +2041,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
 <!-- STEP 3 · Abschnitt 1 -->
 <div class="lstep" data-name="Schätzfunktion">
-  <span class="eyebrow">① Abschnitt 1 von 4</span>
+  <span class="eyebrow">Abschnitt 1 von 4</span>
   <h2>Vom Stichprobenwert zum Schätzer: das Fundament</h2>
   <p>Beim Schätzen schließt man von einer <span class="mark-term" data-tip="Eine zufällig gezogene Teilmenge vom Umfang n aus der Grundgesamtheit. Aus ihren Werten x₁; …; xₙ berechnet man Kennzahlen wie das Mittel x̄.">Stichprobe</span> (Empirie) auf die <span class="mark-term" data-tip="Die vollständige Menge aller Untersuchungseinheiten. Ihre wahren Parameter (μ, σ², p, λ, …) sind unbekannt und sollen geschätzt werden.">Grundgesamtheit</span> (Theorie): Deren wahre Parameter, Mittelwert &mu;, Varianz &sigma;&sup2;, Anteil p, Rate &lambda;, sind unbekannt und sollen durch <b>einen einzigen Zahlenwert</b> geschätzt werden (Punktschätzung; das &plusmn;-Fenster dazu baut Kapitel 8). Das Werkzeug dafür ist die <span class="mark-term" data-tip="θ̂ = g(X₁; …; Xₙ): eine Rechenvorschrift, die aus den Stichprobenvariablen einen Schätzwert macht (z. B. μ̂ = X̄). Da die Stichprobe zufällig ist, ist θ̂ selbst eine Zufallsvariable.">Schätzfunktion</span> &theta;&#770; = g(X&#8321;; &hellip;; X&#8345;), eine Rechenvorschrift, die aus den Stichprobenvariablen einen Schätzwert macht:</p>
   <div class="formelbox"><div class="f">&mu;&#770; = X&#772; = (1/n) &middot; &Sigma;X&#7522;<br>p&#770; = X&#772; (Anteil bei 0/1-Daten)<br>&sigma;&#770;&sup2; = D&sup2; (mittlere quadr. Abweichung)</div></div>
@@ -2075,7 +2052,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
 <!-- STEP 4 · Abschnitt 2 -->
 <div class="lstep" data-name="Gütekriterien">
-  <span class="eyebrow">② Abschnitt 2 von 4</span>
+  <span class="eyebrow">Abschnitt 2 von 4</span>
   <h2>Was ist ein &bdquo;guter&ldquo; Schätzer? Die Gütekriterien</h2>
   <p>Ein einzelner Schätzwert verrät nicht, ob das Schätz<i>verfahren</i> taugt: beurteilt wird die Verteilung aller unter dem Modell möglichen Schätzergebnisse. Die Vorlesung nennt drei Kriterien:</p>
   <p><b>Erwartungstreue:</b> E(&mu;&#770;) = &mu;: im Mittel kein systematischer Fehler.<br>Bias b(&mu;&#770;) = E(&mu;&#770;) &minus; &mu; = 0</p>
@@ -2097,7 +2074,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
 <!-- STEP 5 · Abschnitt 3 -->
 <div class="lstep" data-name="Momentenmethode">
-  <span class="eyebrow">③ Abschnitt 3 von 4</span>
+  <span class="eyebrow">Abschnitt 3 von 4</span>
   <h2>Schätzer herleiten I: die Momentenmethode</h2>
   <p>Woher kommen Schätzfunktionen überhaupt? Das erste Rezept ist die <span class="mark-term" data-tip="Schätzmethode nach Pearson: theoretisches Moment (meist E(X)) mit dem empirischen Moment x̄ gleichsetzen und nach dem Parameter auflösen. Schnell, aber ohne Qualitätsgarantie.">Momentenmethode</span>: Sie setzt ein theoretisches Moment (meist den Erwartungswert E(X)) mit dem entsprechenden empirischen Moment (dem Stichprobenmittel x&#772;) gleich.</p>
   <p><b>Das 3-Schritte-Rezept:</b></p>
@@ -2111,7 +2088,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
 <!-- STEP 6 · Abschnitt 4 -->
 <div class="lstep" data-name="Maximum-Likelihood-Methode">
-  <span class="eyebrow">④ Abschnitt 4 von 4</span>
+  <span class="eyebrow">Abschnitt 4 von 4</span>
   <h2>Schätzer herleiten II: die Maximum-Likelihood-Methode</h2>
   <p>Das zweite Rezept formalisiert das Würfel-Bauchgefühl aus dem Einstieg. Die <span class="mark-term" data-tip="L(θ) = f(x₁|θ)·f(x₂|θ)·…·f(xₙ|θ): die Wahrscheinlichkeit(sdichte) der tatsächlich beobachteten Stichprobe als Funktion des Parameters. &bdquo;UND heißt mal&ldquo;: Produkt wegen Unabhängigkeit.">Likelihood-Funktion</span> L(&theta;) misst, wie wahrscheinlich die tatsächlich beobachtete Stichprobe unter einem Parameterwert &theta; wäre. Weil die Beobachtungen unabhängig sind, gilt &bdquo;UND heißt mal&ldquo; (Kapitel 3): L ist das <b>Produkt der Einzeldichten</b>. Der ML-Schätzer ist der Wert, der dieses Produkt maximiert:</p>
   <div class="formelbox"><div class="f">L(&theta;) = f(x&#8321;|&theta;) &middot; f(x&#8322;|&theta;) &middot; &hellip; &middot; f(x&#8345;|&theta;)<br>&part;&thinsp;ln&nbsp;L / &part;&theta; = 0 liefert &theta;&#770;<sub>ML</sub></div></div>
@@ -2220,7 +2197,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
   <h3>Neugier-Fragen</h3>
   <p class="muted" style="margin-top:4px">Kurz erklärt, &bdquo;Neugier-Fragen&ldquo;: kleine Fragen, die du dir <i>selbst</i> stellst, um aktiv mitzudenken, nicht zum Googeln, sondern zum inneren Beantworten, während die Lektion läuft. So funktioniert's: an einer Frage einmal vorgemacht (Frage, Denk-Schritt, Antwort, die du gleich prüfst):</p>
   <div class="curio">
-    <div class="qq"><svg class="i"><use href="#i-diamond"/></svg> Warum wird das Konfidenzintervall breiter, wenn ich <i>sicherer</i> sein will?</div>
+    <div class="qq">Warum wird das Konfidenzintervall breiter, wenn ich <i>sicherer</i> sein will?</div>
     <div class="think"><b>Denk-Schritt:</b> Mehr Sicherheit heißt: mehr Fläche unter der Glockenkurve einfangen, dafür müssen die Grenzen weiter nach außen, also braucht es ein größeres Quantil.<br><b>Antwort:</b> Für 99&nbsp;% statt 95&nbsp;% wächst das Quantil von 1,96 auf 2,5758, das Intervall wird gut 30&nbsp;% länger. Das rechnen wir gleich nach.</div>
   </div>
   <div class="curio mini"><svg class="i"><use href="#i-diamond"/></svg> Das berechnete Intervall [743,1; 752,9] liegt fest, warum darf man trotzdem nicht sagen, &mu; liege &bdquo;mit 95&nbsp;% Wahrscheinlichkeit&ldquo; genau darin?</div>
@@ -2242,7 +2219,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
 <!-- STEP 3 · Abschnitt 1 -->
 <div class="lstep" data-name="Idee &amp; Interpretation">
-  <span class="eyebrow">① Abschnitt 1 von 4</span>
+  <span class="eyebrow">Abschnitt 1 von 4</span>
   <h2>Vom Punktschätzer zum Intervall: Idee &amp; Interpretation</h2>
   <p>Aus Kapitel 7 kennst du die Punktschätzung: &mu;&#770; = x&#772; liefert <b>einen</b> Zahlenwert für den unbekannten Erwartungswert &mu;, der aber mit an Sicherheit grenzender Wahrscheinlichkeit nicht <i>exakt</i> stimmt. Das <span class="mark-term" data-tip="Ein aus der Stichprobe berechneter Bereich [untere Grenze; obere Grenze], der den wahren Parameter mit der Sicherheitswahrscheinlichkeit 1−α überdecken soll. Kurz: KI.">Konfidenzintervall</span> (KI) legt darum um den Schätzwert einen <b>Sicherheitsbereich</b>, der den wahren Parameter mit einer vorgegebenen Wahrscheinlichkeit überdeckt. Diese Sicherheitswahrscheinlichkeit 1&nbsp;&minus;&nbsp;&alpha; heißt <span class="mark-term" data-tip="Die Überdeckungswahrscheinlichkeit 1−α des Verfahrens (üblich: 0,90, 0,95 oder 0,99). Häufigkeitsdeutung: Bei vielen Wiederholungen überdecken rund (1−α)·100 % der Intervalle den wahren Parameter.">Konfidenzniveau</span>, die Restwahrscheinlichkeit &alpha; ist die <span class="mark-term" data-tip="α = 1 − Konfidenzniveau: die Wahrscheinlichkeit, dass das Verfahren ein Intervall liefert, das den wahren Parameter verfehlt. Beim zweiseitigen Intervall entfällt je α/2 auf jeden Rand.">Irrtumswahrscheinlichkeit</span>:</p>
   <div class="formelbox"><div class="f">KI<sub>1&minus;&alpha;</sub> = [ &theta;&#770;<sub>u</sub> ; &theta;&#770;<sub>o</sub> ] &nbsp;&nbsp;mit&nbsp;&nbsp; P( &theta;&#770;<sub>u</sub> &le; &mu; &le; &theta;&#770;<sub>o</sub> ) = 1 &minus; &alpha;</div></div>
@@ -2252,7 +2229,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
 <!-- STEP 4 · Abschnitt 2 -->
 <div class="lstep" data-name="Fall A">
-  <span class="eyebrow">② Abschnitt 2 von 4</span>
+  <span class="eyebrow">Abschnitt 2 von 4</span>
   <h2>Fall A: &sigma; bekannt, das Intervall mit dem z-Quantil</h2>
   <p>Ist die Standardabweichung &sigma; der normalverteilten Grundgesamtheit <b>bekannt</b> (eher ein Lehrbuchfall, aber der Klausur-Klassiker zum Einstieg), dann gilt X&#772; ~ N(&mu;; &sigma;&sup2;/n) mit dem <span class="mark-term" data-tip="σ_X̄ = σ/√n: die Standardabweichung des Stichprobenmittels (Kapitel 6/7). Er steht im Konfidenzintervall an der Stelle, an der beim ZSI das σ steht.">Standardfehler</span> &sigma;/&radic;n. Standardisieren, die zentrale Fläche 1&nbsp;&minus;&nbsp;&alpha; einfangen und nach &mu; umstellen, heraus kommt die wichtigste Formel des Kapitels, mit dem <span class="mark-term" data-tip="z_p ist der Wert, den eine standardnormalverteilte Größe mit Wahrscheinlichkeit p unterschreitet (Tab. D). Fürs zweiseitige KI braucht man z_{1−α/2}, z. B. z_{0,975} = 1,96 für 95 %.">z-Quantil</span> z<sub>1&minus;&alpha;/2</sub> aus Tab. D:</p>
   <div class="formelbox"><div class="f">Fall A: &nbsp;KI<sub>1&minus;&alpha;</sub> = [ x&#772; &plusmn; z<sub>1&minus;&alpha;/2</sub> &middot; &sigma;/&radic;n ]</div></div>
@@ -2261,7 +2238,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
 <!-- STEP 5 · Abschnitt 3 -->
 <div class="lstep" data-name="Fall B und C">
-  <span class="eyebrow">③ Abschnitt 3 von 4</span>
+  <span class="eyebrow">Abschnitt 3 von 4</span>
   <h2>Fall B und C: &sigma; unbekannt, die t-Verteilung übernimmt</h2>
   <p>Realistisch ist &sigma; fast nie bekannt. Dann schätzt man es erwartungstreu über die <span class="mark-term" data-tip="S² = 1/(n−1) · Σ(xᵢ − x̄)² = n/(n−1) · d_x²: der erwartungstreue Schätzer für σ² (Kapitel 7). Die Wurzel S ersetzt im Konfidenzintervall das unbekannte σ.">Stichprobenvarianz</span> S&sup2; = 1/(n&minus;1)&middot;&Sigma;(x&#7522; &minus; x&#772;)&sup2;. Der Preis: Standardisiert man X&#772; mit S statt &sigma;, ist das Ergebnis nicht mehr normalverteilt, sondern folgt der <span class="mark-term" data-tip="Auch Student-Verteilung: symmetrisch um 0 wie N(0; 1), aber flacher mit mehr Wahrscheinlichkeitsmasse in den Rändern. Für n gegen unendlich geht sie in die Standardnormalverteilung über. Quantile: Tab. E.">t-Verteilung</span> mit n&nbsp;&minus;&nbsp;1 <span class="mark-term" data-tip="Anzahl der &bdquo;frei wählbaren&ldquo; Abweichungen: Weil μ durch x̄ geschätzt wird, geht ein Freiheitsgrad verloren, beim KI fürs Mittel also n − 1. Sie bestimmen die Zeile der t-Tabelle.">Freiheitsgraden</span> (<b>Fall B</b>):</p>
   <div class="formelbox"><div class="f">T = (X&#772; &minus; &mu;) / (S/&radic;n) ~ t(n&minus;1)<br>Fall B: &nbsp;KI<sub>1&minus;&alpha;</sub> = [ x&#772; &plusmn; t<sub>1&minus;&alpha;/2</sub>(n&minus;1) &middot; S/&radic;n ]</div></div>
@@ -2272,7 +2249,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
 <!-- STEP 6 · Abschnitt 4 -->
 <div class="lstep" data-name="Stellschrauben">
-  <span class="eyebrow">④ Abschnitt 4 von 4</span>
+  <span class="eyebrow">Abschnitt 4 von 4</span>
   <h2>Die Stellschrauben: Konfidenzniveau, n, und der notwendige Stichprobenumfang</h2>
   <p>Die <b>Genauigkeit</b> der Schätzung misst die Länge des Intervalls, L = obere minus untere Grenze. In Fall A ist L = 2&middot;z<sub>1&minus;&alpha;/2</sub>&middot;&sigma;/&radic;n, daran siehst du beide Stellschrauben: Ein <b>höheres Konfidenzniveau</b> vergrößert das Quantil und macht das Intervall <b>länger</b> (mehr Sicherheit = weniger Genauigkeit). Ein <b>größerer Stichprobenumfang</b> macht es <b>kürzer</b>, aber nur mit &radic;n: Für die halbe Länge brauchst du das Vierfache, für ein Drittel das Neunfache an Daten. Sicherheit <i>und</i> Genauigkeit zugleich verbessert in der Regel nur eines: mehr Daten.</p>
   <p class="muted">Häufig wird die Frage umgedreht: Wie groß muss n sein, damit das Intervall bei gegebenem Niveau <b>höchstens</b> die Länge L hat? Einfach die Längenformel nach n auflösen:</p>
@@ -2385,7 +2362,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
   <h3>Neugier-Fragen</h3>
   <p class="muted" style="margin-top:4px">Kleine Fragen zum inneren Mitdenken, nicht zum Googeln. So läuft eine einmal vorgemacht (Frage, Denk-Schritt, Antwort):</p>
   <div class="curio">
-    <div class="qq"><svg class="i"><use href="#i-diamond"/></svg> Warum spricht ein Gericht &bdquo;im Zweifel für den Angeklagten&ldquo; frei, und was hat das mit dem Signifikanzniveau zu tun?</div>
+    <div class="qq">Warum spricht ein Gericht &bdquo;im Zweifel für den Angeklagten&ldquo; frei, und was hat das mit dem Signifikanzniveau zu tun?</div>
     <div class="think"><b>Denk-Schritt:</b> Überleg, welcher Fehler schlimmer wäre: einen Unschuldigen verurteilen oder einen Schuldigen freisprechen, und welchen davon man deshalb streng kontrolliert.<br><b>Antwort:</b> Der schlimmere Fehler (Unschuldigen verurteilen = Nullhypothese zu Unrecht ablehnen) wird über das kleine Signifikanzniveau &alpha; gedeckelt, genau das rechnen wir gleich nach.</div>
   </div>
   <div class="curio mini"><svg class="i"><use href="#i-diamond"/></svg> Warum teilt sich &alpha; beim zweiseitigen Test auf beide Ränder auf, beim einseitigen aber nicht?</div>
@@ -2407,7 +2384,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
 <!-- STEP 3 · Abschnitt 1 -->
 <div class="lstep" data-name="Hypothesenpaar">
-  <span class="eyebrow">① Abschnitt 1 von 4</span>
+  <span class="eyebrow">Abschnitt 1 von 4</span>
   <h2>Das Hypothesenpaar: H&#8320; gegen H&#8321;</h2>
   <p>Am Anfang jedes Tests stehen zwei Gegenspieler. Die <span class="mark-term" data-tip="H&#8320;: die zu prüfende Ausgangsannahme über die Grundgesamtheit (z.&nbsp;B. µ = µ&#8320;). Sie gilt, bis die Stichprobe deutlich genug dagegen spricht, &bdquo;beibehalten&ldquo; heißt aber nicht &bdquo;bewiesen&ldquo;.">Nullhypothese</span> H&#8320; ist die Ausgangsannahme über die Grundgesamtheit; die <span class="mark-term" data-tip="H&#8321; (Gegenhypothese): die Gegenaussage zu H&#8320;. Sie gilt als angenommen, wenn H&#8320; verworfen wird. Was man statistisch belegen will, formuliert man als H&#8321;.">Alternativhypothese</span> H&#8321; ist ihre Gegenaussage. Beide zusammen müssen alle Möglichkeiten abdecken, genau eine von beiden trifft in der Realität zu. Je nach Fragestellung gibt es drei Hypothesenpaare für den Erwartungswert µ:</p>
   <div class="rulegrid">
@@ -2420,7 +2397,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
 <!-- STEP 4 · Abschnitt 2 -->
 <div class="lstep" data-name="Fehlerarten">
-  <span class="eyebrow">② Abschnitt 2 von 4</span>
+  <span class="eyebrow">Abschnitt 2 von 4</span>
   <h2>Fehler 1. &amp; 2. Art und das Signifikanzniveau</h2>
   <p>Der Test entscheidet unter Unsicherheit, zwei Fehlentscheidungen sind möglich. Der <span class="mark-term" data-tip="α-Fehler: H&#8320; wird verworfen, obwohl sie in der Grundgesamtheit zutrifft. Seine Wahrscheinlichkeit wird durch das Signifikanzniveau α nach oben begrenzt.">Fehler 1. Art</span> verwirft eine zutreffende Nullhypothese; der <span class="mark-term" data-tip="β-Fehler: H&#8320; wird beibehalten, obwohl sie nicht zutrifft. β ist nicht frei wählbar, es hängt vom wahren, unbekannten Parameter ab. Die Güte (Trennschärfe) eines Tests ist 1 &minus; β.">Fehler 2. Art</span> behält eine falsche bei:</p>
   <div class="tw"><table class="mx">
@@ -2433,7 +2410,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
 <!-- STEP 5 · Abschnitt 3 -->
 <div class="lstep" data-name="Testschema">
-  <span class="eyebrow">③ Abschnitt 3 von 4</span>
+  <span class="eyebrow">Abschnitt 3 von 4</span>
   <h2>Ablehnbereich &amp; Teststatistik: das 4-Schritte-Schema</h2>
   <p>Jeder Test der schließenden Statistik läuft nach demselben festen Schema ab, in der Vorlesung als Viererschritt notiert: Hypothesen, dann AB, dann TS, dann TE.</p>
   <div class="rulegrid">
@@ -2456,7 +2433,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
 <!-- STEP 6 · Abschnitt 4 -->
 <div class="lstep" data-name="p-Wert">
-  <span class="eyebrow">④ Abschnitt 4 von 4</span>
+  <span class="eyebrow">Abschnitt 4 von 4</span>
   <h2>Der Gauß-Test komplett durchgerechnet, und der p-Wert</h2>
   <p>Statt Prüfgröße und kritischen Wert zu vergleichen, kannst du auch den <span class="mark-term" data-tip="Überschreitungswahrscheinlichkeit: die Wahrscheinlichkeit, unter H&#8320; ein mindestens so extremes Ergebnis zu erhalten wie das beobachtete. Regel: p &lt; α, also H&#8320; verwerfen. Beidseitig: p = 2&middot;(1 &minus; Φ(|z|)).">p-Wert</span> heranziehen, die Wahrscheinlichkeit, unter H&#8320; ein mindestens so extremes Ergebnis zu sehen wie das beobachtete. Im Lehrbeispiel: p = 2&middot;(1 &minus; &Phi;(2,1)) = 2&middot;(1 &minus; 0,9821) = <b>0,0357</b>. Die Entscheidungsregel ist denkbar kurz: <b>p &lt; &alpha;, also H&#8320; verwerfen</b>. Hier gilt 0,0357 &lt; 0,05, ablehnen; bei &alpha; = 0,01 dagegen 0,0357 &gt; 0,01, beibehalten. Der p-Wert sagt also nicht nur <i>ob</i>, sondern <i>wie deutlich</i> es zur Ablehnung reicht: Er ist die kleinste Irrtumswahrscheinlichkeit, bei der die Daten H&#8320; gerade noch kippen. Was er <b>nicht</b> ist: die Wahrscheinlichkeit, dass H&#8320; wahr ist.</p>
   <p class="muted">Dieselbe Logik trägt weiter: Für einen <b>Anteilswert</b> p (Bernoulli-Daten, großes n) läuft der Test identisch, nur mit p&#770; = X&#772; als Schätzer und Z = (p&#770; &minus; p&#8320;)/&radic;(p&#770;(1&minus;p&#770;)/n) als Prüfgröße, entschieden wird wieder über die z-Quantile. Und ist &sigma;&sup2; <b>unbekannt</b>, übernimmt bei kleiner Stichprobe die t-Verteilung, das ist der t-Test aus <b>Kapitel 10</b>; bei großem n (Faustregel n &gt; 30) rettet dich der zentrale Grenzwertsatz zurück zu den z-Quantilen. Nur der Vollständigkeit halber: Ein zweiseitiger Test zum Niveau &alpha; und ein (1&minus;&alpha;)-Konfidenzintervall aus <b>Kapitel 8</b> sind rechnerisch zwei Seiten derselben Medaille, liegt µ&#8320; außerhalb des Intervalls, wird H&#8320; verworfen.</p>
@@ -2564,7 +2541,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
   <h3>Neugier-Fragen</h3>
   <p class="muted" style="margin-top:4px">Kleine Fragen zum inneren Mitdenken, nicht zum Googeln. So läuft eine einmal vorgemacht (Frage, Denk-Schritt, Antwort):</p>
   <div class="curio">
-    <div class="qq"><svg class="i"><use href="#i-diamond"/></svg> Warum reicht der Gauß-Test aus Kapitel 9 nicht mehr, wenn σ unbekannt ist und nur 9 Messungen vorliegen?</div>
+    <div class="qq">Warum reicht der Gauß-Test aus Kapitel 9 nicht mehr, wenn σ unbekannt ist und nur 9 Messungen vorliegen?</div>
     <div class="think"><b>Denk-Schritt:</b> Die Streuung muss jetzt selbst aus den 9 Werten geschätzt werden, diese zusätzliche Unsicherheit muss der Test irgendwo einpreisen.<br><b>Antwort:</b> Die Prüfgröße folgt dann der t-Verteilung mit schwereren Rändern: Das kritische t-Quantil (z.&nbsp;B. 2,306 statt 1,96) ist größer, genau das rechnen wir gleich am Espresso-Beispiel nach.</div>
   </div>
   <div class="curio mini"><svg class="i"><use href="#i-diamond"/></svg> Der χ²-Anpassungstest bestraft Abweichungen nach oben <i>und</i> nach unten, warum lehnt er trotzdem nur am rechten Rand ab?</div>
@@ -2586,7 +2563,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
 <!-- STEP 3 · Abschnitt 1 -->
 <div class="lstep" data-name="Vom Gauß-Test zum t-Test">
-  <span class="eyebrow">① Abschnitt 1 von 4</span>
+  <span class="eyebrow">Abschnitt 1 von 4</span>
   <h2>Vom Gauß-Test zum t-Test</h2>
   <p>Das Vorgehen kennst du aus Kapitel 9, es bleibt bei jedem Test dieses Kapitels identisch: ① <span class="mark-term" data-tip="H&#8320;: die geprüfte Ausgangsannahme (z. B. µ = µ&#8320; oder &bdquo;Merkmale sind unabhängig&ldquo;). Sie wird beibehalten, solange die Daten nicht deutlich dagegensprechen, &bdquo;beibehalten&ldquo; heißt nicht &bdquo;bewiesen&ldquo;.">Nullhypothese</span> H&#8320; und Alternative H&#8321; formulieren, ② Ablehnungsbereich über α festlegen, ③ Prüfgröße berechnen, ④ entscheiden. Neu ist nur die Prüfverteilung. Der Gauß-Test setzt ein bekanntes σ voraus, in der Klausur ist σ aber häufig unbekannt und wird über die <span class="mark-term" data-tip="Ŝ² = 1/(n−1)·Σ(xᵢ−x̄)² = n/(n−1)·d_x²: erwartungstreuer Schätzer für σ². Der Nenner n−1 (statt n) gleicht aus, dass µ durch x̄ geschätzt wurde.">korrigierte Stichprobenvarianz</span> S&#770;² mitgeschätzt:</p>
   <div class="formelbox"><div class="f">S&#770;² = 1/(n−1) · Σ(x&#7522; − x&#772;)² = n/(n−1) · d<sub>x</sub>²</div><small>Erwartungstreuer Schätzer für σ²; der Nenner n−1 gleicht aus, dass µ durch x&#772; geschätzt wird.</small></div>
@@ -2616,7 +2593,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
 <!-- STEP 4 · Abschnitt 2 -->
 <div class="lstep" data-name="Der Chi-Quadrat-Anpassungstest">
-  <span class="eyebrow">② Abschnitt 2 von 4</span>
+  <span class="eyebrow">Abschnitt 2 von 4</span>
   <h2>Der Chi-Quadrat-Anpassungstest</h2>
   <p>Jetzt zum Würfel vom Spieleabend. Hier wird keine einzelne Zahl (wie µ) geprüft, sondern eine ganze <b>Verteilung</b>: H&#8320; = &bdquo;alle sechs Seiten sind gleich wahrscheinlich&ldquo;. Der <span class="mark-term" data-tip="Goodness-of-fit-Test: prüft, ob die in der Stichprobe beobachtete Häufigkeitsverteilung zu einer angenommenen theoretischen Verteilung passt (z. B. Gleich-, Bernoulli- oder Poisson-Verteilung).">Anpassungstest</span> vergleicht dafür die beobachteten Häufigkeiten n&#7522; mit den unter H&#8320; <span class="mark-term" data-tip="Die unter H₀ zu erwartenden Besetzungen: beim Anpassungstest nᵢ⁽⁰⁾ = n·pᵢ⁽⁰⁾, beim Unabhängigkeitstest ñᵢⱼ = nᵢ.·n.ⱼ/n. Faustregel: alle erwarteten Häufigkeiten ≥ 5, sonst Klassen zusammenfassen.">erwarteten Häufigkeiten</span> n&#7522;&#8317;&#8304;&#8318; = n·p&#7522;&#8317;&#8304;&#8318; und summiert die standardisierten quadrierten Abweichungen:</p>
   <div class="formelbox"><div class="f">χ² = Σ (n&#7522; − n&#7522;&#8317;&#8304;&#8318;)² / n&#7522;&#8317;&#8304;&#8318;<br>ν = k − m − 1</div><small>Vergleicht beobachtete mit erwarteten Häufigkeiten; ν = k−m−1 Freiheitsgrade aus Klassenzahl k und geschätzten Parametern m.</small></div>
@@ -2646,7 +2623,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
 <!-- STEP 5 · Abschnitt 3 -->
 <div class="lstep" data-name="Der Chi-Quadrat-Unabhängigkeitstest">
-  <span class="eyebrow">③ Abschnitt 3 von 4</span>
+  <span class="eyebrow">Abschnitt 3 von 4</span>
   <h2>Der Chi-Quadrat-Unabhängigkeitstest</h2>
   <p>Die zweite χ²-Variante prüft, ob <b>zwei kategoriale Merkmale</b> zusammenhängen. Ausgangspunkt ist die <span class="mark-term" data-tip="Kreuztabelle der gemeinsamen Häufigkeiten nᵢⱼ zweier kategorialer Merkmale (k Zeilen × l Spalten) mit Zeilen- und Spaltenrandsummen, bekannt aus der deskriptiven Statistik (Kapitel 2).">Kontingenztafel</span> der gemeinsamen Häufigkeiten n&#7522;&#11388;. Die Logik kommt direkt aus Kapitel 3: Bei Unabhängigkeit gilt P(A∩B) = P(A)·P(B), übertragen auf Häufigkeiten heißt das ñ&#7522;&#11388; = n&#7522;.&nbsp;·&nbsp;n.&#11388;&nbsp;/&nbsp;n (Zeilensumme mal Spaltensumme durch n). Der Test vergleicht wieder &bdquo;beobachtet&ldquo; mit &bdquo;erwartet&ldquo;:</p>
   <div class="formelbox"><div class="f">χ² = ΣΣ (n&#7522;&#11388; − ñ&#7522;&#11388;)² / ñ&#7522;&#11388;<br>ν = (k−1) · (l−1)</div><small>Vergleicht beobachtete mit erwarteten Häufigkeiten in der Kontingenztafel; ν = (k−1)(l−1) Freiheitsgrade.</small></div>
@@ -2676,7 +2653,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
 <!-- STEP 6 · Abschnitt 4 -->
 <div class="lstep" data-name="Testauswahl">
-  <span class="eyebrow">④ Abschnitt 4 von 4</span>
+  <span class="eyebrow">Abschnitt 4 von 4</span>
   <h2>Testauswahl: Welcher Test wann?</h2>
   <p>In der Klausur ist die halbe Miete, das richtige Verfahren zu erkennen. Frag dich zuerst: <b>Was wird geprüft, ein Mittelwert, ein Anteil, eine Verteilungsform oder ein Zusammenhang?</b> Danach entscheidet die Informationslage über die Prüfverteilung:</p>
   <div class="formelbox"><div class="f">Mittelwert · σ bekannt<br>Gauß-Test (Kapitel 9): Z = (x&#772;−µ&#8320;)/(σ/√n)</div><small>z-Quantile (Tab. D)</small></div>
@@ -2845,7 +2822,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
   var PRICE = {
     kapitel:6.90, komplett:39.90, komplettAlt:69.00,
     handout:8.90, handoutPaket:49.90, handoutPaketAlt:89.00,
-    gesamt:89.80, gesamtAlt:185.00, qa:9.00
+    gesamt:69.90, gesamtAlt:185.00, qa:9.00
   };
   function euro(v){ return v.toFixed(2).replace(".",",")+" €"; }
   function ownedChapters(){ var c=0; for(var i=1;i<=10;i++){ if(i!==3 && ST.owned[i]) c++; } return c; }
@@ -2892,19 +2869,22 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
     $("hubQuote").textContent = LEITSAETZE[day % LEITSAETZE.length];
     if(dc===10){
       $("hubTitle").innerHTML = "Alle Kapitel geschafft.";
+      $("hubSub").textContent = "Stark. Bis zur Klausur am 28.07. kannst du gezielt wiederholen.";
       $("hubProgSub").textContent = "Alles erledigt. Wiederhol deine wackligen Themen.";
       $("hubCta").innerHTML = "Zum Wiederholen <svg class='i arrow'><use href='#i-arrow'/></svg>";
       $("hubCta").onclick = function(){ show("wiederholen"); };
       $("hubNextWrap").hidden = true;
     } else if(an===null){
       $("hubTitle").innerHTML = "Kapitel 3 geschafft.";
+      $("hubSub").textContent = "Stark. Die übrigen 9 Kapitel schaltest du mit OSTA Klausur-App frei.";
       $("hubProgSub").textContent = "Dein Gratis-Kapitel ist erledigt. Wiederholen geht jederzeit.";
       $("hubCta").innerHTML = "OSTA Klausur-App freischalten <svg class='i arrow'><use href='#i-arrow'/></svg>";
       $("hubCta").onclick = function(){ show("mehr"); };
       $("hubNextWrap").hidden = true;
     } else {
       var L = lesson(an);
-      $("hubTitle").innerHTML = dc===0 ? "Dein Weg zur OSTA&#8209;Klausur" : "Weiter geht&rsquo;s.";
+      $("hubTitle").innerHTML = dc===0 ? "Dein Weg zur OSTA&#8209;Klausur." : "Weiter geht&rsquo;s.";
+      $("hubSub").textContent = "Noch "+(10-dc)+" Kapitel bis zur Klausur am 28.07. bei Prof. Hassler.";
       $("hubProgSub").textContent = "Kapitel "+an+" ist "+(ST.quiz[an]?"angefangen":"offen")+" und wartet auf dich.";
       $("hubCta").innerHTML = "Kapitel "+an+" "+(ST.quiz[an]?"fortsetzen":"starten")+" <svg class='i arrow'><use href='#i-arrow'/></svg>";
       $("hubCta").onclick = function(){ openLesson(an); };
@@ -2925,12 +2905,11 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
   }
 
   /* ================= LERNPFAD ================= */
-  var pathWob=[34, 42, 46, 44, 37, 29, 23, 23, 28, 36]; /* sanfte Serpentine, Karten in einer Spalte */
-  var CARDL=92; /* konstanter Karten-Einzug, damit die Karten fluchten */
+  var pathWob=[30, 54, 68, 52, 32, 46, 66, 50, 30, 46]; /* organische Serpentine wie Firestarter */
   function orbInner(st,n){
     if(st==="done") return "<svg class='i' style='width:22px'><use href='#i-check'/></svg>";
     if(st==="locked") return "<svg class='i' style='width:19px'><use href='#i-lock'/></svg>";
-    return "<svg class='i'><use href='#k-"+n+"'/></svg>";
+    return n;
   }
   function ctaFor(st,n){
     if(st==="done") return "erledigt";
@@ -2959,8 +2938,8 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
     LESSONS.forEach(function(c, m){
       var st = stateFor(c.n);
       html += "<button class='station "+st+"' data-ch='"+c.n+"' aria-label='Kapitel "+c.n+": "+plainT(c.n).replace(/'/g,"&#39;")+", Status "+st+"'>"+
-        "<span class='ball' style='left:"+pathWob[m].toFixed(1)+"px'>"+orbInner(st,c.n)+"</span>"+
-        "<span class='stcard' style='margin-left:"+CARDL+"px'><span class='stt'><b>"+c.t+"</b><small>"+subFor(st,c.n)+"</small></span>"+endFor(st)+"</span>"+
+        "<span class='ball' style='left:"+pathWob[m].toFixed(1)+"px'><svg class='i'><use href='#k-"+c.n+"'/></svg></span>"+
+        "<span class='stcard' style='margin-left:"+(pathWob[m]+38).toFixed(0)+"px'><span class='stt'><b>"+c.t+"</b><small>"+subFor(st,c.n)+"</small></span>"+endFor(st)+"</span>"+
         "</button>";
     });
     wrap.innerHTML = html;
@@ -2991,14 +2970,14 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
     svg.setAttribute("viewBox","0 0 "+W+" "+H); svg.setAttribute("preserveAspectRatio","none");
     svg.innerHTML = "<defs><linearGradient id='pgrad' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='var(--accent-2)'/><stop offset='1' stop-color='var(--accent)'/></linearGradient></defs>"+
       "<g>"+
-      "<path d='"+curve(pts)+"' fill='none' stroke='var(--hair)' stroke-width='6' stroke-linecap='round'/>"+
+      "<path d='"+curve(pts)+"' fill='none' stroke='var(--hair)' stroke-width='8' stroke-linecap='round'/>"+
       (function(){
         /* Orange nur durch erledigte Kapitel bis ins aktive; sonst nur der Einstiegs-Bogen */
         var si=ai;
         while(si>0 && stations[si-1].classList.contains("done")) si--;
         var start = (si===ai) ? Math.max(0, ai-1) : si;
         var seg = pts.slice(start, ai+1);
-        return "<path d='"+curve(seg)+"' fill='none' stroke='url(#pgrad)' stroke-width='6' stroke-linecap='round' opacity='.9'/>";
+        return "<path d='"+curve(seg)+"' fill='none' stroke='url(#pgrad)' stroke-width='8' stroke-linecap='round' opacity='.9'/>";
       })()+
       "</g>";
   }
@@ -3067,7 +3046,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
     steps.forEach(function(s){ var on = (+s.dataset.step===STEP); s.classList.toggle("on", on); if(on) cur=s; });
     if(STEP>MAXSTEP) MAXSTEP=STEP;
     renderSegs();
-    $("lPrev").disabled = (STEP<=1);
+    $("lPrev").disabled = (STEP<=1) || (STEP===TOTAL);
     if(STEP===TOTAL){ lNext.style.display="none"; startQuizOnce(); }
     else { lNext.style.display=""; lNext.innerHTML="Weiter <svg class='i arrow'><use href='#i-arrow'/></svg>"; }
     $("swipeHint").hidden = !(STEP<=2 && STEP<TOTAL);
@@ -3078,7 +3057,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
   }
   lNext.addEventListener("click", function(){ if(STEP<TOTAL){ STEP++; renderStep(); } });
   $("lPrev").addEventListener("click", function(){ if(STEP>1){ STEP--; renderStep(); } });
-  $("lSegs").addEventListener("click", function(e){
+  $("lSegs").addEventListener("click", function(e){ if(STEP===TOTAL) return;
     var b=e.target.closest("button[data-go]"); if(!b || b.disabled) return;
     STEP=+b.dataset.go; renderStep();
   });
@@ -3094,7 +3073,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
       var t=e.target;
       if(t.closest && (t.closest("input") || t.closest(".aha") || t.closest("#qarea"))) return;
       if(dx<0 && STEP<TOTAL){ STEP++; renderStep(); }
-      else if(dx>0 && STEP>1){ STEP--; renderStep(); }
+      else if(dx>0 && STEP>1 && STEP!==TOTAL){ STEP--; renderStep(); }
     }, {passive:true});
   })();
 
@@ -3326,7 +3305,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
       if(!ST.quiz[i]) continue;
       any=true;
       var chips=(subs&&subs.length) ? subs.map(function(s){ return "<span class='pill'>"+s+"</span>"; }).join("") : "<span class='pill gratis'><span class='dot'></span> alles saß</span>";
-      html+="<div class='repcard'><div class='rh' style='display:flex;gap:11px;align-items:flex-start'><span style='width:34px;height:34px;flex:none;border-radius:50%;border:2px solid var(--silver);display:grid;place-items:center;color:var(--text-2)'><svg class='i' style='width:17px'><use href='#k-"+i+"'/></svg></span><div><b>Kapitel "+i+" · "+lesson(i).t+"</b><br><small class='num'>Letzter Selbsttest: "+ST.quiz[i].c+" von "+ST.quiz[i].n+" richtig</small></div></div>"+
+      html+="<div class='repcard'><div class='rh' style='display:flex;gap:11px;align-items:center;justify-content:flex-start'><span style='width:34px;height:34px;flex:none;border-radius:50%;border:2px solid var(--silver);display:grid;place-items:center;color:var(--text-2)'><svg class='i' style='width:17px'><use href='#k-"+i+"'/></svg></span><div><b>Kapitel "+i+" · "+lesson(i).t+"</b><br><small class='rep-last'>Letzter Selbsttest: "+ST.quiz[i].c+" von "+ST.quiz[i].n+" richtig</small></div></div>"+
         "<div class='repchips'>"+chips+"</div>"+
         "<button class='btn btn-silver btn-sm' data-rep='"+i+"'>Selbsttest wiederholen</button></div>";
     }
@@ -3375,7 +3354,6 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
     if(typ==="qa") return "Live-Q&A · "+slot+" Uhr · "+euro(PRICE.qa);
     return "";
   }
-  var FACH = "Statistik 1"; /* Fächername pro App, für die Bestätigung */
   function renderOrderForm(label){
     $("storeBody").innerHTML =
       '<button type="button" class="store-link" data-back>&#8249; Zurück zur Auswahl</button>'+
@@ -3384,71 +3362,44 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
         '<div class="field"><label for="vmName">Dein Name *</label><input type="text" id="vmName" autocomplete="given-name" placeholder="z. B. Lena" required>'+
         '<p style="font-size:12px;color:var(--text-3);line-height:1.45;margin:5px 0 0">Mit diesem Namen sprechen wir dich in E-Mails an. Und so heißt du im Gruppenchat, wenn du etwas schreibst.</p></div>'+
         '<div class="field"><label for="vmMail">E-Mail-Adresse *</label><input type="email" id="vmMail" autocomplete="email" placeholder="name@beispiel.de" required></div>'+
+        '<div class="field"><label for="vmTel">Handynummer <span style="font-weight:400;color:var(--text-3)">(optional)</span></label><input type="tel" id="vmTel" autocomplete="tel" inputmode="tel" placeholder="z. B. 0151 23456789"></div>'+
         '<label class="chk"><input type="checkbox" id="vmDs"><span>Ich bin einverstanden, dass meine Angaben zur Vormerkung verarbeitet werden. Details in der Datenschutzerklärung (in den Einstellungen).</span></label>'+
         '<div class="err" id="vmErr">Bitte Name, E-Mail-Adresse und Einverständnis ausfüllen.</div>'+
         '<button type="submit" class="btn btn-primary btn-block">Vormerkung absenden</button>'+
       '</form>'+
-      '<p class="placeholder-note" id="vmHint" style="margin-top:12px">Kostenlos und unverbindlich, es entsteht keine Zahlungspflicht. Bezahlung und Zugangsdaten folgen später im separaten Checkout.</p>'+
-      '<div id="vmDone" style="display:none">'+
-        '<div class="vm-card">'+
-          '<h3 class="vm-h" id="vmHello">Hallo!</h3>'+
-          '<p>Super, dass du dich unverbindlich angemeldet hast. In Kürze erhältst du eine E-Mail mit den Hinweisen zur Aktivierung deiner persönlichen <b>OSTA '+FACH+' Trainings-App</b>. Zugangsdaten und Zahlungsinformationen stellen wir dir in derselben Mail zur Verfügung.</p>'+
-          '<p>Wir hoffen, du nutzt unsere optimierten Klausurinhalte intensiv und bestehst mit einer guten Note deine Klausuren!</p>'+
-        '</div>'+
-        '<div class="field" style="margin-top:14px"><label for="vmTel">Handynummer <span style="font-weight:400;color:var(--text-3)">(optional)</span></label>'+
-          '<input type="tel" id="vmTel" autocomplete="tel" inputmode="tel" placeholder="z. B. 0151 23456789">'+
-          '<p style="font-size:12px;color:var(--text-3);line-height:1.45;margin:5px 0 0">Freiwillig. Nur, falls wir dich bei Fragen zur Aktivierung schnell erreichen sollen.</p></div>'+
-        '<button type="button" class="btn btn-silver btn-block" id="vmTelSave" style="margin-top:2px">Nummer speichern</button>'+
-        '<div class="ok-mini" id="vmTelOk"><svg class="i"><use href="#i-check"/></svg> Danke, wir haben deine Nummer notiert.</div>'+
-      '</div>';
+      '<div class="ok" id="vmOk">Danke! Deine Vormerkung ist notiert. Wir melden uns per E-Mail, sobald dein Zugang bereitsteht.</div>'+
+      '<p class="placeholder-note" style="margin-top:12px">Kostenlos und unverbindlich, es entsteht keine Zahlungspflicht. Bezahlung und Zugangsdaten folgen später im separaten Checkout.</p>';
     $("vmForm").addEventListener("submit", function(e){
       e.preventDefault();
-      var nm=$("vmName").value.trim().replace(/[<>]/g,""), ml=$("vmMail").value.trim(), ds=$("vmDs").checked;
+      var nm=$("vmName").value.trim().replace(/[<>]/g,""), ml=$("vmMail").value.trim(), tel=$("vmTel").value.trim(), ds=$("vmDs").checked;
       if(!nm || !ml || ml.indexOf("@")<1 || !ds){ $("vmErr").style.display="block"; return; }
       $("vmErr").style.display="none";
-      var data={name:nm, produkt:label, email:ml, handynummer:"", zeit:new Date().toISOString()};
+      var data={name:nm, produkt:label, email:ml, handynummer:tel, zeit:new Date().toISOString()};
       ST.vm = ST.vm || []; ST.vm.push(data); save();
       if(/^https?:/.test(VORMERK_URL)){
         try { fetch(VORMERK_URL, {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(data)}).catch(function(){}); } catch(e2){}
       }
       $("vmForm").style.display="none";
-      var hint=$("vmHint"); if(hint) hint.style.display="none";
-      $("vmHello").textContent = "Hallo "+nm+"!";
-      $("vmDone").style.display="block";
-      var saveBtn=$("vmTelSave");
-      if(saveBtn) saveBtn.addEventListener("click", function(){
-        var tel=$("vmTel").value.trim();
-        data.handynummer=tel; save();
-        if(tel && /^https?:/.test(VORMERK_URL)){
-          try { fetch(VORMERK_URL, {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({email:ml, name:nm, handynummer:tel, update:true})}).catch(function(){}); } catch(e3){}
-        }
-        $("vmTel").disabled=true; saveBtn.style.display="none";
-        var to=$("vmTelOk"); if(to) to.style.display="flex";
-      });
+      $("vmOk").innerHTML="<b>Danke, "+nm+"!</b> Deine Vormerkung ist notiert. Wir melden uns per E-Mail, sobald dein Zugang bereitsteht.";
+      $("vmOk").style.display="block";
     });
   }
 
   /* ---- Zugangs-Karte in den Einstellungen ---- */
-  function accRingSvg(n){
-    var pct=n/10, c=2*Math.PI*20, off=c*(1-pct);
-    return "<svg width='46' height='46' viewBox='0 0 46 46'><circle cx='23' cy='23' r='20' fill='none' stroke='var(--hair)' stroke-width='4.5'/><circle cx='23' cy='23' r='20' fill='none' stroke='url(#accg)' stroke-width='4.5' stroke-linecap='round' stroke-dasharray='"+c.toFixed(1)+"' stroke-dashoffset='"+off.toFixed(1)+"' transform='rotate(-90 23 23)'/><defs><linearGradient id='accg' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='var(--accent-2)'/><stop offset='1' stop-color='var(--accent)'/></linearGradient></defs></svg><b>"+n+"/10</b>";
-  }
   function updateAccessCard(){
-    var at=$("accTitle"), as=$("accSub"), ab=$("accBuy"), ln=$("licNote"), rw=$("accRing"), bs=$("accBuyS");
-    function setRing(n){ if(rw) rw.innerHTML=accRingSvg(n); }
+    var at=$("accTitle"), as=$("accSub"), bw=$("accBuyWrap"), ln=$("licNote"), ab=$("accBuy");
     if(ZUGANG==="komplett"){
       at.textContent="Komplett-Zugang"; as.textContent="Alle 10 Kapitel frei · Fortschritt auf diesem Gerät";
-      setRing(10); if(ab) ab.hidden=true; if(ln) ln.hidden=false; return;
+      bw.hidden=true; if(ln) ln.hidden=false; return;
     }
-    if(ST.pkg==="komplett" && ST.hoAll){ at.textContent="Gesamtpaket"; as.textContent="Alle 10 Kapitel und alle Handouts frei"; setRing(10); if(ab) ab.hidden=true; }
-    else if(ST.pkg==="komplett"){ at.textContent="OSTA Klausur-App"; as.textContent="Alle 10 Kapitel frei"+(ST.hoAll?" · Handouts inklusive":""); setRing(10); if(ab) ab.hidden=true; }
+    if(ST.pkg==="komplett" && ST.hoAll){ at.textContent="Gesamtpaket"; as.textContent="Alle 10 Kapitel und alle Handouts frei"; bw.hidden=true; }
+    else if(ST.pkg==="komplett"){ at.textContent="OSTA Klausur-App"; as.textContent="Alle 10 Kapitel frei"+(ST.hoAll?" · Handouts inklusive":""); bw.hidden=true; }
     else {
       var oc=ownedChapters();
       at.textContent="Probe-Zugang";
       as.textContent=oc>0 ? (oc+" Kapitel einzeln frei · Kapitel 3 gratis") : "Kapitel 3 frei · restliche Kapitel gesperrt";
-      setRing(oc+1);
-      if(ab) ab.hidden=false;
-      if(bs) bs.innerHTML="schon ab "+euro(komplettRest())+(spentEuro()>0?" · bereits angerechnet":"");
+      bw.hidden=false;
+      if(ab) ab.innerHTML="OSTA Klausur-App freischalten · "+euro(komplettRest())+(spentEuro()>0?" <small style='font-weight:600'>(angerechnet)</small>":"");
     }
   }
 
@@ -3483,7 +3434,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
     /* Pakete (kompakt) */
     if(!gesamt){
       H.push('<div class="sec-lbl">Pakete</div>');
-      /* Reihenfolge: guenstig -> teuer (39,90 / 49,90 / 89,80) */
+      /* Reihenfolge: guenstig -> teuer (39,90 / 49,90 / 69,90) */
       if(!komplett){
         H.push(pkgRow("OSTA Klausur-App","alle 10 Lektionen · inkl. 1 Live-Q&amp;A gratis"+(spent>0?" · "+euro(spent)+" angerechnet":""), rest, PRICE.komplettAlt, "komplett", true));
       }
@@ -3524,9 +3475,14 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
     }
 
     /* Live-Q&A kompakt */
-    var qaFree=komplett;
+    /* Weitere Angebote (Simon 19.07.2026): Live-Klausurtraining + Multi-Kurs-Info */
+      H.push('<div class="sec-lbl">Weitere Angebote</div>');
+      H.push('<div class="store-pkgrow"><div class="pkgr-t"><b>Live-Klausurtraining</b><small>Ganze Klausuraufgaben vorab einsenden, in einer Session ausführlich gelöst.</small></div><div class="pkgr-p">'+euro(19.90)+'</div></div>');
+      H.push('<div class="store-anrech">Mehrere Fächer parallel: 2 Kurse '+euro(69.90)+' · 3 Kurse '+euro(89.90)+'. Mit allen Handouts: 2 Kurse '+euro(99.80)+' · 3 Kurse '+euro(129.70)+'. Buchung über die Website.</div>');
+
+      var qaFree=komplett;
     H.push('<div class="sec-lbl">Live-Q&amp;A</div>');
-    H.push('<div class="store-anrech">Deine Fragen live in kleiner Gruppe vor der Klausur. '+(qaFree?'In deinem Paket ist <b>eine Q&amp;A gratis</b>.':'Einzeln '+euro(PRICE.qa)+' pro Termin, im Kurspaket gratis.')+'</div>');
+    H.push('<div class="store-anrech">Deine Fragen live in kleiner Gruppe vor der Klausur. '+(qaFree?'In deinem Paket ist <b>1x Live-Q&amp;A gratis</b>.':'Einzeln '+euro(PRICE.qa)+' pro Termin, 1x gratis bei OSTA Klausur-App.')+'</div>');
     if(ST.qa){
       H.push('<div class="store-status">Gebucht: <b>'+ST.qa+' Uhr</b>. <button class="store-link" data-buy="qa" data-slot="'+ST.qa+'">Termin behalten</button></div>');
     } else {
@@ -3544,6 +3500,20 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
   function closeSheet(){ sheetOv.classList.remove("on"); document.body.style.overflow=""; }
   $("sheetClose").addEventListener("click", closeSheet);
   sheetOv.addEventListener("click", function(e){ if(e.target===sheetOv) closeSheet(); });
+  /* Sheet per Runterwischen schliessen (nur wenn oben, damit Scrollen frei bleibt) */
+  (function(){
+    var sh=sheetOv.querySelector('.sheet'); if(!sh) return;
+    var y0=null, dy=0, drag=false;
+    function start(y){ if(sh.scrollTop>0){ y0=null; drag=false; return; } y0=y; dy=0; drag=true; sh.style.transition='none'; }
+    function move(y){ if(y0===null) return; dy=y-y0; if(dy<0) dy=0; sh.style.transform='translateY('+dy+'px)'; }
+    function end(){ if(y0===null){ drag=false; return; } sh.style.transition='transform .22s ease'; if(dy>90){ closeSheet(); } sh.style.transform=''; y0=null; drag=false; }
+    sh.addEventListener('touchstart',function(e){ start(e.touches[0].clientY); },{passive:true});
+    sh.addEventListener('touchmove',function(e){ move(e.touches[0].clientY); },{passive:true});
+    sh.addEventListener('touchend',end);
+    sh.addEventListener('pointerdown',function(e){ if(e.pointerType==='touch') return; start(e.clientY); });
+    window.addEventListener('pointermove',function(e){ if(drag && e.pointerType!=='touch') move(e.clientY); });
+    window.addEventListener('pointerup',function(e){ if(drag && e.pointerType!=='touch') end(); });
+  })();
   document.addEventListener("keydown", function(e){ if(e.key==="Escape" && sheetOv.classList.contains("on")) closeSheet(); });
   $("storeBody").addEventListener("click", function(e){
     if(e.target.closest("[data-back]")){ renderStore(STORE_CTX); return; }
