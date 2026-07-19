@@ -3448,6 +3448,8 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 
     /* Eine Kapitelliste mit zwei Preisen */
     if(!gesamt){
+      H.push('<div class="sec-lbl">Mehrere Fächer</div>');
+      H.push('<div style="border:2px solid var(--accent);border-radius:14px;padding:14px;background:var(--surface-2);box-shadow:var(--sh-1)">'+'<div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:2px"><b style="font-size:16px">Mehrere Fächer belegen?</b><span style="font-size:12px;background:var(--glow);color:var(--accent-deep);font-weight:600;padding:3px 10px;border-radius:20px;white-space:nowrap">bis 80&nbsp;€ sparen</span></div>'+'<div style="font-size:12px;color:var(--text-2);margin-bottom:8px">OSTA, OMIK und OFIN im Bundle. Buchung über die Website.</div>'+'<div style="font-size:11px;color:var(--text-3);letter-spacing:.04em;margin:8px 0 2px">NUR KLAUSUR-CHECK</div>'+'<div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--line-2)"><span style="font-size:14px">2 Fächer</span><span style="font-size:14px"><b>'+euro(69.90)+'</b> <s style="color:var(--text-3);font-size:12px">79,80</s> <span style="color:var(--done);font-weight:600;font-size:12px">-9,90</span></span></div>'+'<div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--line-2)"><span style="font-size:14px">3 Fächer</span><span style="font-size:14px"><b>'+euro(89.90)+'</b> <s style="color:var(--text-3);font-size:12px">119,70</s> <span style="color:var(--done);font-weight:600;font-size:12px">-29,80</span></span></div>'+'<div style="font-size:11px;color:var(--text-3);letter-spacing:.04em;margin:12px 0 2px">MIT ALLEN HANDOUTS</div>'+'<div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--line-2)"><span style="font-size:14px">2 Fächer</span><span style="font-size:14px"><b>'+euro(99.80)+'</b> <s style="color:var(--text-3);font-size:12px">139,80</s> <span style="color:var(--done);font-weight:600;font-size:12px">-40</span></span></div>'+'<div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--line-2)"><span style="font-size:14px">3 Fächer</span><span style="font-size:14px"><b>'+euro(129.70)+'</b> <s style="color:var(--text-3);font-size:12px">209,70</s> <span style="color:var(--done);font-weight:600;font-size:12px">-80</span></span></div>'+'</div>');
       H.push('<div class="sec-lbl">Einzeln freischalten</div>');
       H.push('<div class="store-legend"><span><i class="store-dot l"></i> Lektion (in der App)</span><span><i class="store-dot h"></i> Handout (PDF mit Lösungen)</span></div>');
       if(!komplett && oc>0){
@@ -3475,11 +3477,8 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
     }
 
     /* Live-Q&A kompakt */
-    /* Weitere Angebote (Simon 19.07.2026): Live-Klausurtraining + Multi-Kurs-Info */
-      H.push('<div class="sec-lbl">Weitere Angebote</div>');
+    H.push('<div class="sec-lbl">Live-Klausurtraining</div>');
       H.push('<div class="store-pkgrow"><div class="pkgr-t"><b>Live-Klausurtraining</b><small>Ganze Klausuraufgaben vorab einsenden, in einer Session ausführlich gelöst.</small></div><div class="pkgr-p">'+euro(19.90)+'</div></div>');
-      H.push('<div class="store-anrech">Mehrere Fächer parallel: 2 Kurse '+euro(69.90)+' · 3 Kurse '+euro(89.90)+'. Mit allen Handouts: 2 Kurse '+euro(99.80)+' · 3 Kurse '+euro(129.70)+'. Buchung über die Website.</div>');
-
       var qaFree=komplett;
     H.push('<div class="sec-lbl">Live-Q&amp;A</div>');
     H.push('<div class="store-anrech">Deine Fragen live in kleiner Gruppe vor der Klausur. '+(qaFree?'In deinem Paket ist <b>1x Live-Q&amp;A gratis</b>.':'Einzeln '+euro(PRICE.qa)+' pro Termin, 1x gratis bei OSTA Klausur-App.')+'</div>');
