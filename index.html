@@ -2822,7 +2822,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
   var PRICE = {
     kapitel:6.90, komplett:39.90, komplettAlt:69.00,
     handout:8.90, handoutPaket:49.90, handoutPaketAlt:89.00,
-    gesamt:69.90, gesamtAlt:185.00, qa:9.00
+    gesamt:79.90, gesamtAlt:185.00, qa:19.90
   };
   function euro(v){ return v.toFixed(2).replace(".",",")+" €"; }
   function ownedChapters(){ var c=0; for(var i=1;i<=10;i++){ if(i!==3 && ST.owned[i]) c++; } return c; }
@@ -3289,7 +3289,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
       ST.weak[n]=Object.keys(wrongSubs);
       save();
       var done=document.createElement("div"); done.className="finish";
-      done.innerHTML="<b>Dein Ergebnis: "+totalCorrect+" von "+totalAnswered+" richtig ("+pct+"&nbsp;%).</b><br>Den Feinschliff und deine persönlichen Fragen machen wir im Live-Q&amp;A und im Live-Klausurtraining."+
+      done.innerHTML="<b>Dein Ergebnis: "+totalCorrect+" von "+totalAnswered+" richtig ("+pct+"&nbsp;%).</b><br>Den Feinschliff und deine persönlichen Fragen machen wir in der Live-Q&amp;A-Session."+
         "<div style='margin-top:12px'><button class='btn btn-primary btn-block' id='finishChapter'>Kapitel abschließen <svg class='i arrow'><use href='#i-arrow'/></svg></button></div>";
       qarea.appendChild(done); scoreTag.textContent="Endergebnis: "+totalCorrect+" / "+totalAnswered;
       $("finishChapter").onclick=function(){ ST.done[n]=1; save(); show("hub"); };
@@ -3436,13 +3436,13 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
       H.push('<div class="sec-lbl">Pakete</div>');
       /* Reihenfolge: guenstig -> teuer (39,90 / 49,90 / 69,90) */
       if(!komplett){
-        H.push(pkgRow("OSTA Klausur-App","alle 10 Lektionen · inkl. 1 Live-Q&amp;A gratis"+(spent>0?" · "+euro(spent)+" angerechnet":""), rest, PRICE.komplettAlt, "komplett", true));
+        H.push(pkgRow("OSTA Klausur-App","alle 10 Lektionen"+(spent>0?" · "+euro(spent)+" angerechnet":""), rest, PRICE.komplettAlt, "komplett", true));
       }
       if(!allHo){
         H.push(pkgRow("Alle 10 Handouts als Paket","Aufgaben + Lösungen zu jedem Kapitel", PRICE.handoutPaket, PRICE.handoutPaketAlt, "handoutpaket", false));
       }
       if(!komplett){
-        H.push(pkgRow("OSTA Klausur-App + alle Handouts","Kurs + alle Handout-PDFs · 1 Q&amp;A gratis", Math.max(0,PRICE.gesamt-spent), PRICE.gesamtAlt, "gesamt", false));
+        H.push(pkgRow("OSTA Klausur-App + alle Handouts","Kurs + alle Handout-PDFs · inkl. 1 Live-Q&amp;A-Session gratis", Math.max(0,PRICE.gesamt-spent), PRICE.gesamtAlt, "gesamt", false));
       }
     }
 
@@ -3450,6 +3450,24 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
     if(!gesamt){
       H.push('<div class="sec-lbl">Mehrere Fächer</div>');
       H.push('<div style="border:2px solid var(--accent);border-radius:14px;padding:14px;background:var(--surface-2);box-shadow:var(--sh-1)">'+'<div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:2px"><b style="font-size:16px">Mehrere Fächer belegen?</b><span style="font-size:12px;background:var(--glow);color:var(--accent-deep);font-weight:600;padding:3px 10px;border-radius:20px;white-space:nowrap">bis 80&nbsp;€ sparen</span></div>'+'<div style="font-size:12px;color:var(--text-2);margin-bottom:8px">OSTA, OMIK und OFIN im Bundle. Buchung über die Website.</div>'+'<div style="font-size:11px;color:var(--text-3);letter-spacing:.04em;margin:8px 0 2px">NUR KLAUSUR-CHECK</div>'+'<div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--line-2)"><span style="font-size:14px">2 Fächer</span><span style="font-size:14px"><b>'+euro(69.90)+'</b> <s style="color:var(--text-3);font-size:12px">79,80</s> <span style="color:var(--done);font-weight:600;font-size:12px">-9,90</span></span></div>'+'<div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--line-2)"><span style="font-size:14px">3 Fächer</span><span style="font-size:14px"><b>'+euro(89.90)+'</b> <s style="color:var(--text-3);font-size:12px">119,70</s> <span style="color:var(--done);font-weight:600;font-size:12px">-29,80</span></span></div>'+'<div style="font-size:11px;color:var(--text-3);letter-spacing:.04em;margin:12px 0 2px">MIT ALLEN HANDOUTS</div>'+'<div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--line-2)"><span style="font-size:14px">2 Fächer</span><span style="font-size:14px"><b>'+euro(99.80)+'</b> <s style="color:var(--text-3);font-size:12px">139,80</s> <span style="color:var(--done);font-weight:600;font-size:12px">-40</span></span></div>'+'<div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--line-2)"><span style="font-size:14px">3 Fächer</span><span style="font-size:14px"><b>'+euro(129.70)+'</b> <s style="color:var(--text-3);font-size:12px">209,70</s> <span style="color:var(--done);font-weight:600;font-size:12px">-80</span></span></div>'+'</div>');
+    }
+
+    /* Live-Q&A-Session (zusammengefasst, oberhalb der Einzelbuchung) */
+    var qaFree=gesamt;
+    H.push('<div class="sec-lbl">Live-Q&amp;A-Session</div>');
+    H.push('<div class="store-pkgrow"><div class="pkgr-t"><b>Live-Q&amp;A-Session</b><small>Persönliche Fragen oder ganze Klausuraufgaben vorab einsenden, in der Session ausführlich gelöst. Nachfragen ausdrücklich erwünscht.</small></div><div class="pkgr-p">'+euro(PRICE.qa)+'</div></div>');
+    H.push('<div class="store-anrech">'+(qaFree?'In deinem Paket (Klausur-App + alle Handouts) ist <b>1x Live-Q&amp;A-Session gratis</b>.':'Einzeln '+euro(PRICE.qa)+' pro Session, 1x gratis beim Kombi „Klausur-App + alle Handouts".')+'</div>');
+    if(ST.qa){
+      H.push('<div class="store-status">Gebucht: <b>'+ST.qa+' Uhr</b>. <button class="store-link" data-buy="qa" data-slot="'+ST.qa+'">Termin behalten</button></div>');
+    } else {
+      H.push('<div class="store-list">');
+      QASLOTS.forEach(function(s){
+        H.push('<div class="store-row"><span class="store-row-t">'+s+' Uhr</span><span class="store-row-r"><button class="btn btn-silver store-mini" data-buy="qa" data-slot="'+s+'">'+(qaFree?'gratis buchen':euro(PRICE.qa))+'</button></span></div>');
+      });
+      H.push('</div>');
+    }
+
+    if(!gesamt){
       H.push('<div class="sec-lbl">Einzeln freischalten</div>');
       H.push('<div class="store-legend"><span><i class="store-dot l"></i> Lektion (in der App)</span><span><i class="store-dot h"></i> Handout (PDF mit Lösungen)</span></div>');
       if(!komplett && oc>0){
@@ -3476,21 +3494,6 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
       H.push('</div>');
     }
 
-    /* Live-Q&A kompakt */
-    H.push('<div class="sec-lbl">Live-Klausurtraining</div>');
-      H.push('<div class="store-pkgrow"><div class="pkgr-t"><b>Live-Klausurtraining</b><small>Ganze Klausuraufgaben vorab einsenden, in einer Session ausführlich gelöst.</small></div><div class="pkgr-p">'+euro(19.90)+'</div></div>');
-      var qaFree=komplett;
-    H.push('<div class="sec-lbl">Live-Q&amp;A</div>');
-    H.push('<div class="store-anrech">Deine Fragen live in kleiner Gruppe vor der Klausur. '+(qaFree?'In deinem Paket ist <b>1x Live-Q&amp;A gratis</b>.':'Einzeln '+euro(PRICE.qa)+' pro Termin, 1x gratis bei OSTA Klausur-App.')+'</div>');
-    if(ST.qa){
-      H.push('<div class="store-status">Gebucht: <b>'+ST.qa+' Uhr</b>. <button class="store-link" data-buy="qa" data-slot="'+ST.qa+'">Termin behalten</button></div>');
-    } else {
-      H.push('<div class="store-list">');
-      QASLOTS.forEach(function(s){
-        H.push('<div class="store-row"><span class="store-row-t">'+s+' Uhr</span><span class="store-row-r"><button class="btn btn-silver store-mini" data-buy="qa" data-slot="'+s+'">'+(qaFree?'gratis buchen':euro(PRICE.qa))+'</button></span></div>');
-      });
-      H.push('</div>');
-    }
 
     $("storeBody").innerHTML=H.join("");
   }
