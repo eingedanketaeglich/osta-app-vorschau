@@ -4154,7 +4154,7 @@ html.bklg-lock,body.bklg-lock{overflow:hidden!important;overscroll-behavior:none
             'border-radius:10px;margin-bottom:8px;' + (voll ? "opacity:.5" : "cursor:pointer") + '">' +
             '<input type="radio" name="bkTermin" value="' + t.id + '"' + (voll ? " disabled" : "") + ">" +
             "<span style='flex:1'><b>" + t.tag + "</b> · " + t.zeit + " Uhr" +
-            (voll ? " · <i>ausgebucht</i>" : " · " + t.plaetze_frei + " Plätze frei") + "</span></label>";
+            (voll ? " · <i>ausgebucht</i>" : "") + "</span></label>";
         }
         html += '<button type="button" class="btn btn-primary" id="bkTerminGo" style="width:100%;margin-top:6px" disabled>Zur Zahlung · ' + euro(1900) + "</button>" +
           '<div style="font-size:12px;color:var(--text-3);margin-top:8px">Der Termin ist erst nach Zahlungseingang verbindlich gebucht. Du bekommst eine Bestätigung per E-Mail.</div>';
