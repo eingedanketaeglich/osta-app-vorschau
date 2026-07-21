@@ -3649,6 +3649,7 @@ window.BKBC = (function(){
       LESSONS.forEach(function(c){
         var n=c.n, lchip, hchip;
         if(n===3) lchip='<span class="store-chip lchip free"><small>Lektion</small>gratis</span>';
+        else if(n===8 && !unlocked(n)) lchip='<span class="store-chip lchip free"><small>mit Konto</small>gratis</span>';
         else if(unlocked(n)) lchip='<span class="store-chip lchip owned"><small>Lektion</small>&#10003; frei</span>';
         else lchip='<button class="store-chip lchip" data-buy="kapitel" data-n="'+n+'"><small>Lektion</small>'+euro(nextP)+'</button>';
         if(handoutUnlocked(n)) hchip='<span class="store-chip hchip owned"><small>Handout</small>&#10003; frei</span>';
