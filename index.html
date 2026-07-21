@@ -2995,7 +2995,7 @@ window.BKBC = (function(){
   function handoutUnlocked(n){ return hasAllHandouts() || !!ST.hoOwned[n]; }
 
   /* ================= ZUSTAND JE KAPITEL ================= */
-  function unlocked(n){ return hasKomplett() || n===3 || !!ST.owned[n]; }
+  function unlocked(n){ return hasKomplett() || n===3 || (n===8 && !!(window.BK_ENT && window.BK_ENT.free)) || !!ST.owned[n]; }
   function activeN(){
     for(var i=0;i<LESSONS.length;i++){ var n=LESSONS[i].n; if(unlocked(n) && !ST.done[n]) return n; }
     return null;
@@ -3829,6 +3829,7 @@ html.bklg-lock,body.bklg-lock{overflow:hidden!important;overscroll-behavior:none
 <div id="bklgOverlay" data-fachcode="OSTA" data-start="start2026"><div class="bklg-scr" data-screen="login" hidden><div class="bklg-brand"><img src="data:image/png;base64,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" alt=""><span class="bklg-bt"><b>OSTA</b><small>Statistik 1</small></span></div><h2 class="bklg-h">Willkommen zurück</h2><p class="bklg-lead">Melde dich mit deiner E-Mail und deinem Passwort an. Dein Fortschritt ist an dein Konto gebunden.</p><label class="bklg-f">Benutzername (E-Mail)</label><input class="bklg-inp" id="bklgLE" type="email" inputmode="email" autocomplete="username" placeholder="deine@email.de"><label class="bklg-f">Passwort</label><div class="bklg-pwwrap"><input class="bklg-inp bklg-pwi" id="bklgLP" type="password" autocomplete="off" placeholder="Passwort"><button type="button" class="bklg-eye" aria-label="Passwort anzeigen">Anzeigen</button></div><div class="bklg-err" data-err="login"></div><button class="bklg-btn" id="bklgLoginBtn">Anmelden</button><div class="bklg-link">Passwort vergessen?</div><div class="bklg-note">Kein Konto? Es wird nach dem Kauf automatisch für dich angelegt.</div></div><div class="bklg-scr" data-screen="first" hidden><div class="bklg-brand"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAACgCAYAAACLz2ctAAANaUlEQVR42u2da4yc11nH/885552Z3Zm92OtdX+LEJLZlx3HixJs2jqN2hERR1S8I0PRDhNqCUIVEgKh8AYEIFlKkfuADlELVlhCp5ZIOCCRQpRJaOmkb3NSbS9ddp4nrZpPaXt/W3vXs7sy855yHDzNjEpPEe/OMvf7/pJGl9cxezvt7n8t7zntewfKRYrFoK5WKb39h9+4PDJkMPiCKhyG4X1W3A9gIoA9ABoBgjWAEmPcGewbn8dSHTiAqyBLHLyiqbjnilUolUy6XQ6VS8bt2Hexz2cbHAPyqKh4RYIsYA0BbvilU197RUQWsKOa8RSMIEquIuobOsA6xxPEqWaAcmtFudLNNzG+p4NetMbcDQIwR2iSKQFrfXrAGj4sA8AoMZAK+WjyOddkAHyngdYuAxWLRVSplv23btlx+YORxUXzGWDscY4D3PgCAiJjmP2LX+gBqaxAXvMFcarEhlyJVA6GBS8It8mSXSqXi7753/4dE7Oessfua4qVeROytINy7nsUA6tFgNrUwFG/ZY7iYFB337H3wD43YbxuRfd6nXlVVRBxu4awjokiD4GLdwkKhTMCrGgENgDg6OposNMxT1tpfC8HHGGNsiccCGoBXwYV6wgi4ygIKAN164EDPwpz/N2vtL3rvUxE4EVY5V9eC52qOsW8VBZRSqWROnDhhmvK5tnwJh+vdz9RztQS8DLhKNWCxWLTlcjnM1+Vp6yjftaKfFcXZhQRpFAg1XJmApVLJVioVv3vv6B+4xD3qU8p3rfhnBThfd6gFwzpwRQKWSrZcLofd9+4/YI19MnjvRcBm4/0ioALOKC7WHaqphRVlDFymgII9e3THjh1ZA/myCASqa3IG43qk4JnU4kLdwRkFDVyGgKVSyeDQoZjtGfg9a5N7Qgget+jF5SUPYGs2ZGohgRXwWuASsQDMxMSE7rj//mGr9hlAsy0xOZKLElAxHyz2rZ/H6NAcFlgLLq56FkCBhikWiwaAJsE+Zq1bF2OMlG+prQjwZjXL7LucCDg5ORnvu+++vMI9DWgBa3T1yvU7kwU+CvozAR/dOoPAJVlLi4AA4DX5mLVucyv6GQ7P0jrhxChOzWdwOTXshJfThKjKx5tDybFbTiecGMX5eoIzCwkSo1CO4uIF3Ldv3yCgH26uMWDnu9xGpJoavFnNwglXxSwF533mIWMxos118xy5ZTYhQQU/uZyD5Qgu7eSNJh4UMYBq5HAsPw1bUbx6KQevnBNeWg2oeABg67ayRkSQMYoT1RxmGhbWsJheShOyvZV92f2usBGZWkhwcj6DjIlsRBZdPws2chhWjhXFXGrx6qUeZAwbkaVEwELrvl2O2Crw8nQv0+/SBJQMh2E10rAgayKOXerF5dbSLLK4CMjItwpEBTJW8eZcBpPVLLI2cruORQpIVrEOvJxavDLdyzqQAnZLQuAH5wrcJ4YCdiMNC3I2YvxiL6YWMkhMZENCATvZiACJiZhaSPDDi73I2YiojIMUsINIKxJ+Z6qfGxVRwO6k4R4b8cK5PM7VEqZhCtj5NJyxESfnMxg7n0cv0zAF7EYaVhU8e2qA0Y8Cdp6ggl4X8P2zfXijmkPOMg1TwA7TXKbv8M1T/ehhGqaAna8Fm3PD3zg5yLlhCtiNbhjocRHHLvXg+bN9yLuAwChIATvfjgD/8sZ6RBVOzVHAzkfBvIs4fK6AsQt55F1gLUgBOzzAokij4O9/MsyZEQrYeYIKCi6iMtWHsfN55JPAdYIUsMOVoABpFPzd68Ot2+UYCilgh2vBviTgual+VKb60Z+wI6aAXeiIjQBf+PFGzAfD64IUsBsdccAPp3vxTyeG0J8J8IyCFLCzEgoKLuBvXxvB8Zlca6UMBSQdor2DwqWGxZ8f3QzHNEwBO01QQX8S8K3TA3jmp0PN5wzfwqmYAnYxFf/FxGaMT/eicAvPE1PALqViaxTz3uCJl7ZiIZjmzqoUkHQ6Ch692IsnX7kNvS60ng1EAUmH8CoYzHj86+R6fOnHG7Eu62+5etCBeyl2vSkZSAL+8kebsLmngV/adhEXak6c0VtGQF4N7TIiQM4pnnjpdgxkAz688TIu1i1uBQnl7r2jKRW4AWqh1oKFjFF84ZETsn9o3k63H4C4Rv/eoKg6J7KLh7/71AAMZYI5diEf/+jI7R889ODpf/zg0GycrjuzliMh0+8NyMj2gw+PFPzzT+5/I37kthkzXXcwsrY2e2tHQIv/26SSr26/RkcdTp/G7jtGtjfUfurrbw1oXxLkoeEqGtE0t3xbIxa2nxXnAPD5IDcKd90lGBuLc0E04xRiFX/28lb8tJrF7+89DSvAnDdrag7ZFYtFxyPfWSqVSrzWid/e4HIg4/GV48N4baYHf3L/z7Czv4ZLDXsljd30AlYqFU8lulMGXUtCRXOPmfUZj7HzeXziuR34zN7T+JVt02hEwUK4+aOh23Pv6CfpQsfqHlU1PoUefn38yIlW7XdNg7wK+pKAejD447Hb8Z2pPjx+z2nc1VfHbGoRVG7aFdbOWvc01eiwiKpze+4d/fTE+Ng/AE8Y4NA16/C2ZIMZj/88OYixCwX8xs6z+PidFzCQ8ZhtWDSX/d9cIjrvPVNwh/UzxuRV5Yt79z70zaNHD51ZbCTUlogDGY8FL/js+BZ8/WeD+PSus/j5zTMwAlRTc1OJ6ESETUiHUY3BWpOPqvcAOFMqlUy5XA6L/XwzGgLrMh6vzfTg8e9vwyMjVXxi5zkcGL4MK0DVG0SVG/76IeXrUhgEoLqC9VftaNjjmtn7+bMFHD5XwMGRy3h0+3k8NFxFzgZUvYWPAgO9Ia8hUsDuSrhi2jc1FZIAQPDdM3343tk+PLB+Dr/8c9MobprFhqxHLRjUgkBxY0VFCrhGaG961Bbxpek8jpwv4M6+Gj669RI+smUGO/trcK2V2I3YXArabRkp4BoVMe8iBIpT8xl8/tgmfPX4MEY3VPELW2bw8EgVm3sbAIAFb5BGAwW6kqYp4JoVsZnlM0aRsx5BBc9N9eO/Tw9gS28DD26YQ3HTLB4YmsPGnhRWFPVg0IiC0NrLUDoQHSngWu+4W81KOz0LgEsNh39/cx3+461BbOxJcd+6eRwYqeKBoTncka9f2bumHgVplCtRVVoRUiggWUl6dqIYyHgogJmGw7OnBvGNk4PozwRs76th3/p57B+aw66BBYzkUvQmARFAGlsRMuLKk0BXKiUFvMWjohNFf9Kci/AqOHqxFy9eyOMrxzdgfdZjW6GOewYXcPfgAnYO1LClp4G+TEAi2pJS4KPAq7xj91d5Wz0pFJAsRkYB0Osi8mg+63jeG7wynccPzhdgWil8Y0+KbYU6dvbXsL2vhm2FOkZ6UgxkAnImwEhzhUVoSRlUELS5qEL/X0RWCkjevXkBms8+bguJlqhvzWVw4nIW/3VqAFaAHhuwLhuwqaeBrb0N3FFo4LZ8A5t7GtiQ8xjIeORdRGIibKupiS3dfWQEJNeIjnrVjq5Zo8jZeOUrQQUX6g5nFhKMnS8gornOLGsj8i5iMOOxPuuxIecxnEsxnEuxIecxlPXoc4ECkuVI+c6qLhFFxinenmSjCmpBcHI+g8m5LIIKVNG63gg4o80Xh5Rcj0jZTuFWFFl5p5zNzzRrQwpIrquYeA8523BvGNJVKCChgIQCEkIBCQUkhAISCkgIBSQUkBAKSCggIRSQUEBCKCChgIRQQEIBCaGAhAISQgEJBSSEAhIKSAgFJBSQEApIKCAhFJBQQEIoIKGAhFBAQgEJBSSEAhIKSAgFJBSQEApIKCAhFJBQQEIoIKGAhFBAQgEJoYCEAhJCAQkFJIQCEgpIyKJREQGABgUkXUNUZykg6V4EFJymgKQL+qkCAlV5nQKSLoZBvEQBSReKP7ExhgjEwxSQdJooYqCqkwuzfS9TQNLp8i8aY1Qg35qcrNQoIOk0RlUlQp8BeCGadDj9GmslRH88n8W3AQgFJJ1Mv2rECNR8bmxsLC0Wi5YCks5FP2NMCP6kxN6nAEilUgkUkHSw+bAi0D+dmKhUS6WSAaCOQ0M6IF+w1rkQ0v+ZGB97qlQq2XK5HNiEkI74JyJQjXUE+5sAYrlc1istMceHXN/oB2+ts0HD705MvDBRKpUsgEgBSSfkS12SJD74v3p1/MUvFotF1069FJBcd/mSxCXBp187Nn7kd0qlkq1UKuHq91FAch16DvUucYn3/msTu+98FIApl8sRgF79ZnbBZFW7XRGxziUupunnJ46OPYbxI9L+73f7DCMgWbWoZ62zIlJLg//tHx0de+xtful7fZACkpUQVdWLiDiXuKjx+Qg9+Or4kb9udbv6fvIxBZPlRrsIQIyxxlpjQgxvheA/OzF+5G8AxFa36xfzzSggeV/Zmi9VKAARKyJirbUKQEN4PQZ82aL2pfHx8YvtrFqpVPxifwAF7A6yyu+7Pr9k89a11i28AtUIVUyGECsi+s/V2fyzk5OVGgC8bXotLuVnOFX19KHjRzaqqhURfY8Dr6rqFYhQ7VKdLnVAZ4E4pSrHIfKiSDzcmLcvHj/+wmz7XcVi0VUqlXD1BebF8r8AH6oS3e8OEgAAAABJRU5ErkJggg==" alt=""><span class="bklg-bt"><b>OSTA</b><small>Statistik 1</small></span></div><h2 class="bklg-h">Erstanmeldung — Konto einrichten</h2><p class="bklg-lead">Nach dem Kauf bekommst du Benutzername (E-Mail) und ein Start-Passwort per Mail. Hier legst du einmalig dein eigenes Passwort fest.</p><label class="bklg-f">Benutzername (E-Mail)</label><input class="bklg-inp" id="bklgFE" type="email" inputmode="email" autocomplete="username" placeholder="deine@email.de"><label class="bklg-f">Start-Passwort (aus der Mail)</label><div class="bklg-pwwrap"><input class="bklg-inp bklg-pwi" id="bklgFS" type="password" autocomplete="off" placeholder="Start-Passwort"><button type="button" class="bklg-eye" aria-label="Passwort anzeigen">Anzeigen</button></div><p class="bklg-hint">Vorschau-Demo: Start-Passwort = <b>start2026</b></p><label class="bklg-f">Neues Passwort</label><div class="bklg-pwwrap"><input class="bklg-inp bklg-pwi bklg-newpw" id="bklgFN" type="password" autocomplete="off" placeholder="Neues Passwort (mind. 6 Zeichen)"><button type="button" class="bklg-eye" aria-label="Passwort anzeigen">Anzeigen</button></div><div class="bklg-pw"><i></i><i></i><i></i><i></i></div><label class="bklg-f">Neues Passwort wiederholen</label><div class="bklg-pwwrap"><input class="bklg-inp bklg-pwi" id="bklgFC" type="password" autocomplete="off" placeholder="Wiederholen"><button type="button" class="bklg-eye" aria-label="Passwort anzeigen">Anzeigen</button></div><div class="bklg-err" data-err="first"></div><button class="bklg-btn" id="bklgStartBtn">Konto speichern &amp; starten</button><div class="bklg-note">Danach speichert dein Konto automatisch Fortschritt, Selbsttests und freigeschaltete Kapitel.</div></div></div>
 <script id="bklgScript">
 (function(){
+  if(window.BK_BACKEND && window.BK_BACKEND.enabled) return; /* echtes Backend aktiv -> bk-backend.js uebernimmt */
   var ov=document.getElementById('bklgOverlay');
   if(!ov) return;
   var de=document.documentElement, bd=document.body;
@@ -3903,6 +3904,322 @@ html.bklg-lock,body.bklg-lock{overflow:hidden!important;overscroll-behavior:none
     err('first',''); setAcct({email:e, pw:n}); enter();
   });
 })();
+</script>
+<script id="bkBackendCfg">window.BK_BACKEND={enabled:false,url:"https://adrfijztnbebzghumdxn.supabase.co",anon:"sb_publishable__k4amEGQBKchp_hROiLBEg_1fYKw2On"};</script>
+<script id="bkBackend">
+/* ============================================================
+   BK-BACKEND · Klausurchecker Frontend-Modul (P5) · 2026-07-21
+   Verbindet die statischen Apps mit Supabase (Auth, Termine,
+   Checkout, Fortschritt). KOMPLETT hinter Flag:
+     window.BK_BACKEND = { enabled:false, ... }
+   enabled:false  -> dieses Modul tut NICHTS (Demo bleibt).
+   enabled:true   -> Demo-Login-Script ist per Flag-Guard aus,
+                     dieses Modul uebernimmt (gleiches UI/Design).
+   ============================================================ */
+(function () {
+  "use strict";
+  var CFG = window.BK_BACKEND;
+  if (!CFG || !CFG.enabled) return;
+
+  var FACH = (document.getElementById("bklgOverlay") || { getAttribute: function () { return ""; } })
+    .getAttribute("data-fachcode") || "";
+  var fach = FACH.toLowerCase();                       // 'osta' | 'omik' | 'ofin'
+  var LS_KEY = "bwlk-" + fach + "-v1";
+  var FN_URL = CFG.url + "/functions/v1";
+  var sb = null;                                       // supabase client
+
+  /* ---------- supabase-js (UMD) laden ---------- */
+  function loadSupabase(cb) {
+    if (window.supabase && window.supabase.createClient) return cb();
+    var s = document.createElement("script");
+    s.src = "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js";
+    s.onload = cb;
+    s.onerror = function () { console.error("BK: supabase-js nicht ladbar"); };
+    document.head.appendChild(s);
+  }
+
+  /* ---------- Fortschritt: lokal <-> Server mergen ---------- */
+  function readLocal() {
+    try { return JSON.parse(localStorage.getItem(LS_KEY)) || {}; } catch (e) { return {}; }
+  }
+  function mergeSt(server, local) {
+    // Union der Teilobjekte, "besitzen/erledigt gewinnt". Idempotent.
+    var out = {}, keys = ["done", "weak", "quiz", "owned", "hoOwned"], i, k;
+    server = server || {}; local = local || {};
+    for (i = 0; i < keys.length; i++) {
+      k = keys[i]; out[k] = {};
+      var a = server[k] || {}, b = local[k] || {}, p;
+      for (p in a) out[k][p] = a[p];
+      for (p in b) if (!(p in out[k])) out[k][p] = b[p];
+    }
+    out.pkg   = server.pkg === "komplett" || local.pkg === "komplett" ? "komplett" : (server.pkg || local.pkg || null);
+    out.hoAll = !!(server.hoAll || local.hoAll);
+    out.ob    = server.ob != null ? server.ob : local.ob;
+    out.qa    = server.qa != null ? server.qa : local.qa;
+    out.vm    = server.vm != null ? server.vm : local.vm;
+    out.schemaVersion = 1;
+    return out;
+  }
+  function applyEntitlements(st, entCodes) {
+    var i, c, m;
+    for (i = 0; i < entCodes.length; i++) {
+      c = entCodes[i];
+      if (c === fach + "-komplett") st.pkg = "komplett";
+      if (c === fach + "-hoall") st.hoAll = true;
+      m = c.match(new RegExp("^" + fach + "-kap-(\\d+)$")); if (m) { st.owned = st.owned || {}; st.owned[m[1]] = true; }
+      m = c.match(new RegExp("^" + fach + "-ho-(\\d+)$"));  if (m) { st.hoOwned = st.hoOwned || {}; st.hoOwned[m[1]] = true; }
+    }
+    window.BK_ENT = window.BK_ENT || {};
+    window.BK_ENT.free = entCodes.indexOf(fach + "-free") !== -1;
+    return st;
+  }
+
+  var lastPushed = "";
+  function pushProgress(session) {
+    if (!session) return;
+    var local = readLocal();
+    var body = JSON.stringify(local);
+    if (body === lastPushed) return;
+    sb.from("profiles").select("fortschritt").eq("user_id", session.user.id).single()
+      .then(function (r) {
+        var f = (r.data && r.data.fortschritt) || {};
+        f[fach] = mergeSt(f[fach], local);
+        return sb.from("profiles").update({ fortschritt: f, updated_at: new Date().toISOString() })
+          .eq("user_id", session.user.id);
+      })
+      .then(function () { lastPushed = body; })
+      .catch(function (e) { console.warn("BK: Fortschritt-Push", e); });
+  }
+
+  function syncAfterLogin(session, thenReloadIfChanged) {
+    Promise.all([
+      sb.from("profiles").select("fortschritt,muss_pw_wechseln").eq("user_id", session.user.id).single(),
+      sb.from("entitlements").select("code").eq("user_id", session.user.id),
+    ]).then(function (res) {
+      var prof = res[0].data || {}; var ents = (res[1].data || []).map(function (r) { return r.code; });
+      var before = JSON.stringify(readLocal());
+      var merged = mergeSt((prof.fortschritt || {})[fach], readLocal());
+      merged = applyEntitlements(merged, ents);
+      try { localStorage.setItem(LS_KEY, JSON.stringify(merged)); } catch (e) {}
+      // Server aktualisieren (Merge zurueckschreiben)
+      var f = prof.fortschritt || {}; f[fach] = merged;
+      sb.from("profiles").update({ fortschritt: f, updated_at: new Date().toISOString() })
+        .eq("user_id", session.user.id).then(function () {});
+      // App liest ST nur beim Start -> bei Aenderung EINMAL neu laden
+      if (thenReloadIfChanged && JSON.stringify(merged) !== before && !sessionStorage.getItem("bk-synced")) {
+        sessionStorage.setItem("bk-synced", "1");
+        location.reload();
+      }
+    });
+  }
+
+  /* ---------- Overlay: gleiche Optik, echte Auth ---------- */
+  function wireOverlay(session) {
+    var ov = document.getElementById("bklgOverlay");
+    if (!ov) return;
+    var de = document.documentElement, bd = document.body;
+    var loginScr = ov.querySelector('[data-screen="login"]');
+    var firstScr = ov.querySelector('[data-screen="first"]');
+    function show(which) {
+      loginScr.setAttribute("hidden", ""); firstScr.setAttribute("hidden", "");
+      (which === "login" ? loginScr : firstScr).removeAttribute("hidden");
+      ov.scrollTop = 0;
+    }
+    function err(which, msg, badEl) {
+      var el = ov.querySelector('[data-err="' + which + '"]');
+      if (el) { el.textContent = msg || ""; el.classList.toggle("show", !!msg); }
+      if (badEl) badEl.classList.add("bklg-bad");
+    }
+    function clearBad() {
+      var b = ov.querySelectorAll(".bklg-bad");
+      for (var i = 0; i < b.length; i++) b[i].classList.remove("bklg-bad");
+    }
+    function enter() {
+      ov.classList.add("bklg-hide");
+      de.classList.remove("bklg-lock"); bd.classList.remove("bklg-lock");
+      setTimeout(function () { ov.style.display = "none"; }, 450);
+    }
+
+    // Demo-Reste raus (Hinweis "start2026")
+    var hint = ov.querySelector(".bklg-hint");
+    if (hint) hint.parentNode.removeChild(hint);
+    ov.removeAttribute("data-start");
+
+    // Passwort anzeigen/verbergen + Staerke-Balken (wie Demo)
+    var eyes = ov.querySelectorAll(".bklg-eye"), i;
+    for (i = 0; i < eyes.length; i++) {
+      eyes[i].addEventListener("click", function () {
+        var inp = this.parentNode.querySelector(".bklg-pwi"); if (!inp) return;
+        if (inp.type === "password") { inp.type = "text"; this.textContent = "Verbergen"; }
+        else { inp.type = "password"; this.textContent = "Anzeigen"; }
+      });
+    }
+    var np = ov.querySelector(".bklg-newpw");
+    var bars = ov.querySelectorAll('[data-screen="first"] .bklg-pw i');
+    if (np && bars.length) {
+      np.addEventListener("input", function () {
+        var n = Math.min(4, Math.ceil(np.value.length / 3));
+        for (var j = 0; j < bars.length; j++) bars[j].classList.toggle("on", j < n);
+      });
+    }
+
+    // Gast-Weg: Kapitel 3 laut Landing ohne Anmeldung testbar
+    // (dezenter Link unter dem Login — Default-Entscheidung, s. Changelog)
+    var note = loginScr.querySelector(".bklg-note");
+    if (note) {
+      var g = document.createElement("div");
+      g.className = "bklg-link"; g.style.marginTop = "8px";
+      g.textContent = "Ohne Konto weiter (Gratis-Kapitel testen)";
+      g.addEventListener("click", enter);
+      note.parentNode.insertBefore(g, note);
+    }
+
+    if (session) { enter(); return; }
+    show("login");
+
+    // Anmelden
+    var LE = document.getElementById("bklgLE"), LP = document.getElementById("bklgLP");
+    var lb = document.getElementById("bklgLoginBtn");
+    if (lb) lb.addEventListener("click", function () {
+      clearBad();
+      var e = (LE.value || "").trim().toLowerCase(), p = LP.value || "";
+      if (!e || e.indexOf("@") < 1) { err("login", "Bitte gib eine gültige E-Mail-Adresse ein.", LE); return; }
+      lb.disabled = true;
+      sb.auth.signInWithPassword({ email: e, password: p }).then(function (r) {
+        lb.disabled = false;
+        if (r.error) { err("login", "E-Mail oder Passwort ist falsch. Bitte prüfe deine Eingabe.", LP); return; }
+        err("login", "");
+        var s = r.data.session;
+        sb.from("profiles").select("muss_pw_wechseln").eq("user_id", s.user.id).single().then(function (pr) {
+          if (pr.data && pr.data.muss_pw_wechseln) {
+            // Erst-Login: eigenes Passwort setzen (Screen "first", vorbefuellt)
+            var FE = document.getElementById("bklgFE"), FS = document.getElementById("bklgFS");
+            if (FE) { FE.value = e; } if (FS) { FS.value = p; }
+            show("first");
+          } else {
+            enter(); syncAfterLogin(s, true);
+          }
+        });
+      });
+    });
+
+    // Erstanmeldung: Start-Passwort verifizieren + neues Passwort setzen
+    var FE = document.getElementById("bklgFE"), FS = document.getElementById("bklgFS"),
+        FN = document.getElementById("bklgFN"), FC = document.getElementById("bklgFC");
+    var sbtn = document.getElementById("bklgStartBtn");
+    if (sbtn) sbtn.addEventListener("click", function () {
+      clearBad();
+      var e = (FE.value || "").trim().toLowerCase(), st = FS.value || "", n = FN.value || "", c = FC.value || "";
+      if (!e || e.indexOf("@") < 1) { err("first", "Bitte gib eine gültige E-Mail-Adresse ein.", FE); return; }
+      if (n.length < 6) { err("first", "Neues Passwort: bitte mindestens 6 Zeichen.", FN); return; }
+      if (n !== c) { err("first", "Die neuen Passwörter stimmen nicht überein.", FC); return; }
+      sbtn.disabled = true;
+      sb.auth.signInWithPassword({ email: e, password: st }).then(function (r) {
+        if (r.error) { sbtn.disabled = false; err("first", "Start-Passwort stimmt nicht (steht in deiner Kauf-Mail).", FS); return; }
+        return sb.auth.updateUser({ password: n }).then(function (u) {
+          sbtn.disabled = false;
+          if (u.error) { err("first", "Passwort konnte nicht gesetzt werden. Bitte versuch es erneut.", FN); return; }
+          err("first", "");
+          sb.from("profiles").update({ muss_pw_wechseln: false }).eq("user_id", r.data.session.user.id).then(function () {});
+          enter(); syncAfterLogin(r.data.session, true);
+        });
+      });
+    });
+  }
+
+  /* ---------- Live-Klausurtraining: Termine aus DB + Checkout ---------- */
+  function euro(cents) { return (cents / 100).toFixed(2).replace(".", ",") + " €"; }
+  function wireQaCheckout(session) {
+    var storeBody = document.getElementById("storeBody");
+    if (!storeBody) return;
+    storeBody.addEventListener("click", function (ev) {
+      var b = ev.target.closest ? ev.target.closest('[data-buy="qa"]') : null;
+      if (!b) return;
+      ev.stopImmediatePropagation(); ev.preventDefault();
+      renderTerminwahl(storeBody, session);
+    }, true); // capture: vor dem App-Handler
+  }
+  function renderTerminwahl(host, session) {
+    host.innerHTML = '<button type="button" class="store-link" data-back>&#8249; Zurück zur Auswahl</button>' +
+      '<div class="store-status" style="margin-top:8px">Live-Klausurtraining · <b>' + euro(1900) + '</b> · wähle deinen Termin:</div>' +
+      '<div id="bkTermine" style="margin-top:10px">Lade Termine …</div>';
+    sb.from("termine").select("*").eq("fach", fach).order("datum").order("zeit")
+      .then(function (r) {
+        var list = r.data || [], html = "", i, t;
+        if (!list.length) { document.getElementById("bkTermine").textContent = "Zurzeit keine Termine online."; return; }
+        for (i = 0; i < list.length; i++) {
+          t = list[i];
+          var voll = t.status !== "buchbar" || t.plaetze_frei <= 0;
+          html += '<label style="display:flex;gap:10px;align-items:center;padding:10px 12px;border:1px solid var(--hair);' +
+            'border-radius:10px;margin-bottom:8px;' + (voll ? "opacity:.5" : "cursor:pointer") + '">' +
+            '<input type="radio" name="bkTermin" value="' + t.id + '"' + (voll ? " disabled" : "") + ">" +
+            "<span style='flex:1'><b>" + t.tag + "</b> · " + t.zeit + " Uhr" +
+            (voll ? " · <i>ausgebucht</i>" : " · " + t.plaetze_frei + " Plätze frei") + "</span></label>";
+        }
+        html += '<button type="button" class="btn btn-primary" id="bkTerminGo" style="width:100%;margin-top:6px" disabled>Zur Zahlung · ' + euro(1900) + "</button>" +
+          '<div style="font-size:12px;color:var(--text-3);margin-top:8px">Der Termin ist erst nach Zahlungseingang verbindlich gebucht. Du bekommst eine Bestätigung per E-Mail.</div>';
+        document.getElementById("bkTermine").innerHTML = html;
+        var go = document.getElementById("bkTerminGo");
+        host.addEventListener("change", function (e2) {
+          if (e2.target && e2.target.name === "bkTermin") go.disabled = false;
+        });
+        go.addEventListener("click", function () {
+          var sel = host.querySelector('input[name="bkTermin"]:checked');
+          if (!sel) return;
+          go.disabled = true; go.textContent = "Einen Moment …";
+          var headers = { "Content-Type": "application/json", "apikey": CFG.anon };
+          if (session) headers["Authorization"] = "Bearer " + session.access_token;
+          fetch(FN_URL + "/create-checkout", {
+            method: "POST", headers: headers,
+            body: JSON.stringify({ typ: "qa", fach: fach, termin_id: Number(sel.value) }),
+          }).then(function (r) { return r.json(); }).then(function (d) {
+            if (d && d.url) { location.href = d.url; }
+            else { go.disabled = false; go.textContent = "Zur Zahlung · " + euro(1900); alert(d && d.error ? d.error : "Fehler beim Start der Zahlung."); }
+          }).catch(function () { go.disabled = false; go.textContent = "Zur Zahlung · " + euro(1900); });
+        });
+      });
+  }
+
+  /* ---------- Konfigurator (P4): echter Checkout ---------- */
+  function wireBundleCheckout(session) {
+    if (!window.BKBC || !window.BKBC.cfg) return;
+    window.BKBC.cfg.CTA_MODUS = "bestellen";       // aktiviert Checkbox + "Zahlungspflichtig bestellen" (P4)
+    window.bkbcOnCheckout = function (p) {
+      if (!p || p.widerrufsverzicht !== true) return;  // Sperre greift schon im UI; doppelt haelt besser
+      var headers = { "Content-Type": "application/json", "apikey": CFG.anon };
+      if (session) headers["Authorization"] = "Bearer " + session.access_token;
+      fetch(FN_URL + "/create-checkout", {
+        method: "POST", headers: headers,
+        body: JSON.stringify({
+          typ: "bundle", faecher: p.faecher, handouts: p.handouts,
+          widerrufsverzicht: p.widerrufsverzicht, verzichtZeitpunkt: p.verzichtZeitpunkt,
+        }),
+      }).then(function (r) { return r.json(); }).then(function (d) {
+        if (d && d.url) location.href = d.url;
+        else alert(d && d.error ? d.error : "Fehler beim Start der Zahlung.");
+      });
+    };
+  }
+
+  /* ---------- Start ---------- */
+  loadSupabase(function () {
+    sb = window.supabase.createClient(CFG.url, CFG.anon);
+    sb.auth.getSession().then(function (r) {
+      var session = (r.data && r.data.session) || null;
+      wireOverlay(session);
+      wireQaCheckout(session);
+      wireBundleCheckout(session);
+      if (session) {
+        syncAfterLogin(session, true);
+        setInterval(function () { pushProgress(session); }, 20000);
+        window.addEventListener("visibilitychange", function () {
+          if (document.visibilityState === "hidden") pushProgress(session);
+        });
+      }
+    });
+  });
+})();
+
 </script>
 </body>
 </html>
