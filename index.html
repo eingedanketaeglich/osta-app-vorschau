@@ -602,6 +602,9 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 .bkbc-total{font-size:26px;font-weight:600;white-space:nowrap;line-height:1.1}
 .bkbc-cta{display:flex;width:100%;align-items:center;justify-content:center;min-height:48px;cursor:pointer;border:0;border-radius:10px;font-size:15px;font-weight:600;text-align:center;background:linear-gradient(180deg,var(--accent-2),var(--accent));color:#2A1500;box-shadow:var(--sh-1)}
 .bkbc-cta:disabled{background:var(--surface);color:var(--text-3);cursor:not-allowed;box-shadow:inset 0 0 0 1px var(--hair)}
+.bkbc-consent{display:flex;gap:10px;align-items:flex-start;font-size:12px;color:var(--text-2);line-height:1.45;background:var(--surface);border:1px solid var(--hair);border-radius:10px;padding:11px 12px;margin:0 0 10px;cursor:pointer}
+.bkbc-consent input{width:18px;height:18px;accent-color:var(--accent);flex:none;margin:1px 0 0}
+.bkbc-hint{font-size:12px;color:var(--text-2);text-align:center;margin-top:8px;min-height:1px}
 .bkbc-note{font-size:11.5px;color:var(--text-3);line-height:1.45;margin:10px 2px 0;text-align:center}
 </style>
 <script id="bkbc-core">
@@ -663,7 +666,14 @@ window.BKBC = (function(){
         '<div class="bkbc-save"></div></div>' +
         '<div class="bkbc-total">' + fmt(0) + '</div>' +
       '</div>' +
+      /* Widerrufsverzicht (\u00a7356 Abs.6 BGB) nur im echten Kaufmodus: ohne Vertrag gibt es nichts zu verzichten */
+      (CFG.CTA_MODUS === "bestellen"
+        ? '<label class="bkbc-consent"><input type="checkbox" class="bkbc-consent-cb">' +
+          '<span>Ich verlange ausdr\u00fccklich, dass mit der Bereitstellung der Kursinhalte sofort begonnen wird. ' +
+          'Mir ist bekannt, dass ich mit Beginn der Ausf\u00fchrung mein <b>Widerrufsrecht verliere</b>.</span></label>'
+        : '') +
       '<button type="button" class="bkbc-cta" disabled>F\u00e4cher w\u00e4hlen</button>' +
+      '<div class="bkbc-hint"></div>' +
       '<div class="bkbc-msg bkbc-note"></div>' +
     '</div>';
   }
@@ -677,7 +687,10 @@ window.BKBC = (function(){
         elC  = r.querySelector(".bkbc-cnt"),
         elS  = r.querySelector(".bkbc-save"),
         cta  = r.querySelector(".bkbc-cta"),
+        cons = r.querySelector(".bkbc-consent-cb"),
+        hint = r.querySelector(".bkbc-hint"),
         msg  = r.querySelector(".bkbc-msg");
+    var needConsent = (CFG.CTA_MODUS === "bestellen");
     if(!ho || !elT || !cta) return null;
 
     function upd(){
@@ -699,19 +712,25 @@ window.BKBC = (function(){
         : (n + (n === 1 ? " Fach" : " F\u00e4cher") + (h ? " \u00b7 mit allen Handouts" : " \u00b7 Klausur-Check"));
       if(elS) elS.textContent = (save > 0) ? ("Du sparst " + fmt(save)) : "";
 
-      cta.disabled = (n === 0);
+      var verzicht = needConsent ? !!(cons && cons.checked) : false;
+      cta.disabled = (n === 0) || (needConsent && !verzicht);
+      if(hint) hint.textContent = (n > 0 && needConsent && !verzicht)
+        ? "Bitte den Hinweis zum Widerrufsrecht best\u00e4tigen, um fortzufahren." : "";
       cta.textContent = (n === 0)
         ? "F\u00e4cher w\u00e4hlen"
         : ((CFG.CTA_MODUS === "bestellen" ? "Zahlungspflichtig bestellen \u00b7 " : "Paket vormerken \u00b7 ") + fmt(total));
 
       cta._payload = {
         faecher: picked.map(function(x){ return x.getAttribute("data-code"); }),
-        handouts: h, anzahl: n, total: total
+        handouts: h, anzahl: n, total: total,
+        widerrufsverzicht: verzicht,
+        verzichtZeitpunkt: verzicht ? new Date().toISOString() : null
       };
     }
 
     fs.forEach(function(x){ x.addEventListener("change", upd); });
     ho.addEventListener("change", upd);
+    if(cons) cons.addEventListener("change", upd);
     cta.addEventListener("click", function(e){
       e.preventDefault();
       if(cta.disabled) return;
