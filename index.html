@@ -4103,9 +4103,14 @@ html.bklg-lock,body.bklg-lock{overflow:hidden!important;overscroll-behavior:none
       var f = prof.fortschritt || {}; f[fach] = merged;
       sb.from("profiles").update({ fortschritt: f, updated_at: new Date().toISOString() })
         .eq("user_id", session.user.id).then(function () {});
-      // App liest ST nur beim Start -> bei Aenderung EINMAL neu laden
-      if (thenReloadIfChanged && JSON.stringify(merged) !== before && !sessionStorage.getItem("bk-synced")) {
-        sessionStorage.setItem("bk-synced", "1");
+      // App liest ST nur beim Start -> bei Aenderung EINMAL neu laden.
+      // Der Merker traegt den KAUF-STAND, nicht nur "schon mal gesynct": sonst wird ein
+      // NEUER Kauf erst beim zweiten Laden sichtbar (Fehler vom 22.07.). Schleifen sind
+      // doppelt ausgeschlossen - der Stand muss sich geaendert haben UND vom Merker abweichen.
+      var kaufStand = JSON.stringify([merged.owned, merged.hoOwned, merged.pkg, merged.hoAll]);
+      if (thenReloadIfChanged && JSON.stringify(merged) !== before
+          && sessionStorage.getItem("bk-synced") !== kaufStand) {
+        sessionStorage.setItem("bk-synced", kaufStand);
         location.reload();
       }
     });
