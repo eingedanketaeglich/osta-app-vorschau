@@ -4048,6 +4048,10 @@ html.bklg-lock,body.bklg-lock{overflow:hidden!important;overscroll-behavior:none
   }
   function applyEntitlements(st, entCodes) {
     var i, c, m;
+    // Kauf-Stand kommt AUSSCHLIESSLICH vom Server. Sonst ueberlebt eine erstattete oder
+    // entzogene Freischaltung auf dem Geraet (die Erstattungs-Automatik im payment-webhook
+    // entfernt sie nur in der Datenbank). Lernfortschritt bleibt unberuehrt.
+    st.owned = {}; st.hoOwned = {}; st.pkg = null; st.hoAll = false;
     for (i = 0; i < entCodes.length; i++) {
       c = entCodes[i];
       if (c === fach + "-komplett") st.pkg = "komplett";
