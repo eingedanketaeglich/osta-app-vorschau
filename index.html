@@ -2944,9 +2944,21 @@ window.BKBC = (function(){
   function save(){ try { localStorage.setItem(KEY, JSON.stringify(ST)); } catch(e){} }
   var ST = load();
   ST.done = ST.done || {}; ST.weak = ST.weak || {}; ST.quiz = ST.quiz || {};
-  /* Demo-Kaeufe werden nicht mehr im Geraet gespeichert: bei jedem Start zuruecksetzen.
-     Echte Freischaltung kommt spaeter uebers Backend (Zahlung -> Zugangsdaten). */
-  ST.owned = {}; ST.hoOwned = {}; ST.pkg = null; ST.hoAll = false; ST.qa = null;
+  /* Demo-Kaeufe werden nicht im Geraet gespeichert: ohne Konto bei jedem Start zuruecksetzen.
+     MIT Konto sind diese Werte der vom Server gemergte Kauf-Stand (bk-backend schreibt sie
+     nach dem Login) — dann darf hier NICHTS geloescht werden, sonst ist eine bezahlte
+     Lektion beim naechsten Start wieder zu (Fehler vom 22.07., in der Live-App reproduziert).
+     Die Pruefung haengt absichtlich nicht an window.BK_BACKEND: dessen Konfiguration steht
+     weiter unten im Dokument und ist an dieser Stelle noch nicht geladen. */
+  ST.owned = ST.owned || {}; ST.hoOwned = ST.hoOwned || {};
+  var _bkKonto = false;
+  try {
+    for (var _i = 0; _i < localStorage.length; _i++) {
+      var _k = localStorage.key(_i);
+      if (_k && _k.indexOf("sb-") === 0 && _k.indexOf("auth-token") > 0) { _bkKonto = true; break; }
+    }
+  } catch (e) {}
+  if (!_bkKonto) { ST.owned = {}; ST.hoOwned = {}; ST.pkg = null; ST.hoAll = false; ST.qa = null; }
   save();
 
   /* ================= THEME (Hell = Standard) ================= */
