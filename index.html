@@ -3716,7 +3716,7 @@ window.BKBC = (function(){
       $("pkErr").style.display="none";
       var go=$("pkGo"); go.disabled=true; go.textContent="Einen Moment \u2026";
       fetch(window.BK_BACKEND.url+"/functions/v1/create-checkout",{
-        method:"POST", headers:{"Content-Type":"application/json"},
+        method:"POST", headers:bkKaufKopf(),
         body:JSON.stringify({typ:"bundle", faecher:[fach], handouts:art==="gesamt", widerrufsverzicht:true, verzichtZeitpunkt:new Date().toISOString()})
       }).then(function(r){ return r.json(); }).then(function(d){
         if(d && d.url){ location.href=d.url; }
@@ -3725,6 +3725,14 @@ window.BKBC = (function(){
     });
   }
 
+  /* Kauf-Kopfzeilen: den Anmelde-Token mitschicken, damit der Kauf am ANGEMELDETEN
+     Konto haengt. Ohne ihn bleibt customer_email leer, Stripe fragt nach einer Adresse
+     und die Freischaltung landet auf einer fremden E-Mail (Fehler vom 22.07.). */
+  function bkKaufKopf(){
+    var h = {"Content-Type":"application/json"};
+    if (window.BK_TOKEN) h["Authorization"] = "Bearer " + window.BK_TOKEN;
+    return h;
+  }
   function renderEinzelKauf(art, n){
     var fach="osta";
     var preis = art==="kapitel"?PRICE.kapitel:art==="handout"?PRICE.handout:PRICE.handoutPaket;
@@ -3741,7 +3749,7 @@ window.BKBC = (function(){
       $("ekErr").style.display="none";
       var go=$("ekGo"); go.disabled=true; go.textContent="Einen Moment \u2026";
       fetch(window.BK_BACKEND.url+"/functions/v1/create-einzel-checkout",{
-        method:"POST", headers:{"Content-Type":"application/json"},
+        method:"POST", headers:bkKaufKopf(),
         body:JSON.stringify({fach:fach, art:art, n:n||0, widerrufsverzicht:true, verzichtZeitpunkt:new Date().toISOString()})
       }).then(function(r){ return r.json(); }).then(function(d){
         if(d && d.url){ location.href=d.url; }
@@ -4353,6 +4361,12 @@ html.bklg-lock,body.bklg-lock{overflow:hidden!important;overscroll-behavior:none
   /* ---------- Start ---------- */
   loadSupabase(function () {
     sb = window.supabase.createClient(CFG.url, CFG.anon);
+    /* Anmelde-Token global bereitstellen: die Kauf-Kacheln im Haupt-Skript brauchen ihn,
+       damit der Kauf am angemeldeten Konto landet. onAuthStateChange feuert auch beim
+       Start und bei jedem Token-Refresh. */
+    try {
+      sb.auth.onAuthStateChange(function (_e, s) { window.BK_TOKEN = s ? s.access_token : null; });
+    } catch (e) {}
     sb.auth.getSession().then(function (r) {
       var session = (r.data && r.data.session) || null;
       wireOverlay(session);
