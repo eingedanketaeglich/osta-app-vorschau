@@ -3988,6 +3988,13 @@ html.bklg-lock,body.bklg-lock{overflow:hidden!important;overscroll-behavior:none
      Deshalb den Hash HIER sichern - vor createClient. */
   var BOOT_HASH = (location.hash || "").replace(/^#/, "");
   var MAGIC = { ok: /(^|&)access_token=/.test(BOOT_HASH), fehler: "" };
+  // Der Fortschritt-Sync laedt die Seite einmal neu; der Hash ist dann schon verbraucht.
+  // Dieser Marker sorgt dafuer, dass ein angefangener Passwort-Schritt den Reload ueberlebt.
+  function magicMarkerWeg() { try { sessionStorage.removeItem("bk-magic"); } catch (e) {} }
+  try {
+    if (MAGIC.ok) sessionStorage.setItem("bk-magic", "1");
+    else if (sessionStorage.getItem("bk-magic") === "1") MAGIC.ok = true;
+  } catch (e) {}
   if (/(^|&)error/.test(BOOT_HASH)) {
     MAGIC.fehler = /expired/.test(BOOT_HASH)
       ? "Dein Anmelde-Link ist abgelaufen. Melde dich hier mit deinem Passwort an \u2013 oder fordere \u00fcber \u201ePasswort vergessen?\u201c ein neues Einmalpasswort an."
@@ -4154,6 +4161,7 @@ html.bklg-lock,body.bklg-lock{overflow:hidden!important;overscroll-behavior:none
 
     // Per Mail-Link angemeldet und noch ohne eigenes Passwort? Dann einmalig setzen lassen.
     function magicPwSetzen(s) {
+      function fertig() { magicMarkerWeg(); enter(); syncAfterLogin(s, true); }
       var FE = document.getElementById("bklgFE"), FS = document.getElementById("bklgFS"),
           FN = document.getElementById("bklgFN"), FC = document.getElementById("bklgFC");
       var sbtn = document.getElementById("bklgStartBtn");
@@ -4179,14 +4187,14 @@ html.bklg-lock,body.bklg-lock{overflow:hidden!important;overscroll-behavior:none
           if (u.error) { err("first", "Passwort konnte nicht gesetzt werden. Bitte versuch es erneut.", FN); return; }
           err("first", "");
           sb.from("profiles").update({ muss_pw_wechseln: false }).eq("user_id", s.user.id).then(function () {});
-          enter(); syncAfterLogin(s, true);
+          fertig();
         });
       });
       // Niemanden einsperren: wer jetzt kein Passwort setzen will, kommt trotzdem rein.
       var skip = document.createElement("div");
       skip.className = "bklg-link"; skip.style.marginTop = "10px";
       skip.textContent = "Sp\u00e4ter festlegen \u2013 jetzt direkt loslegen";
-      skip.addEventListener("click", function () { enter(); syncAfterLogin(s, true); });
+      skip.addEventListener("click", function () { fertig(); });
       if (sbtn && sbtn.parentNode) sbtn.parentNode.insertBefore(skip, sbtn.nextSibling);
     }
 
@@ -4195,7 +4203,7 @@ html.bklg-lock,body.bklg-lock{overflow:hidden!important;overscroll-behavior:none
       sb.from("profiles").select("muss_pw_wechseln").eq("user_id", session.user.id).single()
         .then(function (pr) {
           if (pr.data && pr.data.muss_pw_wechseln) magicPwSetzen(session);
-          else enter();
+          else { magicMarkerWeg(); enter(); }
         }, function () { enter(); });
       return;
     }
