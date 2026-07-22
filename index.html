@@ -3983,6 +3983,18 @@ html.bklg-lock,body.bklg-lock{overflow:hidden!important;overscroll-behavior:none
   var FN_URL = CFG.url + "/functions/v1";
   var sb = null;                                       // supabase client
 
+  /* ---------- Magic-Link aus der Mail / von zahlung-erfolg.html (22.07.) ----------
+     supabase-js raeumt die Auth-Parameter aus der URL, sobald der Client gebaut wird.
+     Deshalb den Hash HIER sichern - vor createClient. */
+  var BOOT_HASH = (location.hash || "").replace(/^#/, "");
+  var MAGIC = { ok: /(^|&)access_token=/.test(BOOT_HASH), fehler: "" };
+  if (/(^|&)error/.test(BOOT_HASH)) {
+    MAGIC.fehler = /expired/.test(BOOT_HASH)
+      ? "Dein Anmelde-Link ist abgelaufen. Melde dich hier mit deinem Passwort an \u2013 oder fordere \u00fcber \u201ePasswort vergessen?\u201c ein neues Einmalpasswort an."
+      : "Die Anmeldung \u00fcber den Link hat nicht geklappt. Melde dich hier mit deiner E-Mail und deinem Passwort an.";
+    try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {}
+  }
+
   /* ---------- supabase-js (UMD) laden ---------- */
   function loadSupabase(cb) {
     if (window.supabase && window.supabase.createClient) return cb();
@@ -4140,7 +4152,54 @@ html.bklg-lock,body.bklg-lock{overflow:hidden!important;overscroll-behavior:none
       note.parentNode.insertBefore(pwv, note);
     }
 
-    if (session) { enter(); return; }
+    // Per Mail-Link angemeldet und noch ohne eigenes Passwort? Dann einmalig setzen lassen.
+    function magicPwSetzen(s) {
+      var FE = document.getElementById("bklgFE"), FS = document.getElementById("bklgFS"),
+          FN = document.getElementById("bklgFN"), FC = document.getElementById("bklgFC");
+      var sbtn = document.getElementById("bklgStartBtn");
+      if (FS && FS.parentNode) {
+        var lbl = FS.parentNode.previousElementSibling;
+        if (lbl) lbl.style.display = "none";
+        FS.parentNode.style.display = "none";
+      }
+      if (FE) { FE.value = (s.user && s.user.email) || ""; FE.readOnly = true; }
+      var h = firstScr.querySelector(".bklg-h");
+      if (h) h.textContent = "Fast fertig \u2013 Passwort festlegen";
+      var lead = firstScr.querySelector(".bklg-lead");
+      if (lead) lead.textContent = "Du bist angemeldet. Leg jetzt einmalig dein eigenes Passwort fest \u2013 damit kommst du auch ohne Mail-Link wieder hinein.";
+      show("first");
+      if (sbtn) sbtn.addEventListener("click", function () {
+        clearBad();
+        var n = FN.value || "", c = FC.value || "";
+        if (n.length < 6) { err("first", "Neues Passwort: bitte mindestens 6 Zeichen.", FN); return; }
+        if (n !== c) { err("first", "Die neuen Passw\u00f6rter stimmen nicht \u00fcberein.", FC); return; }
+        sbtn.disabled = true;
+        sb.auth.updateUser({ password: n }).then(function (u) {
+          sbtn.disabled = false;
+          if (u.error) { err("first", "Passwort konnte nicht gesetzt werden. Bitte versuch es erneut.", FN); return; }
+          err("first", "");
+          sb.from("profiles").update({ muss_pw_wechseln: false }).eq("user_id", s.user.id).then(function () {});
+          enter(); syncAfterLogin(s, true);
+        });
+      });
+      // Niemanden einsperren: wer jetzt kein Passwort setzen will, kommt trotzdem rein.
+      var skip = document.createElement("div");
+      skip.className = "bklg-link"; skip.style.marginTop = "10px";
+      skip.textContent = "Sp\u00e4ter festlegen \u2013 jetzt direkt loslegen";
+      skip.addEventListener("click", function () { enter(); syncAfterLogin(s, true); });
+      if (sbtn && sbtn.parentNode) sbtn.parentNode.insertBefore(skip, sbtn.nextSibling);
+    }
+
+    if (session) {
+      if (!MAGIC.ok) { enter(); return; }
+      sb.from("profiles").select("muss_pw_wechseln").eq("user_id", session.user.id).single()
+        .then(function (pr) {
+          if (pr.data && pr.data.muss_pw_wechseln) magicPwSetzen(session);
+          else enter();
+        }, function () { enter(); });
+      return;
+    }
+    if (MAGIC.fehler) err("login", MAGIC.fehler, null);
     show("login");
 
     // Anmelden
