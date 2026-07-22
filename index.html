@@ -3688,6 +3688,31 @@ window.BKBC = (function(){
     window.addEventListener('pointerup',function(e){ if(drag && e.pointerType!=='touch') end(); });
   })();
   document.addEventListener("keydown", function(e){ if(e.key==="Escape" && sheetOv.classList.contains("on")) closeSheet(); });
+  function renderEinzelKauf(art, n){
+    var fach="osta";
+    var preis = art==="kapitel"?PRICE.kapitel:art==="handout"?PRICE.handout:PRICE.handoutPaket;
+    var label = art==="kapitel"?("Lektion Kap "+n):art==="handout"?("Handout Kap "+n):"Alle Handouts";
+    $("storeBody").innerHTML =
+      '<button type="button" class="store-link" data-back>&#8249; Zur\u00fcck zur Auswahl</button>'+
+      '<div class="store-status" style="margin-top:8px">Deine Auswahl: <b>'+label+' \u00b7 '+euro(preis)+'</b></div>'+
+      '<p style="font-size:13px;color:var(--text-3);line-height:1.5;margin:10px 0 0">Sofort-Freischaltung in der App nach Zahlungseingang. Umsatzsteuerfrei, Endpreis. Rechnung und Best\u00e4tigung kommen automatisch per E-Mail.</p>'+
+      '<label class="chk" style="margin-top:12px"><input type="checkbox" id="ekVz"><span>Ich verlange ausdr\u00fccklich, dass mit der Bereitstellung der Kursinhalte sofort begonnen wird. Mir ist bekannt, dass ich mit Beginn der Ausf\u00fchrung mein Widerrufsrecht verliere.</span></label>'+
+      '<div class="err" id="ekErr">Bitte best\u00e4tige den Hinweis zum Widerrufsrecht.</div>'+
+      '<button type="button" class="btn btn-primary btn-block" id="ekGo" style="margin-top:10px">Zahlungspflichtig bestellen \u00b7 '+euro(preis)+'</button>';
+    $("ekGo").addEventListener("click", function(){
+      if(!$("ekVz").checked){ $("ekErr").style.display="block"; return; }
+      $("ekErr").style.display="none";
+      var go=$("ekGo"); go.disabled=true; go.textContent="Einen Moment \u2026";
+      fetch(window.BK_BACKEND.url+"/functions/v1/create-einzel-checkout",{
+        method:"POST", headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({fach:fach, art:art, n:n||0, widerrufsverzicht:true, verzichtZeitpunkt:new Date().toISOString()})
+      }).then(function(r){ return r.json(); }).then(function(d){
+        if(d && d.url){ location.href=d.url; }
+        else { go.disabled=false; go.textContent="Zahlungspflichtig bestellen \u00b7 "+euro(preis); alert(d && d.error ? d.error : "Fehler beim Start der Zahlung."); }
+      }).catch(function(){ go.disabled=false; go.textContent="Zahlungspflichtig bestellen \u00b7 "+euro(preis); alert("Fehler beim Start der Zahlung."); });
+    });
+  }
+
   $("storeBody").addEventListener("click", function(e){
     if(e.target.closest("[data-back]")){ renderStore(STORE_CTX); return; }
     var b=e.target.closest("[data-buy]"); if(!b) return;
@@ -3698,7 +3723,10 @@ window.BKBC = (function(){
       handout: "https://buy.stripe.com/aFaaEX0ibaqA7yD1YJ8bS05",
       handoutpaket: "https://buy.stripe.com/bJecN59SL6ak8CHbzj8bS02"
     };
-    if(STRIPE_FIX[_bt]){ window.open(STRIPE_FIX[_bt], "_blank", "noopener"); return; }
+    if(_bt==="kapitel"||_bt==="handout"||_bt==="handoutpaket"){
+      if(window.BK_BACKEND && window.BK_BACKEND.enabled){ renderEinzelKauf(_bt, parseInt(b.getAttribute("data-n"),10)); return; }
+      if(STRIPE_FIX[_bt]){ window.open(STRIPE_FIX[_bt], "_blank", "noopener"); return; }
+    }
     renderOrderForm(productLabel(_bt, parseInt(b.getAttribute("data-n"),10), b.getAttribute("data-slot")));
   });
 
