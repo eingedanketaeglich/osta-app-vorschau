@@ -562,6 +562,14 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 .store-dot.h{background:linear-gradient(180deg,var(--premium-2),var(--premium));box-shadow:inset 0 0 0 1px var(--premium-line)}
 /* Eine Kapitelliste mit zwei Preisen */
 .store-clist{display:flex;flex-direction:column}
+.pl-akk{margin:6px 0 2px}
+.pl-akk>summary{display:flex;width:100%;justify-content:center;align-items:center;cursor:pointer;list-style:none;background:#16273f;color:#fff;padding:12px 16px;border-radius:12px;font-weight:600;min-height:48px;box-sizing:border-box}
+.pl-akk>summary::-webkit-details-marker{display:none}
+.pl-akk>summary::after{content:"\25BE";margin-left:8px;font-size:.85em;opacity:.9}
+.pl-akk[open]>summary::after{content:"\25B4"}
+.pl-akk-list{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.pl-akk-list a{display:flex;gap:8px;align-items:baseline;padding:11px 14px;border-radius:10px;background:var(--card,#fff);border:1px solid var(--line-2,rgba(16,36,68,.16));color:var(--text,#1b2733);text-decoration:none;font-weight:600;font-size:13px;line-height:1.3}
+.pl-akk-list a .kap{flex:none;color:var(--brand,#c25a00)}
 .store-crow{border-bottom:1px solid var(--line-2);padding:11px 0}
 [data-theme="dark"] .store-crow{border-color:var(--line)}
 .store-crow:last-child{border-bottom:0}
@@ -3672,7 +3680,7 @@ window.BKBC = (function(){
       H.push('<div class="store-anrech">Einzeln wären es 10 × 8,90 € = 89,00 € · du sparst 39,10 €.</div>');
       H.push('<div class="sec-lbl">Einzelnes Kapitel</div>');
       H.push('<div class="store-pkgrow"><div class="pkgr-t"><b>Kapitel-Bundle</b><small>Lektion + Handout-PDF, untrennbar. Dein Kapitel wählst du im Bezahlprozess (Stripe) · das Handout kommt innerhalb von 15 Minuten per E-Mail.</small></div><div class="pkgr-p">8,90 €</div></div>');
-      H.push('<a class="btn btn-silver btn-block" style="margin:6px 0 2px" href="'+plinkUrl(PLINK.bundle)+'" target="_blank" rel="noopener">Kapitel wählen und freischalten · 8,90 €</a>');
+      H.push('<details class="pl-akk"><summary>Kapitel wählen und freischalten · 8,90 €</summary><div class="pl-akk-list">'+LESSONS.map(function(c){return '<a href="'+plinkUrl(PLINK.bundle)+'" target="_blank" rel="noopener"><span class="kap">Kap.&nbsp;'+(c.n<10?'0'+c.n:c.n)+'</span> '+c.t+'</a>';}).join('')+'</div></details>');
     }
     H.push('<div class="sec-lbl">Live Q&A</div>');
     if(qaFrei){
@@ -3685,19 +3693,7 @@ window.BKBC = (function(){
       H.push('<div class="store-pkgrow"><div class="pkgr-t"><b>Live Q&A (online)</b><small>Dauer: 120 Minuten! In den Tagen vor der Klausur. Du sendest deine schwierigsten Aufgaben vorab ein. Wir lösen Sie ausführlich und beantworten Fragen! Den Termin stimmen wir in der WhatsApp-Gruppe ab.</small></div></div>');
       H.push('<div class="store-anrech">Im Komplettpaket <b>gratis</b> — oder für 10,00 € zubuchbar, sobald du ein Kapitel gekauft hast.</div>');
     }
-    if(!komplett){
-      H.push('<div class="sec-lbl">Deine Kapitel</div>');
-      H.push('<div class="store-clist">');
-      LESSONS.forEach(function(c){
-        var n=c.n, chip;
-        if(n===3) chip='<span class="store-chip lchip free"><small>Lektion</small>gratis</span>';
-        else if(unlocked(n)) chip='<span class="store-chip lchip owned"><small>Lektion</small>&#9679; frei</span>';
-        else chip='<a class="store-chip lchip" href="'+plinkUrl(PLINK.bundle)+'" target="_blank" rel="noopener"><small>Bundle</small>8,90 €</a>';
-        var ho=handoutUnlocked(n)?'<span class="store-chip hchip owned"><small>Handout</small>&#9679; per E-Mail</span>':'';
-        H.push('<div class="store-crow"><div class="store-crow-top"><span style="font-size:13px;font-weight:600"><span class="kap">Kap '+n+'</span> '+c.t+'</span><div class="store-chips">'+chip+ho+'</div></div></div>');
-      });
-      H.push('</div>');
-    }
+    /* 'Deine Kapitel'-Liste entfernt (Simon 23.07.) - Kapitelauswahl jetzt im Akkordeon oben */
     $("storeBody").innerHTML=H.join("");
   }
   function openSheet(kontext){ STORE_CTX=kontext||null; renderStore(STORE_CTX); sheetOv.classList.add("on"); document.body.style.overflow="hidden"; }
