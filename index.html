@@ -3757,7 +3757,7 @@ html.bklg-lock,body.bklg-lock{overflow:hidden!important;overscroll-behavior:none
   show(getAcct() ? 'login' : 'first');
   // Passwort anzeigen/verbergen
   var eyes=ov.querySelectorAll('.bklg-eye');
-  for(var i=0;i<eyes.length;i++){
+  for(var i=0;i<eyes.length;i++){ if(eyes[i]._eb)continue; eyes[i]._eb=1;
     eyes[i].addEventListener('click',function(){
       var inp=this.parentNode.querySelector('.bklg-pwi'); if(!inp) return;
       if(inp.type==='password'){ inp.type='text'; this.textContent='Verbergen'; }
@@ -3971,7 +3971,7 @@ html.bklg-lock,body.bklg-lock{overflow:hidden!important;overscroll-behavior:none
 
     // Passwort anzeigen/verbergen + Staerke-Balken (wie Demo)
     var eyes = ov.querySelectorAll(".bklg-eye"), i;
-    for (i = 0; i < eyes.length; i++) {
+    for (i = 0; i < eyes.length; i++) { if(eyes[i]._eb)continue; eyes[i]._eb=1;
       eyes[i].addEventListener("click", function () {
         var inp = this.parentNode.querySelector(".bklg-pwi"); if (!inp) return;
         if (inp.type === "password") { inp.type = "text"; this.textContent = "Verbergen"; }
