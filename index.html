@@ -303,6 +303,14 @@ input[type=range].sl::-moz-range-thumb{width:26px;height:26px;border-radius:50%;
 .linklist a .i{color:var(--text-3)}
 
 .placeholder-note{font-size:12px;color:var(--text-3);background:var(--surface-2);border:1px dashed var(--silver);border-radius:11px;padding:11px 13px;margin-top:14px;line-height:1.5}
+.cashcard{background:var(--surface);border:1px solid var(--line-2);border-radius:14px;padding:16px;margin:10px 0 0;box-shadow:var(--sh-1),var(--edge)}
+.cc-big{font-family:var(--serif);font-weight:600;font-size:22px;line-height:1.1;color:var(--accent-deep);letter-spacing:-.01em}
+[data-theme="dark"] .cc-big{color:var(--accent-2)}
+.cc-sub{font-size:13px;color:var(--text-2);margin-top:5px;line-height:1.45}
+.legal-foot{margin-top:22px;text-align:center}
+.legal-foot a{font-size:12px;color:var(--text-3);text-decoration:none}
+.legal-foot .legal-sep{color:var(--text-3);font-size:12px;margin:0 5px}
+.legal-note{font-size:11px;color:var(--text-3);margin:9px auto 0;line-height:1.5;max-width:290px}
 
 /* empty states */
 .empty{text-align:center;padding:36px 18px;color:var(--text-3)}
@@ -557,7 +565,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 .store-crow{border-bottom:1px solid var(--line-2);padding:11px 0}
 [data-theme="dark"] .store-crow{border-color:var(--line)}
 .store-crow:last-child{border-bottom:0}
-.store-crow-top{display:flex;align-items:center;gap:10px}
+.store-crow-top{display:flex;align-items:center;gap:10px}.store-crow-top>span{flex:1;min-width:0}
 .store-cdet{flex:1;min-width:0}
 .store-cdet>summary{list-style:none;cursor:pointer;font-size:14px;color:var(--text);display:flex;align-items:center;gap:7px;line-height:1.3;min-height:36px}
 .store-cdet>summary::-webkit-details-marker{display:none}
@@ -569,7 +577,7 @@ body:not([data-screen="hub"]) .tb-in{justify-content:flex-end}
 .store-cdet .store-topics b{color:var(--text);font-weight:600}
 .store-cdet .store-topics ul{margin:5px 0 0 16px;padding:0}
 .store-cdet .store-topics li{margin:2px 0;list-style:disc}
-.store-chips{flex:none;display:flex;gap:7px}
+.store-chips{flex:none;display:flex;gap:7px;margin-left:auto}
 .store-chip{border:0;border-radius:11px;cursor:pointer;font-family:inherit;font-weight:700;font-size:12px;padding:6px 9px;min-width:72px;min-height:44px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.15;box-shadow:var(--sh-1)}
 .store-chip small{font-weight:600;font-size:9px;letter-spacing:.04em;opacity:.85;text-transform:uppercase;margin-bottom:1px}
 .store-chip.lchip{background:linear-gradient(180deg,var(--accent-2),var(--accent));color:#2A1500}
@@ -925,15 +933,18 @@ window.BKBC = (function(){
     <span class="pill gratis"><span class="dot"></span> aktiv</span>
   </div>
   <div id="accBuyWrap">
-    <button class="btn btn-primary btn-block" style="margin:4px 0 6px" id="accBuy">Komplettpaket freischalten · 49,90&nbsp;€</button>
+    <button class="btn btn-silver btn-block" style="margin:4px 0 2px" id="accBuy">Preise ansehen &rsaquo;</button>
   </div>
 
-  <div class="sec-lbl">Rechtliches</div>
-  <div class="linklist">
-    <a href="#" data-tab="impressum" onclick="return false">Impressum <svg class="i"><use href="#i-chev"/></svg></a>
-    <a href="#" data-tab="datenschutz" onclick="return false">Datenschutz <svg class="i"><use href="#i-chev"/></svg></a>
+  <div class="cashcard">
+    <div class="cc-big">10&nbsp;€ Cashback</div>
+    <div class="cc-sub">beim Kauf des Komplettpakets — für dein Feedback nach der Klausur.</div>
   </div>
-  <div class="placeholder-note">Unabhängiges Vorbereitungsangebot, nicht von der Hochschule herausgegeben. Impressum und Datenschutz als Platzhalter, Rechtstext mit René prüfen.</div>
+
+  <div class="legal-foot">
+    <a href="#" data-tab="impressum" onclick="return false">Impressum</a><span class="legal-sep">·</span><a href="#" data-tab="datenschutz" onclick="return false">Datenschutz</a>
+    <div class="legal-note">Unabhängiges Vorbereitungsangebot, nicht von der Hochschule herausgegeben.</div>
+  </div>
   <p class="lic-note" id="licNote" hidden>Persönlicher Zugang für {{KUNDE_NAME}} · nur für den eigenen Gebrauch, bitte nicht weitergeben.</p>
 </section>
 
@@ -3519,7 +3530,7 @@ window.BKBC = (function(){
     at.textContent="Probe-Zugang";
     as.textContent=oc>0 ? (oc+" Kapitel als Bundle frei · Kapitel 3 gratis") : "Kapitel 3 frei · restliche Kapitel gesperrt";
     bw.hidden=false;
-    if(ab) ab.innerHTML="Komplettpaket freischalten · 49,90 €";
+    if(ab) ab.innerHTML="Preise ansehen &rsaquo;";
   }
 
   /* ---- Store-Rendering ---- */
@@ -3556,10 +3567,13 @@ window.BKBC = (function(){
     H.push('<div class="sec-lbl">Live Q&A</div>');
     if(qaFrei){
       H.push('<div class="store-status"><b>Live Q&A freigeschaltet.</b> 120 Minuten vor der Klausur, online. Den Termin stimmen wir in der WhatsApp-Gruppe ab · den Teams-Link bekommst du per E-Mail.</div>');
-    } else {
+    } else if(ownedChapters()>0){
       H.push('<div class="store-pkgrow"><div class="pkgr-t"><b>Live Q&A (online)</b><small>120 Minuten vor der Klausur. Deine Aufgaben vorab einsenden, wir lösen sie live · Termin über die WhatsApp-Gruppe.</small></div><div class="pkgr-p">10,00 €</div></div>');
       H.push('<a class="btn btn-silver btn-block" style="margin:6px 0 2px" href="'+plinkUrl(PLINK.qa)+'" target="_blank" rel="noopener">Live Q&A freischalten · 10,00 €</a>');
       H.push('<div class="store-anrech">Im Komplettpaket ist die Live Q&A gratis enthalten.</div>');
+    } else {
+      H.push('<div class="store-pkgrow"><div class="pkgr-t"><b>Live Q&A (online)</b><small>120 Minuten vor der Klausur. Deine Aufgaben vorab einsenden, wir lösen sie live · Termin über die WhatsApp-Gruppe.</small></div></div>');
+      H.push('<div class="store-anrech">Im Komplettpaket <b>gratis</b> — oder für 10,00 € zubuchbar, sobald du ein Kapitel gekauft hast.</div>');
     }
     if(!komplett){
       H.push('<div class="sec-lbl">Deine Kapitel</div>');
@@ -3706,6 +3720,8 @@ html.bklg-lock,body.bklg-lock{overflow:hidden!important;overscroll-behavior:none
 #bklgOverlay .bklg-f{display:block;font-weight:600;font-size:13.5px;margin:12px 0 6px}
 #bklgOverlay .bklg-inp{width:100%;min-height:46px;padding:11px 14px;font-size:16px;font-family:inherit;color:#1B1D21;background:#F8F7F4;border:0;border-radius:11px;box-shadow:inset 0 1px 0 #fff,0 0 0 1px #D8D6CE;letter-spacing:normal}
 #bklgOverlay .bklg-inp::placeholder{color:#A9ABB0;letter-spacing:normal}
+#bklgOverlay .bklg-pwi[type=password]{font-size:13px;letter-spacing:.09em}
+#bklgOverlay .bklg-pwi[type=password]::placeholder{font-size:16px;letter-spacing:normal}
 #bklgOverlay .bklg-inp:focus{outline:0;box-shadow:inset 0 1px 0 #fff,0 0 0 2px #E8760A}
 #bklgOverlay .bklg-inp.bklg-bad{box-shadow:inset 0 1px 0 #fff,0 0 0 2px #C0392B}
 #bklgOverlay .bklg-pwwrap{position:relative}
