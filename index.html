@@ -3171,7 +3171,7 @@ window.BKBC = (function(){
     } else {
       var L = lesson(an);
       $("hubTitle").innerHTML = dc===0 ? "Dein Weg zur OSTA&#8209;Klausur." : "Weiter geht&rsquo;s.";
-      $("hubSub").textContent = "Noch "+(10-dc)+" Kapitel bis zur Klausur am 28.07. bei Prof. Hassler.";
+      $("hubSub").textContent = "Noch "+(10-dc)+" Kapitel bei Prof. Hassler.";
       $("hubProgSub").textContent = "Kapitel "+an+" ist "+(ST.quiz[an]?"angefangen":"offen")+" und wartet auf dich.";
       $("hubCta").innerHTML = "Kapitel "+an+" "+(ST.quiz[an]?"fortsetzen":"starten")+" <svg class='i arrow'><use href='#i-arrow'/></svg>";
       $("hubCta").onclick = function(){ openLesson(an); };
