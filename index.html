@@ -974,7 +974,7 @@ window.BKBC = (function(){
     <a href="#" data-tab="impressum" onclick="return false">Impressum</a><span class="legal-sep">·</span><a href="#" data-tab="datenschutz" onclick="return false">Datenschutz</a><span class="legal-sep">·</span><a href="#" data-tab="agb" onclick="return false">AGB</a><span class="legal-sep">·</span><a href="#" data-tab="widerruf" onclick="return false">Widerruf</a>
     <div class="legal-note">Unabhängiges Vorbereitungsangebot, nicht von der Hochschule herausgegeben.</div>
   </div>
-  <p class="lic-note" id="licNote" hidden>Persönlicher Zugang für {{KUNDE_NAME}} · nur für den eigenen Gebrauch, bitte nicht weitergeben.</p>
+  <p class="lic-note" id="licNote" hidden>Persönlicher Zugang · nur für den eigenen Gebrauch, bitte nicht weitergeben.</p>
 </section>
 
 <!-- ===================== IMPRESSUM (in-App, Platzhalter) ===================== -->
@@ -3638,11 +3638,12 @@ window.BKBC = (function(){
     10:["t-Test","Chi-Quadrat-Anpassungstest","Unabhängigkeitstest","Testauswahl"]
   };
   /* V3 (22.07.): Terminwahl/Bestellformular entfaellt · Kauf via Stripe Payment Links. */
+  function bkKundenName(){ try{ for(var i=0;i<localStorage.length;i++){ var k=localStorage.key(i); if(k && k.indexOf("sb-")===0 && k.indexOf("auth-token")>0){ var d=JSON.parse(localStorage.getItem(k)||"{}"); var u=(d&&(d.user||(d.currentSession&&d.currentSession.user)))||null; var m=(u&&u.user_metadata)||{}; var nm=(m.vorname||m.first_name||m.name||m.full_name||""); return String(nm).replace(/[<>&"]/g,"").trim(); } } }catch(e){} return ""; }
   function updateAccessCard(){
     var at=$("accTitle"), as=$("accSub"), bw=$("accBuyWrap"), ln=$("licNote"), ab=$("accBuy");
     if(ZUGANG==="komplett" || hasKomplett()){
       at.textContent="OSTA Komplettpaket"; as.textContent="Alle 10 Kapitel frei · WORKBOOK per E-Mail · Live Q&A gratis";
-      bw.hidden=true; if(ln) ln.hidden=false; return;
+      bw.hidden=true; if(ln){var _kn=bkKundenName();ln.textContent="Persönlicher Zugang"+(_kn?" für "+_kn:"")+" · nur für den eigenen Gebrauch, bitte nicht weitergeben.";ln.hidden=false;} return;
     }
     var oc=ownedChapters();
     at.textContent="Probe-Zugang";
